@@ -571,6 +571,32 @@ a:hover>.btop .arrow,a:hover .arrow{background:var(--gold);color:var(--gold-ink)
 .bsteps .on .bt small{display:block}
 .bp{position:absolute;left:0;right:0;bottom:0;height:2px;background:transparent}
 .bp i{display:block;height:100%;width:0;background:var(--grad)}
+/* featured rail */
+.rail-nav{display:flex;align-items:center;gap:10px}
+.rail-count{font-size:.8rem;color:var(--muted);margin-right:8px}
+.rbtn{width:52px;height:52px;border-radius:50%;border:1px solid var(--line-2);background:var(--glass-2);color:var(--fg);display:grid;place-items:center;cursor:pointer;transition:all .3s}
+.rbtn:hover{background:var(--gold);color:var(--gold-ink);border-color:transparent}
+.rail{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-inline:max(var(--gut),calc((100vw - var(--max)) / 2 + var(--gut)));padding-inline:max(var(--gut),calc((100vw - var(--max)) / 2 + var(--gut)));padding-bottom:6px;scrollbar-width:none;cursor:grab}
+.rail::-webkit-scrollbar{display:none}
+.rail.drag{cursor:grabbing;scroll-snap-type:none}
+.rail.drag .pcard{pointer-events:none}
+.rail-end{flex:0 0 1px}
+.pcard{position:relative;flex:0 0 clamp(290px,31vw,430px);aspect-ratio:3/4;border-radius:28px;overflow:hidden;scroll-snap-align:start;border:1px solid var(--line);background:var(--bg-2);isolation:isolate;cursor:zoom-in}
+.pcard img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1.4s cubic-bezier(.2,.8,.2,1);filter:saturate(.9)}
+.pcard::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,12,14,.35),transparent 25%,transparent 45%,rgba(10,12,14,.92))}
+.pcard:hover img{transform:scale(1.06)}
+.pcard::after{content:"";position:absolute;inset:0;border-radius:inherit;box-shadow:inset 0 0 0 1px rgba(228,199,146,0);transition:box-shadow .4s;pointer-events:none}
+.pcard:hover::after{box-shadow:inset 0 0 0 1px rgba(228,199,146,.55)}
+.pc-top{position:absolute;top:16px;left:16px;right:16px;display:flex;justify-content:space-between;gap:8px}
+.pc-new{background:var(--grad)!important;color:var(--gold-ink)!important;border-color:transparent!important}
+.pc-panel{position:absolute;left:12px;right:12px;bottom:12px;padding:20px;border-radius:20px;background:rgba(12,14,16,.55);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);border:1px solid var(--line);display:flex;flex-direction:column;gap:10px;transform:translateY(0);transition:transform .5s cubic-bezier(.2,.8,.2,1)}
+.pc-num{font-size:.7rem;color:var(--gold);letter-spacing:.12em}
+.pc-panel h3{font-size:1.25rem}
+.pc-panel p{font-size:.88rem;color:rgba(243,242,239,.75);line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;transition:all .5s}
+.pcard:hover .pc-panel p{-webkit-line-clamp:8}
+.rail-bar{height:2px;border-radius:2px;background:var(--line);margin-top:22px;overflow:hidden}
+.rail-bar i{display:block;height:100%;width:18%;background:var(--grad);transition:width .2s}
+@media (max-width:600px){.pcard{flex-basis:82vw}.rail-nav .rbtn{width:44px;height:44px}}
 /* motion */
 .page{animation:pageIn .7s cubic-bezier(.2,.8,.2,1) both}
 @keyframes pageIn{from{transform:translateY(14px)}to{transform:none}}
@@ -696,7 +722,12 @@ const PHOTOS=()=>[
  {n:2,c:'balcony',t:L('Balkon, powłoka antypoślizgowa','Balcony, slip-resistant coating')},
  {n:7,c:'garage',t:L('Wjazd do garażu, oznakowanie','Garage entrance, markings')},
  {n:5,c:'balcony',t:L('Galeria przy wejściu do mieszkań','Gallery at front doors')},
- {n:8,c:'industrial',t:L('Korytarz techniczny, epoksyd','Technical corridor, epoxy')}
+ {n:8,c:'industrial',t:L('Korytarz techniczny, epoksyd','Technical corridor, epoxy')},
+ {n:11,c:'industrial',t:T('Warsztat: niebieski epoksyd z żółtymi strefami','Workshop: blue epoxy with yellow zones','Werkplaats: blauwe epoxy met gele zones')},
+ {n:12,c:'balcony',t:T('Balkon z wykończeniem z płatków','Balcony with flake finish','Balkon met flake-afwerking')},
+ {n:13,c:'balcony',t:T('Galeria VvE, jasnoszara','VvE gallery, light grey','VvE-galerij, lichtgrijs')},
+ {n:14,c:'balcony',t:T('Klatka schodowa w trakcie prac','Stairwell in progress','Trappenhuis in uitvoering')},
+ {n:15,c:'garage',t:T('Komórka / boks garażowy, epoksyd z płatkami','Storage / garage box, flake epoxy','Berging / garagebox, epoxy met flakes')}
 ];
 const STEPS=()=>[
  [L('Inspekcja i pomiar','Inspection & measurement'),L('Przyjeżdżamy na miejsce, oceniamy beton i robimy pomiary. Na tej podstawie przygotowujemy offerte z doborem systemu.','We visit the site, assess the concrete and take measurements. On that basis we prepare a quotation with the chosen system.'),[L('wilgotność CM','CM moisture'),'pull-off ≥ 1.5 N/mm²',L('punkt rosy','dew point')]],
@@ -945,6 +976,58 @@ function baInit(){
  if('IntersectionObserver' in window){BA.io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){BA.io.disconnect();baAuto();}}),{threshold:.45});BA.io.observe(fr);}
 }
 
+
+/* ---------- featured projects ---------- */
+const FEAT=()=>[
+ {n:11,c:'industrial',tag:T('Warsztat','Workshop','Werkplaats'),
+  t:T('Warsztat w kolorze RAL','Workshop in RAL colour','Werkplaats in RAL-kleur'),
+  d:T('Epoksyd z płatkami w kolorze niebieskim, ciągi komunikacyjne i strefy na żółto. Ostro odcięte linie i bezspoinowa, odporna na ścieranie posadzka.','Flake epoxy in blue with walkways and zones in yellow. Crisp taped lines and a seamless, wear-resistant floor.','Epoxy met flakes in blauw, looproutes en zones in geel. Strak afgeplakte lijnen en een naadloze, slijtvaste vloer.'),
+  chips:['Epoxy','Flakes',T('Strefy','Zones','Zonemarkering')]},
+ {n:13,c:'balcony',tag:'VvE',
+  t:T('Galeria mieszkaniowa','Residential gallery','Woongalerij'),
+  d:T('Długa galeria w jasnej szarości z antypoślizgową strukturą. Krawędzie i cokoły przy elewacji wykonane bez łączeń, w jednym systemie.','A long gallery in light grey with a slip-resistant texture. Edges and upstands along the facade done seamlessly in one system.','Lange galerij in lichtgrijs met een slipvaste structuur. Randen en opstanden langs de gevel naadloos meegenomen in één systeem.'),
+  chips:[T('Galeria','Gallery','Galerij'),'Antislip',T('Bez łączeń','Seamless','Naadloos')]},
+ {n:12,c:'balcony',tag:T('Balkon','Balcony','Balkon'),
+  t:T('Balkon z płatkami','Balcony with flakes','Balkon met flakes'),
+  d:T('Wodoszczelna powłoka wyprowadzona na cokoły, wykończona szarymi płatkami. Detale wokół rury spustowej i progu w tym samym systemie.','Waterproof coating carried up the upstands and finished with grey flakes. Details around the downpipe and threshold in the same system.','Waterdichte coating tot in de opstanden, afgewerkt met grijze flakes. Details rond de regenpijp en dorpel in hetzelfde systeem.'),
+  chips:[T('Hydroizolacja','Waterproofing','Waterdichting'),'Flakes',T('Detale','Details','Detaillering')]},
+ {n:14,c:'balcony',tag:T('Klatka schodowa','Stairwell','Trappenhuis'),
+  t:T('Schody bez poślizgu','Slip-free stairs','Slipvaste trappen'),
+  d:T('Stopnie i podstopnice z trwałą, antypoślizgową powłoką. Praca etapami, z wygrodzeniem, aby mieszkańcy mieli zawsze przejście.','Treads and risers with a durable, slip-resistant coating. Worked in phases with barriers so residents always have access.','Treden en stootborden voorzien van een slijtvaste, slipvaste coating. Gefaseerd uitgevoerd met afzetting, zodat bewoners altijd door kunnen.'),
+  chips:[T('Schody','Stairs','Trappen'),'Antislip',T('Etapami','Phased','Gefaseerd')]},
+ {n:15,c:'garage',tag:T('Garaż','Garage','Garage'),
+  t:T('Komórka / boks garażowy','Storage / garage box','Berging / garagebox'),
+  d:T('Jasnoszary epoksyd z płatkami: bez pyłu, łatwy w utrzymaniu i odporny na olej oraz sól drogową.','Light grey flake epoxy: dust-free, easy to clean and resistant to oil and road salt.','Lichtgrijze epoxy met flakes: stofvrij, makkelijk schoon te houden en bestand tegen olie en strooizout.'),
+  chips:['Epoxy','Flakes',T('Odporny na olej','Oil-resistant','Oliebestendig')]}
+];
+function featHTML(){
+ const f=FEAT();
+ return `<section style="padding-top:0"><div class="wrap">
+  <div class="shead rv"><div class="stack">${kick(T('Najnowsze realizacje','Recent projects','Recente projecten'))}<h2>${T('Praca, która <span class="gt">mówi sama za siebie.</span>','Work that <span class="gt">speaks for itself.</span>','Werk dat <span class="gt">voor zich spreekt.</span>')}</h2></div>
+   <div class="rail-nav"><span class="rail-count mono" id="rail-count">01 / ${String(f.length).padStart(2,'0')}</span><button type="button" class="rbtn" data-rail="-1" aria-label="${T('Poprzedni','Previous','Vorige')}"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13 8H3M7 4L3 8l4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button><button type="button" class="rbtn" data-rail="1" aria-label="${T('Następny','Next','Volgende')}">${ARW}</button></div></div>
+ </div>
+ <div class="rail" id="rail">${f.map((p,i)=>`<article class="pcard rv" data-n="${p.n}" data-t="${p.t.replace(/"/g,'&quot;')}" tabindex="0">
+   <img src="${IMG(p.n)}" alt="${p.t}" loading="lazy">
+   <div class="pc-top"><span class="chip">${p.tag}</span><span class="chip pc-new">${T('Nowość','New','Nieuw')}</span></div>
+   <div class="pc-panel"><span class="pc-num mono">P/${String(i+1).padStart(2,'0')}</span><h3>${p.t}</h3><p>${p.d}</p><div class="chips">${p.chips.map(c=>`<span class="chip">${c}</span>`).join('')}</div></div>
+  </article>`).join('')}<div class="rail-end" aria-hidden="true"></div></div>
+ <div class="wrap"><div class="rail-bar"><i id="rail-bar"></i></div></div>
+ </section>`;
+}
+function railInit(){
+ const r=document.getElementById('rail');if(!r)return;const cards=[...r.querySelectorAll('.pcard')];
+ const upd=()=>{const max=r.scrollWidth-r.clientWidth;const pr=max>0?r.scrollLeft/max:0;document.getElementById('rail-bar').style.width=(18+pr*82)+'%';
+  let best=0,bd=1e9;cards.forEach((c,i)=>{const d=Math.abs(c.offsetLeft-r.scrollLeft-parseFloat(getComputedStyle(r).paddingLeft));if(d<bd){bd=d;best=i;}});
+  document.getElementById('rail-count').textContent=String(best+1).padStart(2,'0')+' / '+String(cards.length).padStart(2,'0');};
+ r.addEventListener('scroll',upd,{passive:true});upd();
+ document.querySelectorAll('[data-rail]').forEach(b=>b.onclick=()=>{const w=cards[0].getBoundingClientRect().width+16;r.scrollBy({left:w*+b.dataset.rail,behavior:'smooth'});});
+ let down=false,sx=0,sl=0,moved=false;
+ r.addEventListener('pointerdown',e=>{if(e.pointerType!=='mouse')return;down=true;moved=false;sx=e.clientX;sl=r.scrollLeft;});
+ addEventListener('pointermove',e=>{if(!down)return;const dx=e.clientX-sx;if(Math.abs(dx)>4){moved=true;r.classList.add('drag');}if(moved)r.scrollLeft=sl-dx;});
+ addEventListener('pointerup',()=>{if(!down)return;down=false;r.classList.remove('drag');});
+ r.addEventListener('click',e=>{if(moved){e.stopPropagation();e.preventDefault();moved=false;return;}const c=e.target.closest('.pcard');if(c)openLB(c);},true);
+}
+
 /* ---------- pages ---------- */
 function home(){
  const sys=SYS();
@@ -993,6 +1076,7 @@ function home(){
   <div class="tl-head stack">${kick(L('Werkwijze','Werkwijze'))}<h2>${L('Pięć etapów. Każdy z protokołem.','Five stages. Each one recorded.')}</h2><p class="lead">${L('Trwałość powłoki zależy w 80 % od przygotowania. Dlatego mierzymy, zanim wylejemy cokolwiek.','Most of a coating’s life is decided in preparation. That is why we measure before we pour anything.')}</p><div class="row"><a class="btn btn-glass" href="#process">${L('Cały proces','Full process')} ${ic}</a></div></div>
   ${timeline()}
  </div></section>
+ ${featHTML()}
  ${brandsSection()}
  <section style="padding-top:0"><div class="wrap">
   <div class="shead rv"><div class="stack">${kick(L('Realizacje','Projects'))}<h2>${L('Z naszych budów','From our sites')}</h2></div><a class="btn btn-glass" href="#projects">${T('Wszystkie realizacje','All projects','Alle projecten')} ${ic}</a></div>
@@ -1035,7 +1119,7 @@ function projects(){
  const ph=PHOTOS().filter(p=>galFilter==='all'||p.c===galFilter);
  const chip=(v,l)=>`<button data-f="${v}" aria-pressed="${galFilter===v}">${l}</button>`;
  return phero(4,L('Realizacje','Projects'),L('Nasze realizacje','Our projects'),L('Zdjęcia z prac wykonanych przez nasz zespół: galerie, balkony, rampy parkingowe i kuchnie przemysłowe.','Photos of work done by our team: galleries, balconies, car park ramps and commercial kitchens.'),L('Realizacje','Projects'))+
- `<section><div class="wrap"><div class="filters" id="chips">${chip('all',L('Wszystkie','All'))}${chip('balcony',L('Balkony i galerie','Balconies & galleries'))}${chip('garage',L('Garaże i parkingi','Garages & car parks'))}${chip('industrial',L('Przemysł i kuchnie','Industrial & kitchens'))}</div><div class="mason">${ph.map(figHTML).join('')}</div></div></section>`+ctaBand();
+ `<div style="padding-top:clamp(64px,8vw,110px)"></div>`+featHTML()+`<section style="padding-top:0"><div class="wrap"><div class="filters" id="chips">${chip('all',L('Wszystkie','All'))}${chip('balcony',L('Balkony i galerie','Balconies & galleries'))}${chip('garage',L('Garaże i parkingi','Garages & car parks'))}${chip('industrial',L('Przemysł i kuchnie','Industrial & kitchens'))}</div><div class="mason">${ph.map(figHTML).join('')}</div></div></section>`+ctaBand();
 }
 function process(){
  return phero(1,'Werkwijze',L('Jak pracujemy','How we work'),L('Proces zgodny z holenderską praktyką wykonawczą: od pomiarów przez przygotowanie podłoża po protokół odbioru (opleverrapport).','A process in line with Dutch contracting practice: from measurements and substrate preparation to the handover report (opleverrapport).'),'Werkwijze')+
@@ -1231,7 +1315,7 @@ function render(scroll){
  document.querySelectorAll('.nav a').forEach(a=>{if(a.getAttribute('href')==='#'+r)a.setAttribute('aria-current','page');});
  if(scroll)window.scrollTo(0,0);
  isoInit();
- baStop();baInit();
+ baStop();baInit();railInit();
  if(r==='home')Hero.mount(document.getElementById('hero3d'));else Hero.unmount();
 }
 window.addEventListener('hashchange',()=>{closeMenus();render(true)});
