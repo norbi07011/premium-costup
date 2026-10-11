@@ -641,6 +641,23 @@ a:hover>.btop .arrow,a:hover .arrow{background:var(--gold);color:var(--gold-ink)
 .map-facts b{font:500 .98rem/1.3 var(--f-d);letter-spacing:-.02em;overflow-wrap:anywhere;user-select:all}
 @media (max-width:900px){.mapcard{grid-template-columns:1fr}.map-view{min-height:340px}.map-view::after{box-shadow:inset 0 -60px 80px -40px var(--bg-2)}}
 @media (max-width:480px){.map-facts{grid-template-columns:1fr}}
+/* partners */
+.partners{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.partner{display:flex;flex-direction:column;gap:16px;padding:16px 16px 22px;border-radius:var(--r);background:var(--glass);border:1px solid var(--line);transition:border-color .35s,transform .35s}
+.partner:hover{border-color:rgba(228,199,146,.4);transform:translateY(-3px)}
+.pplate{position:relative;display:grid;place-items:center;aspect-ratio:2.6/1;max-width:100%;border-radius:20px;overflow:hidden;text-decoration:none;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.pplate img{position:absolute;inset:0;margin:auto;height:58%;width:auto;max-width:70%;object-fit:contain;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.partner:hover .pplate img{transform:scale(1.05)}
+.pplate::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.3) 50%,transparent 65%);background-size:250% 100%;background-position:130% 0;transition:background-position .9s}
+.partner:hover .pplate::after{background-position:-30% 0}
+.pword{font:600 clamp(1.6rem,3vw,2.4rem)/1 var(--f-d);letter-spacing:-.04em}
+.partner .btop,.partner>p,.plink{margin-inline:8px}
+.partner>p{color:var(--muted);font-size:.95rem}
+.plink{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:auto;padding:14px 16px;border-radius:16px;border:1px solid var(--line);background:rgba(255,255,255,.03);text-decoration:none;font:500 .82rem/1 var(--f-m);color:var(--fg);transition:all .3s}
+.plink i{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:rgba(255,255,255,.08);transition:all .3s}
+.plink:hover{border-color:rgba(228,199,146,.45);color:var(--gold)}
+.plink:hover i{background:var(--gold);color:var(--gold-ink);transform:rotate(-10deg)}
+@media (max-width:760px){.partners{grid-template-columns:1fr}}
 /* motion */
 .page{animation:pageIn .7s cubic-bezier(.2,.8,.2,1) both}
 @keyframes pageIn{from{transform:translateY(14px)}to{transform:none}}
@@ -1353,22 +1370,62 @@ function mapInit(){
  road(8,'rgba(200,205,208,.35)',[[.5,-.05],[.52,.3],[.55,.5],[.6,.8],[.62,1.05]]);
  g.fillStyle='rgba(243,242,239,.55)';g.font=`${Math.round(W/60)}px Geist, Arial`;g.fillText('Hoolstraat',W*.6,H*.42);g.fillText('Weert',W*.08,H*.2);
 }
-const ROUTES={home,services,process,projects,standards,about,faq,contact};
+
+/* ---------- partners ---------- */
+const PARTNERS=()=>[
+ {id:'senexus',name:'S&E Nexus',url:'https://www.senexus.nl/',logo:'https://www.senexus.nl/wp-content/uploads/2025/03/Nexus-Beeldmerk.avif',plate:'#ffffff',
+  cat:T('Pośrednictwo pracy','Staffing','Arbeidsbemiddeling'),loc:T('Holandia','Netherlands','Nederland'),
+  d:T('Pośrednik dla samozatrudnionych (zzp) w budownictwie, technice i usługach. Łączy fachowców z firmami, z cotygodniową wypłatą i kolejnymi projektami.','Intermediary for self-employed professionals (zzp) in construction, technology and services. Connects specialists with companies, with weekly payment and follow-up projects.','Intermediair voor zzp’ers in bouw, techniek en dienstverlening. Koppelt vakmensen aan bedrijven, met wekelijkse uitbetaling en vervolgprojecten.')},
+ {id:'gacon',name:'Gacon',url:'https://gacon.nl/',logo:'https://gacon.nl/wp-content/uploads/2025/07/Group-1410103681.svg',plate:'#ffffff',
+  cat:T('Renowacja betonu','Concrete renovation','Betonrenovatie'),loc:'Nijmegen',
+  d:T('Specjalista od naprawy, uszczelniania, ochrony i uszlachetniania metalu i betonu: renowacja betonu, konserwacja metalu, przemysłowe posadzki z tworzyw i hydroizolacje.','Specialist in repairing, sealing, protecting and finishing metal and concrete: concrete renovation, metal conservation, industrial resin floors and waterproofing.','Specialist in het herstellen, afdichten, beschermen en verfraaien van metaal en beton: betonrenovatie, metaalconservering, industriële kunststofvloeren en waterdichting.')},
+ {id:'octagon',name:'Octagon Sport NL',url:'https://www.octagonsport.nl/',logo:'img/partners/octagon.png',plate:'#0e0f10',
+  cat:T('Sport i odzież','Sport & fightwear','Sport & fightwear'),loc:'Someren',
+  d:T('Oficjalny dystrybutor Octagon Fight Wear w Holandii: odzież sportowa, fightwear, rękawice bokserskie i sprzęt MMA. Profesjonalna odzież dla prawdziwych zawodników.','Official Dutch reseller of Octagon Fight Wear: sportswear, fightwear, boxing gloves and MMA gear. Professional sportswear for the real fighter.','Officiële Nederlandse reseller van Octagon Fight Wear: sportkleding, fightwear, bokshandschoenen en MMA-gear. Professionele sportkleding voor de echte vechter.')},
+ {id:'dakkad',name:'DAKKAD',url:'https://www.dakkad.nl/',logo:'https://primary.jwwb.nl/public/v/t/p/temp-ituatrivxaluuzaijpep/yibui1/transparant-5.png',plate:'#ffffff',
+  cat:T('Renowacja dachów','Roof renovation','Dakrenovatie'),loc:T('Holandia','Netherlands','Nederland'),
+  d:T('Specjalista od renowacji i napraw dachów: inspekcje, czyszczenie, naprawa dachówek, rynny, izolacja, zielone dachy i elastomerowe powłoki dachowe.','Roofing specialist in renovation and repair: inspections, cleaning, tile repair, gutters, insulation, green roofs and elastomer roof coatings.','Dakspecialist in renovatie en reparatie: inspecties, reiniging, pannen- en gootwerk, isolatie, groene daken en elastomeer dakcoatings.')}
+];
+const EXT='<svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M6 3h7v7M13 3L4 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+function partnerCard(p,i){
+ return `<article class="partner spot rv">
+  <a class="pplate" href="${p.url}" target="_blank" rel="noopener" style="background:${p.plate}" aria-label="${p.name}">
+   <img src="${p.logo}" alt="${p.name} logo" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false">
+   <span class="pword" hidden style="color:${p.plate==='#ffffff'?'#15171a':'#f3f2ef'}">${p.name}</span>
+  </a>
+  <div class="btop"><div class="stack" style="gap:6px"><span class="pc-num mono">${String(i+1).padStart(2,'0')} · ${p.cat}</span><h3>${p.name}</h3></div><span class="chip">${p.loc}</span></div>
+  <p>${p.d}</p>
+  <a class="plink" href="${p.url}" target="_blank" rel="noopener"><span>${p.url.replace(/^https?:\/\/(www\.)?/,'').replace(/\/$/,'')}</span><i>${EXT}</i></a>
+ </article>`;
+}
+function partners(){
+ const ps=PARTNERS();
+ return phero(13,T('Partnerzy','Partners','Partners'),T('Mocni razem z naszymi partnerami','Stronger together with our partners','Sterker samen met onze partners'),T('Firmy, z którymi współpracujemy na co dzień: od budownictwa i renowacji po sport. Sprawdzone relacje, wspólne projekty i polecenia.','Companies we work with every day: from construction and renovation to sport. Proven relationships, joint projects and referrals.','Bedrijven waarmee we dagelijks samenwerken: van bouw en renovatie tot sport. Bewezen relaties, gezamenlijke projecten en aanbevelingen.'),T('Partnerzy','Partners','Partners'))+
+ `<section><div class="wrap">
+  <div class="shead rv"><div class="stack">${kick(T('Nasza sieć','Our network','Ons netwerk'))}<h2>${T('Partnerzy, którym <span class="gt">ufamy.</span>','Partners we <span class="gt">trust.</span>','Partners die we <span class="gt">vertrouwen.</span>')}</h2></div><p class="lead">${T('Kliknij logo lub link, aby przejść na stronę partnera.','Click a logo or link to visit the partner’s website.','Klik op een logo of link om naar de website van de partner te gaan.')}</p></div>
+  <div class="partners">${ps.map(partnerCard).join('')}</div>
+ </div></section>
+ <section style="padding-top:0"><div class="wrap"><div class="cta-card rv">
+  <div class="stack">${kick(T('Współpraca','Partnership','Samenwerken'))}<h2>${T('Chcesz zostać naszym partnerem?','Want to become a partner?','Ook partner worden?')}</h2><p class="lead">${T('Wykonawcy, dostawcy, VvE i zarządcy: porozmawiajmy o wspólnych projektach.','Contractors, suppliers, VvEs and property managers: let’s talk about working together.','Aannemers, leveranciers, VvE’s en beheerders: laten we praten over samenwerking.')}</p>
+  <div class="row"><a class="btn btn-wa" href="https://wa.me/${WA_NUM}" target="_blank" rel="noopener">WhatsApp <span class="ic">${WA_ICON}</span></a><a class="btn btn-glass" href="#contact">${L('Kontakt','Contact')} ${ic}</a></div></div>
+  <img class="cta-logo" src="img/logo.png" alt="Premium CoatUp" loading="lazy"></div></div></section>`;
+}
+const ROUTES={home,services,process,projects,standards,about,faq,contact,partners};
 
 /* ---------- chrome ---------- */
 function navHTML(){
  return `<div class="dd"><button id="dd-btn" aria-expanded="false">${L('Usługi','Services')} <svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 4l3 3 3-3" stroke="currentColor" fill="none" stroke-width="1.4"/></svg></button>
  <div class="mega" id="dd-menu" hidden><div><h5>${L('Systemy','Systems')}</h5><div class="sysl">${SYS().map(x=>`<a href="#${x.id}"><b>${x.code}</b><span>${x.name}</span></a>`).join('')}</div></div><div class="appl"><h5>${L('Zastosowania','Applications')}</h5>${APPS().map(x=>`<a href="#${x.id}"><img src="${IMG(x.img)}" alt=""><div><b>${x.name}</b><span>${x.tag}</span></div></a>`).join('')}<a class="all" href="#services">${L('Wszystkie usługi','All services')} →</a></div></div></div>
- <a href="#process">${L('Proces','Process')}</a><a href="#projects">${L('Realizacje','Projects')}</a><a href="#standards">${L('Normy','Standards')}</a><a href="#about">${L('O nas','About')}</a><a href="#faq">FAQ</a><a href="#contact">${L('Kontakt','Contact')}</a>`;
+ <a href="#process">${L('Proces','Process')}</a><a href="#projects">${L('Realizacje','Projects')}</a><a href="#standards">${L('Normy','Standards')}</a><a href="#about">${L('O nas','About')}</a><a href="#partners">${T('Partnerzy','Partners','Partners')}</a><a href="#faq">FAQ</a><a href="#contact">${L('Kontakt','Contact')}</a>`;
 }
 function mnavHTML(){
- return `<a href="#home">${L('Start','Home')}</a><a href="#services">${L('Usługi','Services')}</a>${SYS().concat(APPS()).map(x=>`<a class="sub" href="#${x.id}">${x.name}</a>`).join('')}<a href="#process">${L('Proces','Process')}</a><a href="#projects">${L('Realizacje','Projects')}</a><a href="#standards">${L('Normy','Standards')}</a><a href="#about">${L('O nas','About')}</a><a href="#faq">FAQ</a><a href="#contact">${L('Kontakt','Contact')}</a><a class="btn btn-gold" href="#contact">${L('Wycena','Get a quote')} ${ic}</a>`;
+ return `<a href="#home">${L('Start','Home')}</a><a href="#services">${L('Usługi','Services')}</a>${SYS().concat(APPS()).map(x=>`<a class="sub" href="#${x.id}">${x.name}</a>`).join('')}<a href="#process">${L('Proces','Process')}</a><a href="#projects">${L('Realizacje','Projects')}</a><a href="#standards">${L('Normy','Standards')}</a><a href="#about">${L('O nas','About')}</a><a href="#partners">${T('Partnerzy','Partners','Partners')}</a><a href="#faq">FAQ</a><a href="#contact">${L('Kontakt','Contact')}</a><a class="btn btn-gold" href="#contact">${L('Wycena','Get a quote')} ${ic}</a>`;
 }
 function footerHTML(){
  return `<div class="wrap"><div class="grid"><div class="stack" style="gap:18px"><a class="logo" href="#home"><img src="img/logo.png" alt="Premium CoatUp" style="height:auto;width:190px"></a><p class="muted" style="font-size:.92rem">${L('Powłoki PMMA, epoksydowe i PU oraz troffelvloer. Ochrona betonu w całej Holandii od 2016 roku.','PMMA, epoxy and PU coatings and troffelvloer. Concrete protection across the Netherlands since 2016.')}</p><div><a class="btn btn-gold sm" href="#contact">${L('Poproś o wycenę','Request a quote')} ${ic}</a></div></div>
  <div><h6>${L('Systemy','Systems')}</h6>${SYS().map(x=>`<a href="#${x.id}">${x.name}</a>`).join('')}</div>
  <div><h6>${L('Zastosowania','Applications')}</h6>${APPS().map(x=>`<a href="#${x.id}">${x.name}</a>`).join('')}</div>
- <div><h6>${L('Firma','Company')}</h6><a href="#process">${L('Proces','Process')}</a><a href="#projects">${L('Realizacje','Projects')}</a><a href="#standards">${L('Normy','Standards')}</a><a href="#about">${L('O nas','About')}</a><a href="#faq">FAQ</a><a href="#contact">${L('Kontakt','Contact')}</a></div></div>
+ <div><h6>${L('Firma','Company')}</h6><a href="#process">${L('Proces','Process')}</a><a href="#projects">${L('Realizacje','Projects')}</a><a href="#standards">${L('Normy','Standards')}</a><a href="#about">${L('O nas','About')}</a><a href="#partners">${T('Partnerzy','Partners','Partners')}</a><a href="#faq">FAQ</a><a href="#contact">${L('Kontakt','Contact')}</a></div></div>
  <div class="base"><span>© 2026 Premium CoatUp · ${ADDR}, ${CITY} · KvK 00000000</span><span>${EMAIL} · ${PHONE}</span></div></div><div class="giant" aria-hidden="true">COATUP</div>`;
 }
 
