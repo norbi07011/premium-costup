@@ -535,8 +535,6 @@ a:hover>.btop .arrow,a:hover .arrow{background:var(--gold);color:var(--gold-ink)
 .legend i{background-size:cover;width:18px!important;height:18px!important;border-radius:5px}
 @media (max-width:900px){.isobox{grid-template-columns:1fr!important}.iso{height:400px}}
 @media (max-width:560px){.iso{height:340px}.iso-stack{--s:150px;--gap:26px;margin-top:120px}}
-.box[data-i="0"] .f.top{overflow:hidden}
-.box[data-i="0"] .f.top::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.28) 50%,transparent 65%);background-size:250% 100%;animation:gloss 5s ease-in-out infinite}
 @keyframes gloss{0%,55%{background-position:120% 0}100%{background-position:-120% 0}}
 /* brands */
 .bstrip{overflow:hidden;padding-block:30px;margin-bottom:28px;border-block:1px solid var(--line);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
@@ -850,14 +848,14 @@ function tex(m,face){
 }
 let isoMode='exploded';
 function isoHTML(s){
- const mats=MAT[s.id],n=s.layers.length;
+ const LY=s.layers.slice(1),mats=MAT[s.id].slice(1),n=LY.length;
  let acc=0;const zs=[];for(let i=n-1;i>=0;i--){zs[i]=acc;acc+=MDEF[mats[i]].h;}
- const boxes=s.layers.map((l,i)=>{const m=mats[i],d=MDEF[m],lvl=n-1-i;
+ const boxes=LY.map((l,i)=>{const m=mats[i],d=MDEF[m],lvl=n-1-i;
   return `<div class="box" data-i="${i}" data-kind="${d.kind}" style="--z0:${zs[i]}px;--lvl:${lvl};--h:${d.h}px">
    <div class="f top" style="background-image:url(${tex(m,'top')})"></div>
    <div class="f fr" style="background-image:url(${tex(m,'side')})"></div>
    <div class="f lf" style="background-image:url(${(tex(m,'side'),TEXC[m+'sideF'])})"></div></div>`}).reverse().join('');
- const leg=s.layers.map((l,i)=>`<li data-i="${i}" style="--i:${i}"><i style="background-image:url(${tex(mats[i],'top')})"></i><div><b>${l[1]}</b>${l[2]?`<span>${l[2]}</span>`:''}</div></li>`).join('');
+ const leg=LY.map((l,i)=>`<li data-i="${i}" style="--i:${i}"><i style="background-image:url(${tex(mats[i],'top')})"></i><div><b>${l[1]}</b>${l[2]?`<span>${l[2]}</span>`:''}</div></li>`).join('');
  return `<div class="iso-ui"><div class="seg sm" role="group"><button type="button" data-mode="exploded" aria-pressed="${isoMode==='exploded'}">${T('Rozłóż','Exploded','Uiteen')}</button><button type="button" data-mode="assembled" aria-pressed="${isoMode==='assembled'}">${T('Złóż','Assembled','Opgebouwd')}</button></div><button type="button" class="playb" data-play="${s.id}"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M3 1.5v9l7.5-4.5z" fill="currentColor"/></svg>${T('Pokaż aplikację','Play application','Speel aanbrengen af')}</button></div>
  <div class="iso" data-sys="${s.id}"><span class="iso-step" hidden></span><div class="iso-stack" data-mode="${isoMode}"><div class="iso-shadow"></div>${boxes}</div></div>
  <ul class="legend">${leg}</ul><p class="isonote">${s.name} · ${L('grubości typowe, rysunek nie w skali','typical thicknesses, not to scale')}</p>`;
@@ -876,7 +874,7 @@ function isoPlay(box){
  void st.offsetWidth;
  bx.forEach((b,k)=>{
   tm.push(setTimeout(()=>{
-   const i=+b.dataset.i;chip.hidden=false;chip.textContent=`${T('Warstwa','Layer','Laag')} ${k+1}/${bx.length} · ${s.layers[i][1]}`;
+   const i=+b.dataset.i;chip.hidden=false;chip.textContent=`${T('Warstwa','Layer','Laag')} ${k+1}/${bx.length} · ${s.layers[i+1][1]}`;
    if(b.dataset.kind==='grain'){for(let j=0;j<46;j++){const d=document.createElement('span');d.className='drop';d.style.cssText=`left:${4+Math.random()*92}%;top:${4+Math.random()*92}%;--zt:calc(var(--zz) + var(--h));animation-delay:${Math.random()*500}ms`;b.appendChild(d);}}
    b.classList.remove('pre');b.classList.add('go');
   },250+k*1100));
