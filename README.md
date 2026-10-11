@@ -8,5 +8,4 @@ Statische website (één `index.html` + `img/`) voor Premium CoatUp: PMMA-, epox
 - Geen build-stap nodig: open `index.html` of host de map op GitHub Pages / Netlify / Vercel
 
 ## Nog invullen vóór livegang
-- BTW-nummer (nog niet op de site)
 - Controleren: VCA, garantievoorwaarden, ETAG-systemen, technische waarden per productblad
