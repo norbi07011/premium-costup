@@ -538,6 +538,39 @@ a:hover>.btop .arrow,a:hover .arrow{background:var(--gold);color:var(--gold-ink)
 .brand .chips{padding-inline:8px}
 @media (max-width:980px){.brands{grid-template-columns:1fr 1fr}}
 @media (max-width:600px){.brands{grid-template-columns:1fr}}
+/* before / after */
+.ba{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center}
+@media (max-width:900px){.ba{grid-template-columns:1fr}}
+.ba-left{display:flex;flex-direction:column;gap:18px;min-width:0}
+.baframe{position:relative;aspect-ratio:3/4;max-width:100%;max-height:82vh;margin-inline:auto;width:100%;border-radius:28px;overflow:hidden;border:1px solid var(--line);background:#111;touch-action:pan-y;cursor:ew-resize;user-select:none;-webkit-user-select:none;box-shadow:0 40px 80px -40px rgba(0,0,0,.8)}
+.baframe img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;-webkit-user-drag:none}
+.baframe::after{content:"";position:absolute;inset:0;z-index:3;pointer-events:none;background:linear-gradient(0deg,rgba(10,12,14,.85),transparent 30%),linear-gradient(180deg,rgba(10,12,14,.45),transparent 20%)}
+.ba-line{position:absolute;top:0;bottom:0;z-index:5;width:2px;margin-left:-1px;background:linear-gradient(transparent,var(--gold) 12%,var(--gold) 88%,transparent);box-shadow:0 0 22px rgba(228,199,146,.7);transition:opacity .25s;pointer-events:none}
+.ba-knob{position:absolute;top:50%;left:50%;width:58px;height:58px;margin:-29px;border-radius:50%;display:grid;place-items:center;color:var(--gold);background:rgba(12,14,16,.55);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(228,199,146,.7);box-shadow:0 10px 30px rgba(0,0,0,.5),0 0 0 6px rgba(228,199,146,.12)}
+.ba-tag{position:absolute;top:16px;z-index:6;padding:8px 12px;border-radius:999px;background:rgba(12,14,16,.6);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border:1px solid var(--line-2);font:500 .68rem/1 var(--f-m);letter-spacing:.06em;color:var(--fg);transition:opacity .3s;max-width:46%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ba-tag.l{left:16px;color:var(--gold)}.ba-tag.r{right:16px}
+.ba-cap{position:absolute;left:22px;right:22px;bottom:20px;z-index:6;display:flex;align-items:baseline;gap:14px;pointer-events:none}
+.ba-cap b{font:600 clamp(2.4rem,5vw,3.6rem)/1 var(--f-d);letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1px rgba(228,199,146,.9)}
+.ba-cap span{font:500 clamp(1rem,1.6vw,1.25rem)/1.2 var(--f-d);letter-spacing:-.02em}
+.batl{display:flex;flex-direction:column;gap:10px}
+.batl input{-webkit-appearance:none;appearance:none;width:100%;height:6px;border-radius:6px;background:linear-gradient(90deg,var(--gold) 0 var(--p,0%),var(--line) var(--p,0%));outline:none;cursor:pointer}
+.batl input::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--grad);border:3px solid var(--bg);box-shadow:0 0 0 1px rgba(228,199,146,.6),0 6px 16px rgba(0,0,0,.5)}
+.batl input::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:var(--gold);border:3px solid var(--bg)}
+.batl-l{display:flex;justify-content:space-between}
+.batl-l button{background:none;border:0;padding:4px 2px;font:500 .72rem/1 var(--f-m);color:var(--dim);cursor:pointer;transition:color .3s}
+.batl-l button.on,.batl-l button.done{color:var(--gold)}
+.bsteps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.bsteps button{width:100%;display:grid;grid-template-columns:auto minmax(0,1fr);gap:16px;align-items:start;text-align:left;padding:16px 18px 18px;border-radius:18px;border:1px solid var(--line);background:var(--glass);color:var(--fg);cursor:pointer;position:relative;overflow:hidden;transition:border-color .35s,background .35s}
+.bsteps button:hover{border-color:var(--line-2)}
+.bsteps button.on{border-color:rgba(228,199,146,.55);background:rgba(228,199,146,.06)}
+.bn{font:500 .78rem/1 var(--f-m);color:var(--dim);padding-top:4px}
+.bsteps .on .bn,.bsteps .done .bn{color:var(--gold)}
+.bt{display:flex;flex-direction:column;gap:6px;min-width:0}
+.bt b{font:500 1rem/1.25 var(--f-d);letter-spacing:-.02em}
+.bt small{font-size:.88rem;line-height:1.5;color:var(--muted);display:none}
+.bsteps .on .bt small{display:block}
+.bp{position:absolute;left:0;right:0;bottom:0;height:2px;background:transparent}
+.bp i{display:block;height:100%;width:0;background:var(--grad)}
 /* motion */
 .page{animation:pageIn .7s cubic-bezier(.2,.8,.2,1) both}
 @keyframes pageIn{from{transform:translateY(14px)}to{transform:none}}
@@ -847,6 +880,71 @@ function brandsSection(){
  </div></section>`;
 }
 
+
+/* ---------- before / after ---------- */
+const BA_ST=()=>[
+ [T('Stan wyjściowy','Starting point','Uitgangssituatie'),T('Stara, odspojona powłoka, brud i mech. Woda stoi przy odpływie i wnika w beton.','Old, flaking coating, dirt and moss. Water ponds at the drain and soaks into the concrete.','Oude, loslatende coating, vervuiling en mos. Water blijft bij de afvoer staan en trekt in het beton.')],
+ [T('Wyszlifowane i oczyszczone','Ground & cleaned','Geschuurd & gereinigd'),T('Usuwamy stare warstwy, szlifujemy beton do nośnej powierzchni, odkurzamy i odsłaniamy odpływ oraz krawędzie.','We remove old layers, grind the concrete to a sound surface, vacuum it and expose the drain and edges.','Oude lagen verwijderd, beton opgeschuurd tot een draagkrachtige ondergrond, stofvrij gemaakt en afvoer en randen vrijgelegd.')],
+ [T('Membrana + kwarc','Membrane + quartz','Membraan + kwarts'),T('Nakładamy wodoszczelną warstwę bazową i posypujemy ją piaskiem kwarcowym. Krawędzie są precyzyjnie oklejone.','We apply the waterproof base layer and broadcast it with quartz sand. Edges are taped precisely.','Waterdichte basislaag aangebracht en ingestrooid met kwartszand. Randen strak afgeplakt.')],
+ [T('Zalakierowane i gotowe','Sealed & finished','Afgelakt & opgeleverd'),T('Warstwa zamykająca: wodoszczelnie, antypoślizgowo i odpornie na UV. Balkon gotowy do użytku.','The topcoat goes on: watertight, slip-resistant and UV-stable. The balcony is ready to use.','Toplaag aangebracht: waterdicht, slipvast en UV-bestendig. Het balkon is klaar voor gebruik.')]
+];
+function baHTML(){
+ const st=BA_ST();
+ return `<section style="padding-top:0"><div class="wrap ba" id="ba">
+  <div class="ba-left rv">
+   <div class="baframe" id="baframe">
+    ${st.map((x,i)=>`<img src="img/ba/${i+1}.jpg" alt="${x[0]}" data-k="${i}" ${i>1?'loading="lazy"':''}>`).join('')}
+    <span class="ba-tag l" id="ba-tl"></span><span class="ba-tag r" id="ba-tr"></span>
+    <div class="ba-line" id="ba-line"><div class="ba-knob"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><path d="M9 6l-6 6 6 6M15 6l6 6-6 6" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+    <div class="ba-cap"><b id="ba-num">01</b><span id="ba-name">${st[0][0]}</span></div>
+   </div>
+   <div class="batl"><input type="range" id="ba-range" min="0" max="300" value="0" aria-label="${T('Etap','Stage','Fase')}"><div class="batl-l">${st.map((x,i)=>`<button type="button" data-ba="${i}">0${i+1}</button>`).join('')}</div></div>
+  </div>
+  <div class="stack rv">${kick(T('Przed i po','Before & after','Voor & na'))}
+   <h2>${T('Od zniszczonego betonu do <span class="gt">bezspoinowego balkonu.</span>','From weathered concrete to a <span class="gt">seamless balcony.</span>','Van verweerd beton tot een <span class="gt">naadloos balkon.</span>')}</h2>
+   <p class="lead">${T('Jeden balkon, cztery etapy. Przeciągnij złotą linię albo wybierz etap i zobacz, jak zmienia się powierzchnia.','One balcony, four stages. Drag the gold line or pick a stage and see the surface change.','Eén balkon, vier momenten. Sleep de gouden lijn of kies een stap en zie hoe het oppervlak verandert.')}</p>
+   <ol class="bsteps">${st.map((x,i)=>`<li><button type="button" data-ba="${i}"><span class="bn">0${i+1}</span><span class="bt"><b>${x[0]}</b><small>${x[1]}</small></span><i class="bp"><i></i></i></button></li>`).join('')}</ol>
+   <div class="row"><a class="btn btn-gold" href="#balcony">${T('Balkony i galerie','Balconies & galleries','Balkons & galerijen')} ${ic}</a><a class="btn btn-glass" href="#contact">${L('Bezpłatna inspekcja','Free inspection')} ${ic}</a></div>
+  </div></div></section>`;
+}
+const BA={p:0,f:0,tw:null,auto:[],io:null};
+function baApply(){
+ const fr=document.getElementById('baframe');if(!fr)return;const st=BA_ST();
+ const p=BA.p,f=BA.f,v=p+f;
+ fr.querySelectorAll('img').forEach(im=>{const k=+im.dataset.k;
+  if(k===p){im.style.display='block';im.style.zIndex=1;im.style.clipPath='none';}
+  else if(k===p+1){im.style.display='block';im.style.zIndex=2;im.style.clipPath=`inset(0 ${((1-f)*100).toFixed(2)}% 0 0)`;}
+  else im.style.display='none';});
+ const line=document.getElementById('ba-line');line.style.left=(f*100)+'%';line.style.opacity=f>0.005&&f<0.995?1:0;
+ const tl=document.getElementById('ba-tl'),tr=document.getElementById('ba-tr');
+ tl.textContent=`0${p+2} · ${st[p+1][0]}`;tr.textContent=`0${p+1} · ${st[p][0]}`;
+ tl.style.opacity=f>.22?1:0;tr.style.opacity=f<.78?1:0;
+ const cur=Math.round(v);document.getElementById('ba-num').textContent='0'+(cur+1);document.getElementById('ba-name').textContent=st[cur][0];
+ const r=document.getElementById('ba-range');r.value=Math.round(v*100);r.style.setProperty('--p',(v/3*100)+'%');
+ document.querySelectorAll('#ba [data-ba]').forEach(b=>{const k=+b.dataset.ba;b.classList.toggle('on',k===cur);b.classList.toggle('done',k<cur);});
+ document.querySelectorAll('#ba .bsteps li').forEach((li,k)=>{const fill=Math.max(0,Math.min(1,v-k+1));li.querySelector('.bp i').style.width=(k===0?100:fill*100)+'%';});
+}
+function baSetV(v){v=Math.max(0,Math.min(3,v));BA.p=Math.min(2,Math.floor(v));BA.f=v-BA.p;baApply();}
+function baStop(){BA.auto.forEach(clearTimeout);BA.auto=[];if(BA.tw)cancelAnimationFrame(BA.tw);BA.tw=null;}
+function baGo(to,dur,done){if(BA.tw)cancelAnimationFrame(BA.tw);const from=BA.p+BA.f,t0=performance.now(),e=x=>x<.5?4*x*x*x:1-Math.pow(-2*x+2,3)/2;
+ const step=now=>{const k=Math.min(1,(now-t0)/dur);baSetV(from+(to-from)*e(k));if(k<1)BA.tw=requestAnimationFrame(step);else{BA.tw=null;done&&done();}};BA.tw=requestAnimationFrame(step);}
+function baAuto(){if(matchMedia('(prefers-reduced-motion: reduce)').matches)return;baStop();baSetV(0);const seq=[[1,1400],[2,1400],[3,1400],[2.5,900]];let t=700;
+ seq.forEach(([v,d],i)=>{BA.auto.push(setTimeout(()=>baGo(v,d),t));t+=d+(i<2?900:1300);});}
+function baInit(){
+ const fr=document.getElementById('baframe');if(!fr)return;BA.p=0;BA.f=0;baApply();
+ let drag=false;
+ const at=e=>{const r=fr.getBoundingClientRect();BA.f=Math.max(0,Math.min(1,(e.clientX-r.left)/r.width));baApply();};
+ fr.addEventListener('pointerdown',e=>{baStop();drag=true;fr.setPointerCapture(e.pointerId);if(BA.f>=.999&&BA.p<2){}at(e);});
+ fr.addEventListener('pointermove',e=>{if(drag)at(e);});
+ fr.addEventListener('pointerup',()=>drag=false);fr.addEventListener('pointercancel',()=>drag=false);
+ const rg=document.getElementById('ba-range');rg.addEventListener('input',()=>{baStop();baSetV(rg.value/100);});
+ document.querySelectorAll('#ba [data-ba]').forEach(b=>b.addEventListener('click',()=>{baStop();const k=+b.dataset.ba;baGo(k===0?0:k,900);}));
+ fr.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='ArrowLeft'){baStop();baSetV(BA.p+BA.f+(e.key==='ArrowRight'?.1:-.1));e.preventDefault();}});
+ fr.tabIndex=0;
+ if(BA.io)BA.io.disconnect();
+ if('IntersectionObserver' in window){BA.io=new IntersectionObserver(es=>es.forEach(en=>{if(en.isIntersecting){BA.io.disconnect();baAuto();}}),{threshold:.45});BA.io.observe(fr);}
+}
+
 /* ---------- pages ---------- */
 function home(){
  const sys=SYS();
@@ -876,6 +974,7 @@ function home(){
    <div class="stat spot rv"><b>1</b><span>${L('zespół od pomiaru do odbioru','team from survey to handover')}</span></div>
   </div>
  </div></section>
+ ${baHTML()}
  <section style="padding-top:0"><div class="wrap">
   <div class="shead rv"><div class="stack">${kick(L('Systemy','Systems'))}<h2>${L('Cztery chemie. Jedna zasada: dobór do podłoża i obciążenia.','Four chemistries. One rule: match the substrate and the load.')}</h2></div><p class="lead">${L('Nie sprzedajemy jednej żywicy do wszystkiego. Każdy system ma inne zalety, a wybieramy go po pomiarach na miejscu.','We do not sell one resin for everything. Each system has different strengths, and we choose after measuring on site.')}</p></div>
   ${bento(sys)}
@@ -1132,6 +1231,7 @@ function render(scroll){
  document.querySelectorAll('.nav a').forEach(a=>{if(a.getAttribute('href')==='#'+r)a.setAttribute('aria-current','page');});
  if(scroll)window.scrollTo(0,0);
  isoInit();
+ baStop();baInit();
  if(r==='home')Hero.mount(document.getElementById('hero3d'));else Hero.unmount();
 }
 window.addEventListener('hashchange',()=>{closeMenus();render(true)});
