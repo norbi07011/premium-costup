@@ -1373,16 +1373,16 @@ function mapInit(){
 
 /* ---------- partners ---------- */
 const PARTNERS=()=>[
- {id:'senexus',name:'S&E Nexus',url:'https://www.senexus.nl/',logo:'https://www.senexus.nl/wp-content/uploads/2025/03/Nexus-Beeldmerk.avif',plate:'#ffffff',
+ {id:'senexus',name:'S&E Nexus',url:'https://www.senexus.nl/',logo:'img/partners/senexus.png',plate:'#f9f8f8',
   cat:T('Pośrednictwo pracy','Staffing','Arbeidsbemiddeling'),loc:T('Holandia','Netherlands','Nederland'),
   d:T('Pośrednik dla samozatrudnionych (zzp) w budownictwie, technice i usługach. Łączy fachowców z firmami, z cotygodniową wypłatą i kolejnymi projektami.','Intermediary for self-employed professionals (zzp) in construction, technology and services. Connects specialists with companies, with weekly payment and follow-up projects.','Intermediair voor zzp’ers in bouw, techniek en dienstverlening. Koppelt vakmensen aan bedrijven, met wekelijkse uitbetaling en vervolgprojecten.')},
- {id:'gacon',name:'Gacon',url:'https://gacon.nl/',logo:'https://gacon.nl/wp-content/uploads/2025/07/Group-1410103681.svg',plate:'#ffffff',
+ {id:'gacon',name:'Gacon',url:'https://gacon.nl/',logo:'img/partners/gacon.png',plate:'#edede5',
   cat:T('Renowacja betonu','Concrete renovation','Betonrenovatie'),loc:'Nijmegen',
   d:T('Specjalista od naprawy, uszczelniania, ochrony i uszlachetniania metalu i betonu: renowacja betonu, konserwacja metalu, przemysłowe posadzki z tworzyw i hydroizolacje.','Specialist in repairing, sealing, protecting and finishing metal and concrete: concrete renovation, metal conservation, industrial resin floors and waterproofing.','Specialist in het herstellen, afdichten, beschermen en verfraaien van metaal en beton: betonrenovatie, metaalconservering, industriële kunststofvloeren en waterdichting.')},
  {id:'octagon',name:'Octagon Sport NL',url:'https://www.octagonsport.nl/',logo:'img/partners/octagon.png',plate:'#0e0f10',
   cat:T('Sport i odzież','Sport & fightwear','Sport & fightwear'),loc:'Someren',
   d:T('Oficjalny dystrybutor Octagon Fight Wear w Holandii: odzież sportowa, fightwear, rękawice bokserskie i sprzęt MMA. Profesjonalna odzież dla prawdziwych zawodników.','Official Dutch reseller of Octagon Fight Wear: sportswear, fightwear, boxing gloves and MMA gear. Professional sportswear for the real fighter.','Officiële Nederlandse reseller van Octagon Fight Wear: sportkleding, fightwear, bokshandschoenen en MMA-gear. Professionele sportkleding voor de echte vechter.')},
- {id:'dakkad',name:'DAKKAD',url:'https://www.dakkad.nl/',logo:'https://primary.jwwb.nl/public/v/t/p/temp-ituatrivxaluuzaijpep/yibui1/transparant-5.png',plate:'#ffffff',
+ {id:'dakkad',name:'DAKKAD',url:'https://www.dakkad.nl/',logo:'img/partners/dakkad.png',plate:'#ffffff',
   cat:T('Renowacja dachów','Roof renovation','Dakrenovatie'),loc:T('Holandia','Netherlands','Nederland'),
   d:T('Specjalista od renowacji i napraw dachów: inspekcje, czyszczenie, naprawa dachówek, rynny, izolacja, zielone dachy i elastomerowe powłoki dachowe.','Roofing specialist in renovation and repair: inspections, cleaning, tile repair, gutters, insulation, green roofs and elastomer roof coatings.','Dakspecialist in renovatie en reparatie: inspecties, reiniging, pannen- en gootwerk, isolatie, groene daken en elastomeer dakcoatings.')}
 ];
@@ -1391,7 +1391,7 @@ function partnerCard(p,i){
  return `<article class="partner spot rv">
   <a class="pplate" href="${p.url}" target="_blank" rel="noopener" style="background:${p.plate}" aria-label="${p.name}">
    <img src="${p.logo}" alt="${p.name} logo" loading="lazy" onerror="this.hidden=true;this.nextElementSibling.hidden=false">
-   <span class="pword" hidden style="color:${p.plate==='#ffffff'?'#15171a':'#f3f2ef'}">${p.name}</span>
+   <span class="pword" hidden style="color:${p.plate==='#0e0f10'?'#f3f2ef':'#15171a'}">${p.name}</span>
   </a>
   <div class="btop"><div class="stack" style="gap:6px"><span class="pc-num mono">${String(i+1).padStart(2,'0')} · ${p.cat}</span><h3>${p.name}</h3></div><span class="chip">${p.loc}</span></div>
   <p>${p.d}</p>
