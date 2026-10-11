@@ -515,6 +515,29 @@ a:hover>.btop .arrow,a:hover .arrow{background:var(--gold);color:var(--gold-ink)
 .box[data-i="0"] .f.top{overflow:hidden}
 .box[data-i="0"] .f.top::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.28) 50%,transparent 65%);background-size:250% 100%;animation:gloss 5s ease-in-out infinite}
 @keyframes gloss{0%,55%{background-position:120% 0}100%{background-position:-120% 0}}
+/* brands */
+.bstrip{overflow:hidden;padding-block:30px;margin-bottom:28px;border-block:1px solid var(--line);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.btrack{display:flex;align-items:center;gap:clamp(48px,7vw,96px);width:max-content;animation:mq 36s linear infinite}
+.bstrip:hover .btrack{animation-play-state:paused}
+.btrack img{height:clamp(30px,3.4vw,42px);width:auto;max-width:none;opacity:.62;transition:opacity .3s,transform .3s}
+.btrack img:hover{opacity:1;transform:scale(1.06)}
+.btrack img.bl-sika{height:clamp(44px,4.6vw,58px);opacity:.75}
+.plate img.pl-sika{max-height:88%}
+.plate img.pl-arturo,.plate img.pl-mapei{max-width:92%;max-height:86%}
+.brands{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.brand{display:flex;flex-direction:column;gap:14px;padding:16px 16px 24px;border-radius:var(--r);background:var(--glass);border:1px solid var(--line);transition:border-color .35s,transform .35s}
+.brand:hover{border-color:rgba(228,199,146,.4);transform:translateY(-3px)}
+.plate{aspect-ratio:2.6/1;max-width:100%;border-radius:18px;overflow:hidden;display:grid;place-items:center;position:relative;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
+.plate img{max-width:78%;max-height:70%;object-fit:contain;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+.plate.cover img{width:100%;height:100%;max-width:none;max-height:none;object-fit:cover}
+.plate::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.35) 50%,transparent 65%);background-size:250% 100%;background-position:130% 0;transition:background-position .9s}
+.brand:hover .plate::after{background-position:-30% 0}
+.brand:hover .plate img{transform:scale(1.04)}
+.brand .btop{padding-inline:8px;align-items:center}
+.brand p{padding-inline:8px;color:var(--muted);font-size:.94rem}
+.brand .chips{padding-inline:8px}
+@media (max-width:980px){.brands{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.brands{grid-template-columns:1fr}}
 /* motion */
 .page{animation:pageIn .7s cubic-bezier(.2,.8,.2,1) both}
 @keyframes pageIn{from{transform:translateY(14px)}to{transform:none}}
@@ -799,6 +822,31 @@ function hsteps(){return `<div class="hsteps">${STEPS().map((s,i)=>`<div class="
 const figHTML=p=>`<figure data-n="${p.n}" data-t="${p.t.replace(/"/g,'&quot;')}" tabindex="0"><img src="${IMG(p.n)}" alt="${p.t}" loading="lazy"><figcaption><small>${catName(p.c)}</small>${p.t}</figcaption></figure>`;
 const MQ=()=>['PMMA','Epoxy','Polyurethaan','Troffelvloer',T('Galerie','Galleries','Galerijen'),T('Balkony','Balconies','Balkons'),T('Parkingi','Car parks','Parkeergarages'),T('Hale','Halls','Bedrijfshallen'),T('Kuchnie','Kitchens','Grootkeukens')];
 
+
+const BRANDS=()=>[
+ {id:'arturo',name:'Arturo',bg:'linear-gradient(90deg,#14843d,#3f9a3d)',origin:T('Holandia','Netherlands','Nederland'),chips:['EP','PU'],
+  d:T('Holenderski specjalista od bezspoinowych posadzek żywicznych. Systemy PU i epoksydowe Arturo stosujemy w halach, obiektach użyteczności publicznej i tam, gdzie liczy się higiena i komfort.','Dutch specialist in seamless resin floors. We use Arturo PU and epoxy systems in industrial halls, public buildings and spaces where hygiene and comfort matter.','Nederlandse specialist in naadloze kunstharsvloeren. Arturo PU- en epoxysystemen passen we toe in bedrijfshallen, utiliteitsbouw en ruimtes waar hygiëne en comfort tellen.')},
+ {id:'remmers',name:'Remmers',bg:'#ffffff',origin:T('Niemcy','Germany','Duitsland'),chips:['EP','PU',T('Ochrona betonu','Concrete protection','Betonbescherming')],
+  d:T('Niemiecka firma rodzinna z branży chemii budowlanej. Epoksydowe i poliuretanowe powłoki posadzkowe, ochrona betonu i zaprawy naprawcze.','German family company in construction chemicals. Epoxy and polyurethane floor coatings, concrete protection and repair mortars.','Duits familiebedrijf in bouwchemie. Epoxy- en PU-vloercoatings, betonbescherming en reparatiemortels.')},
+ {id:'sika',name:'Sika',bg:'#fac501',origin:T('Szwajcaria','Switzerland','Zwitserland'),chips:['EP','PU',T('Hydroizolacja','Waterproofing','Waterdichting')],
+  d:T('Światowy lider chemii budowlanej. Systemy posadzkowe Sikafloor i płynne hydroizolacje Sikalastic dla przemysłu, parkingów i balkonów.','Global leader in construction chemicals. Sikafloor floor systems and Sikalastic liquid waterproofing for industry, car parks and balconies.','Wereldspeler in bouwchemie. Sikafloor-vloersystemen en Sikalastic vloeibare waterdichting voor industrie, parkeergarages en balkons.')},
+ {id:'triflex',name:'Triflex',bg:'#ffffff',origin:T('Niemcy','Germany','Duitsland'),chips:['PMMA',T('Oznakowanie','Markings','Markering')],
+  d:T('Specjalista od płynnych uszczelnień na bazie PMMA. Szybkoschnące systemy na balkony, galerie, stropy parkingowe i oznakowanie.','Specialist in liquid PMMA sealing. Fast-curing systems for balconies, galleries, parking decks and markings.','Specialist in vloeibare PMMA-afdichtingen. Snel uithardende systemen voor balkons, galerijen, parkeerdekken en markeringen.')},
+ {id:'soprema',name:'Soprema',bg:'#ffffff',origin:T('Francja','France','Frankrijk'),chips:['PMMA','PU',T('Hydroizolacja','Waterproofing','Waterdichting')],
+  d:T('Międzynarodowy specjalista od hydroizolacji. Płynne uszczelnienia ALSAN na dachy, tarasy i detale.','International waterproofing specialist. ALSAN liquid waterproofing for roofs, terraces and details.','Internationale specialist in waterdichting. Vloeibare ALSAN-afdichtingen voor daken, terrassen en details.')},
+ {id:'mapei',name:'Mapei',bg:'#0078c2',origin:T('Włochy','Italy','Italië'),chips:['EP','PU','PU-cement'],
+  d:T('Włoski producent materiałów budowlanych. Posadzki żywiczne Mapefloor i systemy cementowe dla przemysłu i kuchni przemysłowych.','Italian manufacturer of building materials. Mapefloor resin floors and cementitious systems for industry and commercial kitchens.','Italiaanse producent van bouwmaterialen. Mapefloor-harsvloeren en cementgebonden systemen voor industrie en grootkeukens.')}
+];
+function brandStrip(){const l=BRANDS().map(b=>`<img class="bl-${b.id}" src="img/brands/${b.id}.png" alt="${b.name}" loading="lazy">`).join('');return `<div class="bstrip" aria-label="${T('Marki','Brands','Merken')}"><div class="btrack">${l}${l}</div></div>`;}
+function brandsSection(){
+ return `<section style="padding-top:0"><div class="wrap">
+ <div class="shead rv"><div class="stack">${kick(T('Marki i materiały','Brands & materials','Merken & materialen'))}<h2>${T('Najlepsze materiały od <span class="gt">czołowych producentów.</span>','Top materials from <span class="gt">leading manufacturers.</span>','Topmaterialen van <span class="gt">toonaangevende fabrikanten.</span>')}</h2></div><p class="lead">${T('Powłoka jest tak dobra jak żywica, z której powstała. Dlatego pracujemy na sprawdzonych systemach europejskich producentów, z pełną dokumentacją techniczną każdego produktu.','A coating is only as good as the resin it is made from. That is why we work with proven systems from European manufacturers, with full technical documentation for every product.','Een coating is zo goed als de hars waarmee hij gemaakt is. Daarom werken we met bewezen systemen van Europese fabrikanten, met volledige technische documentatie per product.')}</p></div>
+ <div class="rv">${brandStrip()}</div>
+ <div class="brands">${BRANDS().map(b=>`<article class="brand spot rv"><div class="plate${b.cover?' cover':''}" style="background:${b.bg}"><img class="pl-${b.id}" src="img/brands/${b.id}-c.jpg" alt="${b.name}" loading="lazy"></div><div class="btop"><h3>${b.name}</h3><span class="chip">${b.origin}</span></div><p>${b.d}</p><div class="chips">${b.chips.map(c=>`<span class="chip">${c}</span>`).join('')}</div></article>`).join('')}</div>
+ <p class="isonote" style="margin-top:22px">${T('Nazwy marek i logo należą do ich producentów i służą wyłącznie wskazaniu, z jakich produktów korzystamy.','Brand names and logos are the property of their manufacturers and are used only to show which products we work with.','Merknamen en logo’s zijn eigendom van de betreffende fabrikanten en worden alleen gebruikt om aan te geven met welke producten wij werken.')}</p>
+ </div></section>`;
+}
+
 /* ---------- pages ---------- */
 function home(){
  const sys=SYS();
@@ -846,6 +894,7 @@ function home(){
   <div class="tl-head stack">${kick(L('Werkwijze','Werkwijze'))}<h2>${L('Pięć etapów. Każdy z protokołem.','Five stages. Each one recorded.')}</h2><p class="lead">${L('Trwałość powłoki zależy w 80 % od przygotowania. Dlatego mierzymy, zanim wylejemy cokolwiek.','Most of a coating’s life is decided in preparation. That is why we measure before we pour anything.')}</p><div class="row"><a class="btn btn-glass" href="#process">${L('Cały proces','Full process')} ${ic}</a></div></div>
   ${timeline()}
  </div></section>
+ ${brandsSection()}
  <section style="padding-top:0"><div class="wrap">
   <div class="shead rv"><div class="stack">${kick(L('Realizacje','Projects'))}<h2>${L('Z naszych budów','From our sites')}</h2></div><a class="btn btn-glass" href="#projects">${T('Wszystkie realizacje','All projects','Alle projecten')} ${ic}</a></div>
   <div class="mosaic rv">${[10,3,9,6,1,7,4].map(n=>figHTML(PHOTOS().find(p=>p.n===n))).join('')}</div>
@@ -908,7 +957,7 @@ function about(){
  return phero(3,L('O nas','About us'),L('10 lat precyzji w betonie','10 years of precision in concrete'),L('Premium CoatUp działa w Holandii od 2016 roku. Specjalizujemy się wyłącznie w powłokach żywicznych na beton.','Premium CoatUp has worked in the Netherlands since 2016. We specialise only in resin coatings for concrete.'),L('O nas','About us'))+
  `<section><div class="wrap split"><div class="stack rv">${kick(L('Historia','Story'))}<h2>${L('Wąska specjalizacja, pełna odpowiedzialność','Narrow focus, full responsibility')}</h2><p class="lead">${L('Zaczynaliśmy od balkonów i garaży. Dziś wykonujemy też hale, kuchnie przemysłowe i parkingi wielopoziomowe, ale zasada jest ta sama: jeden zespół od pomiaru do odbioru.','We started with balconies and garages. Today we also do halls, commercial kitchens and multi-storey car parks, but the rule is the same: one team from measurement to handover.')}</p><p class="muted">${L('Nie podzlecamy przygotowania podłoża, bo to ono decyduje o trwałości. Mamy własne szlifierki, śrutownice i odkurzacze przemysłowe, a nasi ludzie znają zachowanie każdej żywicy w holenderskim klimacie.','We do not subcontract substrate preparation, because it decides durability. We have our own grinders, shot blasters and industrial extractors, and our people know how each resin behaves in the Dutch climate.')}</p></div>
  <div class="photo rv" style="display:grid;place-items:center;background:#0d0f11"><img src="${IMG(10)}" alt="" loading="lazy" style="position:absolute;inset:0;opacity:.35"><img src="img/logo.png" alt="Premium CoatUp" style="position:relative;width:72%;height:auto;filter:drop-shadow(0 30px 50px rgba(0,0,0,.6))"></div></div></section>
- <section style="padding-top:0"><div class="wrap"><div class="stats" style="margin-top:0"><div class="stat spot rv"><b>2016</b><span>${L('rok założenia','founded')}</span></div><div class="stat spot rv"><b>10<span class="gt">+</span></b><span>${L('lat na rynku NL','years in the NL market')}</span></div><div class="stat spot rv"><b style="font-size:clamp(1.6rem,2.6vw,2.2rem)">NL·EN·PL</b><span>${L('języki kontaktu','languages we speak')}</span></div><div class="stat spot rv"><b>1</b><span>${L('zespół od pomiaru do odbioru','team from survey to handover')}</span></div></div></div></section>
+ <section style="padding-top:0"><div class="wrap"><div class="stats" style="margin-top:0"><div class="stat spot rv"><b>2016</b><span>${L('rok założenia','founded')}</span></div><div class="stat spot rv"><b>10<span class="gt">+</span></b><span>${L('lat na rynku NL','years in the NL market')}</span></div><div class="stat spot rv"><b style="font-size:clamp(1.6rem,2.6vw,2.2rem)">NL·EN·PL</b><span>${L('języki kontaktu','languages we speak')}</span></div><div class="stat spot rv"><b>1</b><span>${L('zespół od pomiaru do odbioru','team from survey to handover')}</span></div></div><div style="margin-top:40px">${brandStrip()}</div></div></section>
  <section style="padding-top:0"><div class="wrap"><div class="shead rv"><div class="stack">${kick(L('Wartości','Values'))}<h2>${L('Na czym nam zależy','What we care about')}</h2></div></div><div class="cards3">
  <div class="spot rv"><span class="ico">01</span><h3>${L('Pomiar przed obietnicą','Measure before we promise')}</h3><p>${L('Nie podajemy gwarancji bez pomiarów. Dzięki temu nasze posadzki się nie łuszczą.','No warranty without measurements. That is why our floors do not peel.')}</p></div>
  <div class="spot rv"><span class="ico">02</span><h3>${L('Czysta budowa','A clean site')}</h3><p>${L('Odsysanie pyłu, zabezpieczone ściany i drzwi, porządek po każdym dniu.','Dust extraction, protected walls and doors, a tidy site at the end of every day.')}</p></div>
