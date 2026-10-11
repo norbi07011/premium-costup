@@ -198,6 +198,8 @@ p{margin:0;max-width:64ch}
 .hs-gr{display:none!important}
 .gm{position:absolute;width:1px;height:1px}
 .hs-grinder{position:absolute;left:0;top:0;width:560px;height:340px;max-width:none;pointer-events:none;opacity:0;filter:drop-shadow(10px 22px 18px rgba(0,0,0,.6))}
+.hs-prp{position:absolute;inset:0;transform:translateZ(calc(var(--th) + 1.1px))}
+.hs-roller{position:absolute;left:0;top:0;width:560px;height:300px;max-width:none;pointer-events:none;opacity:0;filter:drop-shadow(8px 20px 16px rgba(0,0,0,.55))}
 /* marquee */
 .marquee{overflow:hidden;border-block:1px solid var(--line);padding-block:26px;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
 .mtrack{display:flex;width:max-content;gap:44px;animation:mq 42s linear infinite}
@@ -1063,7 +1065,7 @@ function home(){
     <div class="row"><a class="btn btn-gold" href="#contact">${L('Bezpłatna inspekcja','Free inspection')} ${ic}</a><a class="btn btn-glass" href="#projects">${L('Zobacz realizacje','See our work')} ${ic}</a></div>
    </div>
    <div class="phase" id="phase"><div class="phase-top"><span>${T('Na żywo · od betonu do posadzki','Live · concrete to floor','Live · van beton tot vloer')}</span><span class="live">3D</span></div>
-    <ol>${[[T('Szlifowanie','Grinding','Schuren'),'01'],[L('Wylewanie','Pour'),'02'],[L('Rozprowadzanie','Spread'),'03'],[L('Posypka','Broadcast'),'04'],[L('Zamknięcie','Seal'),'05']].map((p,i)=>`<li data-p="${i}">${p[0]}<span>${p[1]}</span></li>`).join('')}</ol>
+    <ol>${[[T('Szlifowanie','Grinding','Schuren'),'01'],[T('Gruntowanie','Priming','Primeren'),'02'],[L('Wylewanie','Pour'),'03'],[L('Rozprowadzanie','Spread'),'04'],[L('Posypka','Broadcast'),'05'],[L('Zamknięcie','Seal'),'06']].map((p,i)=>`<li data-p="${i}">${p[0]}<span>${p[1]}</span></li>`).join('')}</ol>
     <div class="bar"><i id="phase-bar"></i></div></div>
   </div><span class="scrollhint" aria-hidden="true"></span>
  </section>
@@ -1361,7 +1363,8 @@ document.getElementById('lb').addEventListener('click',e=>{if(e.target.id!=='lb-
 /* ---------- hero: realistic resin pour (CSS 3D + canvas textures) ---------- */
 const Hero=(function(){
  let root=null,raf=null,el=null,t0=performance.now(),last=-1,flCycle=-1,mx=0,my=0;
- const CYCLE=21000, G1=.3;
+ const CYCLE=25000, G1=.40;
+ let prC=null,prG=null,prImg=null,lastP=-1,RS=null;
  let oldC=null,oldG=null,oldImg=null,lastG=-1,gx=.08,gy=.125,dustN=0;
  const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
  const cvs=(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return [c,c.getContext('2d')];};
@@ -1469,9 +1472,33 @@ const Hero=(function(){
   g.strokeStyle='rgba(255,255,255,.18)';g.lineWidth=3;g.beginPath();g.moveTo(cx-44,cy-60);g.bezierCurveTo(cx-60,cy-150,cx+60,cy-180,cx+84,cy-105);g.stroke();
   return {url:c.toDataURL('image/png'),w:W,h:H,cx,cy,rx};
  }
+
+ function primerTex(){const W=1024,H=680,[c,g]=cvs(W,H),r=rng(555);
+  g.fillStyle='rgba(78,64,42,.36)';g.fillRect(0,0,W,H);
+  for(let i=0;i<120;i++){const x=r()*W,y=r()*H,rad=30+r()*120,gr=g.createRadialGradient(x,y,0,x,y,rad);const v=r()>.5?30:200;gr.addColorStop(0,`rgba(${v},${v*.9|0},${v*.75|0},.08)`);gr.addColorStop(1,'rgba(0,0,0,0)');g.fillStyle=gr;g.fillRect(0,0,W,H);}
+  for(let x=0;x<W;x+=3){const v=r()>.5?255:0;g.fillStyle=`rgba(${v},${v},${v},${r()*.04})`;g.fillRect(x,0,2,H);}
+  const sh=g.createLinearGradient(0,0,W,H);sh.addColorStop(0,'rgba(255,240,210,.18)');sh.addColorStop(.4,'rgba(255,240,210,0)');sh.addColorStop(.7,'rgba(255,240,210,.1)');sh.addColorStop(1,'rgba(255,240,210,0)');g.fillStyle=sh;g.fillRect(0,0,W,H);
+  return c;}
+ function rollerSprite(){/* paint roller: horizontal roller, frame and long handle */
+  const W=560,H=300,[c,g]=cvs(W,H),cx=230,cy=200,L=300,R=30,r=rng(77);
+  g.lineCap='round';
+  /* handle */
+  g.strokeStyle='#2a2c2f';g.lineWidth=16;g.beginPath();g.moveTo(400,100);g.lineTo(548,14);g.stroke();
+  g.strokeStyle='rgba(255,255,255,.15)';g.lineWidth=3;g.beginPath();g.moveTo(404,94);g.lineTo(545,12);g.stroke();
+  g.strokeStyle='#c99c5a';g.lineWidth=18;g.beginPath();g.moveTo(386,108);g.lineTo(402,99);g.stroke();
+  /* wire frame */
+  g.strokeStyle='#b9bdbf';g.lineWidth=6;g.beginPath();g.moveTo(cx+L/2+6,cy);g.lineTo(cx+L/2+24,cy);g.quadraticCurveTo(cx+L/2+44,cy-40,394,104);g.stroke();
+  /* roller */
+  const rg=g.createLinearGradient(0,cy-R,0,cy+R);rg.addColorStop(0,'#5d3f16');rg.addColorStop(.3,'#d2a25a');rg.addColorStop(.5,'#e8c486');rg.addColorStop(.75,'#8f6428');rg.addColorStop(1,'#3e2a0e');
+  g.fillStyle=rg;g.beginPath();g.roundRect?g.roundRect(cx-L/2,cy-R,L,2*R,10):g.rect(cx-L/2,cy-R,L,2*R);g.fill();
+  for(let i=0;i<2600;i++){const x=cx-L/2+r()*L,y=cy-R+r()*2*R;g.fillStyle=`rgba(${r()>.5?255:40},${r()>.5?220:28},${r()>.5?160:8},${r()*.18})`;g.fillRect(x,y,1.5,2.5);}
+  g.fillStyle='rgba(255,245,220,.35)';g.fillRect(cx-L/2+8,cy-R*.45,L-16,4);
+  g.fillStyle='#24180a';g.beginPath();g.ellipse(cx+L/2,cy,7,R,0,0,7);g.fill();g.fillStyle='#4a3313';g.beginPath();g.ellipse(cx-L/2,cy,7,R,0,0,7);g.fill();
+  return {url:c.toDataURL('image/png'),w:W,h:H,cx,cy,hl:L/2};
+ }
  let B=null,GS=null;
  function build(){
-  B=bucket();GS=grinderSprite();const GT=gTop(),MT=mTop(),PL=pole();
+  B=bucket();GS=grinderSprite();RS=rollerSprite();const GT=gTop(),MT=mTop(),PL=pole();
   root=document.createElement('div');root.className='hs';
   root.innerHTML=`<div class="hs-stage" id="hs-stage">
    <div class="hs-shadow"></div>
@@ -1479,8 +1506,9 @@ const Hero=(function(){
     <div class="hs-f hs-top" style="background-image:url(${concTop()})"></div>
     <div class="hs-f hs-fr" style="background-image:url(${concSide(11)})"><div class="hs-cfr"></div></div>
     <div class="hs-f hs-lf" style="background-image:url(${concSide(23,true)})"><div class="hs-clf"></div></div>
+    <div class="hs-prp"></div>
     <div class="hs-oldp"></div>
-    <div class="hs-gplane"><div class="hs-dust"></div><i class="gm"></i><i class="gm gmr"></i>
+    <div class="hs-gplane"><div class="hs-dust"></div><i class="gm"></i><i class="gm gmr"></i><i class="gm gmy"></i>
      <div class="hs-gr" id="hs-gr">${[0,1,2,3,4,5,6,7].map(i=>`<div class="g-ring" style="--i:${i}"></div>`).join('')}<div class="g-top" style="background-image:url(${GT})"><i class="g-spin"></i></div>
       ${[0,1,2,3,4,5].map(i=>`<div class="g-mot" style="--i:${i}"></div>`).join('')}<div class="g-mtop" style="background-image:url(${MT})"></div>
       <div class="g-pole a" style="background-image:url(${PL})"></div><div class="g-pole b" style="background-image:url(${PL})"></div></div>
@@ -1494,10 +1522,12 @@ const Hero=(function(){
      <div class="hs-sq"><div class="sq-f sq-top"></div><div class="sq-f sq-lf"></div><div class="sq-f sq-fr"></div><div class="sq-pole" style="background-image:url(${pole()})"></div></div>
     </div>
    </div></div>
+   <img class="hs-roller" alt="" src="${RS.url}" width="${RS.w}" height="${RS.h}">
    <img class="hs-grinder" alt="" src="${GS.url}" width="${GS.w}" height="${GS.h}">
    <img class="hs-bucket" alt="" src="${B.url}" width="${B.w}" height="${B.h}">
    <div class="hs-stream"><i></i></div>`;
   oldImg=oldTex();oldC=document.createElement('canvas');oldC.width=1024;oldC.height=680;oldC.className='hs-old';oldG=oldC.getContext('2d');root.querySelector('.hs-oldp').appendChild(oldC);oldG.drawImage(oldImg,0,0);
+  prImg=primerTex();prC=document.createElement('canvas');prC.width=1024;prC.height=680;prC.className='hs-old';prG=prC.getContext('2d');root.querySelector('.hs-prp').appendChild(prC);
  }
  const cl=(x,a,b)=>Math.min(1,Math.max(0,(x-a)/(b-a))), ease=x=>x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;
 
@@ -1505,13 +1535,13 @@ const Hero=(function(){
  function erase(x,y){const W=1024,H=680,R=100;const g=oldG;g.globalCompositeOperation='destination-out';const gr=g.createRadialGradient(x*W,y*H,R*.55,x*W,y*H,R);gr.addColorStop(0,'rgba(0,0,0,1)');gr.addColorStop(1,'rgba(0,0,0,0)');g.fillStyle=gr;g.beginPath();g.arc(x*W,y*H,R,0,7);g.fill();g.globalCompositeOperation='source-over';}
  function dust(x,y){const d=root.querySelector('.hs-dust');if(d.childElementCount>70)d.firstElementChild.remove();const s=document.createElement('span');const a=Math.random()*6.283,rr=9+Math.random()*4;s.className=Math.random()<.3?'chip-o':'puff';s.style.left=(x*100+Math.cos(a)*rr)+'%';s.style.top=(y*100+Math.sin(a)*rr*1.5)+'%';s.style.setProperty('--dx',(Math.cos(a)*30)+'px');s.style.setProperty('--dy',(Math.sin(a)*30)+'px');d.appendChild(s);setTimeout(()=>s.remove(),1300);}
  function grind(K){
-  const gt=cl(K,.035,.27);
+  const gt=cl(K,.03,.22);
   if(gt<lastG||lastG<0){oldG.globalCompositeOperation='source-over';oldG.clearRect(0,0,1024,680);oldG.drawImage(oldImg,0,0);lastG=0;}
   if(gt>lastG){for(let t=lastG;t<=gt;t+=.002){const [x,y]=gPath(t);erase(x,y);}lastG=gt;}
-  oldC.style.opacity=1-cl(K,.27,.31);
+  oldC.style.opacity=1-cl(K,.22,.25);
   const [x,y]=gPath(gt);gx=x;gy=y;
-  const gr=root.querySelector('#hs-gr');const inn=cl(K,0,.035),out=cl(K,.27,.31);
-  const on=K<.31;gr.style.visibility=on?'visible':'hidden';
+  const gr=root.querySelector('#hs-gr');const inn=cl(K,0,.03),out=cl(K,.22,.25);
+  const on=K<.25;gr.style.visibility=on?'visible':'hidden';
   const jit=gt>0&&gt<1?(Math.random()-.5)*1.6:0;
   gr.style.left=(x*100)+'%';gr.style.top=(y*100)+'%';
   gr.style.transform=`translate(-50%,-50%) translate(${jit}px,${(Math.random()-.5)*1.6*(gt>0&&gt<1)}px) translateZ(${((1-ease(inn))*140+ease(out)*180).toFixed(1)}px)`;
@@ -1526,10 +1556,28 @@ const Hero=(function(){
    sp.style.opacity=Math.min(1,inn*3)*(1-out);}else sp.style.opacity=0;
   if(gt>0&&gt<1&&window.__heroT==null&&(dustN++%2===0))dust(x,y);
  }
+
+ const pPath=t=>{const N=5,u=Math.min(N-.0001,t*N),col=Math.floor(u),f=u-col;const g=Math.min(1,f/.88);const y=col%2===0?.05+.9*g:.95-.9*g;const x=.1+col*.2+(col<N-1&&f>.88?(f-.88)/.12*.2:0);return [x,y];};
+ function paint(x,y){const W=1024,H=680,w=.112*W,h=26;prG.save();prG.beginPath();prG.rect(x*W-w,y*H-h,2*w,2*h);prG.clip();prG.drawImage(prImg,0,0);prG.restore();}
+ function primer(K){
+  const pt=cl(K,.28,.38);
+  if(pt<lastP||lastP<0||K<.27){prG.clearRect(0,0,1024,680);lastP=K<.27?-1:0;}
+  if(pt>lastP&&lastP>=0){for(let t=lastP;t<=pt;t+=.0015){const [x,y]=pPath(t);paint(x,y);}lastP=pt;}
+  else if(K>=.28&&lastP<0){lastP=0;}
+  const sp=root.querySelector('.hs-roller');const inn=cl(K,.26,.28),out=cl(K,.38,.40),on=K>.26&&K<.40;
+  if(!on||!el){sp.style.opacity=0;return;}
+  const [x,y]=pPath(pt);const m1=root.querySelector('.gm'),m3=root.querySelector('.gmy');
+  m1.style.left=(x*100)+'%';m3.style.left=((x+.11)*100)+'%';m1.style.top=m3.style.top=(y*100)+'%';
+  const host=el.getBoundingClientRect(),a=m1.getBoundingClientRect(),b=m3.getBoundingClientRect();const dx=b.left-a.left,dy=b.top-a.top,len=Math.hypot(dx,dy);
+  const sc=len/RS.hl,lift=(1-ease(inn))*90+ease(out)*120;
+  sp.style.transformOrigin=`${RS.cx}px ${RS.cy}px`;
+  sp.style.transform=`translate(${(a.left-host.left-RS.cx).toFixed(1)}px,${(a.top-host.top-RS.cy-lift).toFixed(1)}px) rotate(${(Math.atan2(dy,dx)*180/Math.PI).toFixed(1)}deg) scale(${sc.toFixed(3)})`;
+  sp.style.opacity=Math.min(1,inn*3)*(1-out);
+ }
  function frame(now){
   raf=requestAnimationFrame(frame);
   const K=window.__heroT!=null?window.__heroT:reduce?.96:((now-t0)%CYCLE)/CYCLE;
-  grind(K);
+  grind(K);primer(K);
   const k=K<G1?-1:(K-G1)/(1-G1);
   const cyc=Math.floor((now-t0)/CYCLE);
   const pour=cl(k,.06,.37),spread=ease(cl(k,.42,.70)),fl=cl(k,.71,.84),gl=cl(k,.84,.97),fade=1-cl(k,.975,1);
@@ -1571,7 +1619,7 @@ const Hero=(function(){
   sm.style.opacity=sOn?1:0;sm.style.left=px+'px';sm.style.top=(py-sH)+'px';sm.style.height=sH+'px';sm.style.setProperty('--sw',(4+thin*7).toFixed(1)+'px');
   /* phase labels */
   const pb=document.getElementById('phase-bar');if(pb)pb.style.width=(K*100).toFixed(1)+'%';
-  const ph=K<G1?0:(k<.38?1:k<.70?2:k<.84?3:4);
+  const ph=K<.26?0:K<G1?1:(k<.38?2:k<.70?3:k<.84?4:5);
   if(ph!==last){last=ph;document.querySelectorAll('#phase li').forEach(s=>{s.classList.toggle('on',+s.dataset.p===ph);s.classList.toggle('done',+s.dataset.p<ph);});}
  }
  addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;});
