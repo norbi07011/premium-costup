@@ -1,0 +1,1239 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Premium CoatUp – naadloze PMMA-, epoxy- en PU-coatings en troffelvloeren voor balkons, galerijen, garages en bedrijfshallen in heel Nederland. Sinds 2016.">
+<meta name="theme-color" content="#0a0c0e">
+<link rel="icon" type="image/png" href="img/logo-sm.png">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Premium CoatUp</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Unbounded:wght@300;400;500;600;700&family=Geist:wght@300;400;500;600&family=Geist+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: one continuous graphite ground (deliberately dark-only, like fresh resin), floating glass navigation, rounded bento surfaces, champagne-gold accent. */
+:root{
+  --bg:#0a0c0e; --bg-2:#111417; --glass:rgba(255,255,255,.04); --glass-2:rgba(255,255,255,.075);
+  --line:rgba(255,255,255,.09); --line-2:rgba(255,255,255,.16);
+  --fg:#f3f2ef; --muted:#9aa0a5; --dim:#62686d;
+  --gold:#e4c792; --gold-2:#b88c4d; --gold-ink:#17120a;
+  --grad:linear-gradient(135deg,#f4e2bb 0%,#d6ab6a 45%,#9b733a 100%);
+  --f-d:"Unbounded","Arial Black",system-ui,sans-serif;
+  --f-b:"Geist","Helvetica Neue",Arial,sans-serif;
+  --f-m:"Geist Mono",ui-monospace,Menlo,Consolas,monospace;
+  --gut:clamp(16px,4vw,48px); --max:1280px; --r:28px; --r-s:16px;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{background:var(--bg);color:var(--fg);font:400 16px/1.6 var(--f-b);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit}
+img{display:block;max-width:100%}
+::selection{background:var(--gold);color:var(--gold-ink)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:8px}
+
+/* ambient light + grain, shared by every section so transitions stay seamless */
+.ambient{position:fixed;inset:0;z-index:-1;pointer-events:none;background:
+  radial-gradient(60vw 50vh at 85% 8%,rgba(214,171,106,.10),transparent 60%),
+  radial-gradient(50vw 60vh at 0% 60%,rgba(120,140,160,.08),transparent 60%),
+  radial-gradient(40vw 40vh at 70% 100%,rgba(214,171,106,.06),transparent 60%),var(--bg)}
+.grain{position:fixed;inset:-50%;z-index:100;pointer-events:none;opacity:.05;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+
+.wrap{max-width:var(--max);margin-inline:auto;padding-inline:var(--gut)}
+section{padding-block:clamp(72px,10vw,140px)}
+h1,h2,h3,h4{margin:0;font-family:var(--f-d);font-weight:500;text-wrap:balance;letter-spacing:-.035em}
+h1{font-size:clamp(2.6rem,7.4vw,7.2rem);line-height:.95;font-weight:500}
+h2{font-size:clamp(2rem,4.6vw,4.1rem);line-height:1.02}
+h3{font-size:clamp(1.15rem,1.7vw,1.45rem);line-height:1.15;letter-spacing:-.02em}
+p{margin:0;max-width:64ch}
+.gt{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{font-size:clamp(1.05rem,1.35vw,1.22rem);color:var(--muted);line-height:1.6;font-weight:300}
+.muted{color:var(--muted)}
+.mono{font-family:var(--f-m);font-variant-numeric:tabular-nums}
+.stack{display:flex;flex-direction:column;gap:22px}
+.row{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.kicker{display:inline-flex;align-self:flex-start;align-items:center;gap:9px;padding:7px 14px 7px 11px;border:1px solid var(--line);border-radius:999px;background:var(--glass);font:500 .7rem/1 var(--f-m);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.kicker::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(228,199,146,.15),0 0 14px var(--gold)}
+
+/* buttons */
+.btn{position:relative;display:inline-flex;align-items:center;gap:12px;padding:8px 8px 8px 22px;min-height:52px;border-radius:999px;font:500 .95rem/1 var(--f-b);text-decoration:none;border:1px solid transparent;cursor:pointer;overflow:hidden;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,background .35s;white-space:nowrap}
+.btn .ic{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.btn:hover .ic{transform:rotate(-45deg)}
+.btn-gold{background:var(--grad);color:var(--gold-ink);box-shadow:0 12px 34px -12px rgba(214,171,106,.7),inset 0 1px 0 rgba(255,255,255,.55)}
+.btn-gold .ic{background:var(--gold-ink);color:var(--gold)}
+.btn-gold::after{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(-120%);transition:transform .9s}
+.btn-gold:hover::after{transform:translateX(120%)}
+.btn-gold:hover{transform:translateY(-2px);box-shadow:0 18px 44px -12px rgba(214,171,106,.85),inset 0 1px 0 rgba(255,255,255,.55)}
+.btn-glass{background:var(--glass-2);border-color:var(--line-2);color:var(--fg);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.btn-glass .ic{background:rgba(255,255,255,.1)}
+.btn-glass:hover{background:rgba(255,255,255,.12)}
+.btn.sm{min-height:44px;padding:5px 5px 5px 18px;font-size:.88rem}
+.btn.sm .ic{width:32px;height:32px}
+.btn.plain{padding:0 22px}
+
+/* nav */
+.nav-shell{position:fixed;top:calc(env(safe-area-inset-top,0px) + 12px);left:12px;right:12px;z-index:60;display:flex;justify-content:center;pointer-events:none}
+.nav-in{pointer-events:auto;width:100%;max-width:1320px;display:flex;align-items:center;gap:14px;padding:7px 7px 7px 16px;border-radius:999px;background:rgba(14,16,19,.58);backdrop-filter:blur(22px) saturate(150%);-webkit-backdrop-filter:blur(22px) saturate(150%);border:1px solid var(--line);box-shadow:0 18px 50px -18px rgba(0,0,0,.7);transition:background .4s}
+.scrolled .nav-in{background:rgba(12,14,16,.82)}
+.logo{display:flex;align-items:center;flex-shrink:0}
+.logo img{height:40px;width:auto}
+.nav{display:flex;gap:2px;margin-inline:auto;align-items:center}
+.nav>a,.dd>button{font:450 .9rem/1 var(--f-b);text-decoration:none;padding:11px 14px;border-radius:999px;background:none;border:0;color:rgba(243,242,239,.8);cursor:pointer;display:flex;gap:6px;align-items:center;transition:background .25s,color .25s}
+.nav>a:hover,.dd>button:hover,.dd>button[aria-expanded="true"]{background:var(--glass-2);color:var(--fg)}
+.nav a[aria-current="page"]{color:var(--fg);background:var(--glass-2)}
+.dd{position:relative}
+.mega{position:absolute;top:calc(100% + 16px);left:50%;transform:translateX(-50%);width:min(860px,92vw);padding:14px;border-radius:24px;background:rgba(16,18,21,.94);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border:1px solid var(--line);box-shadow:0 40px 80px -30px rgba(0,0,0,.8);display:grid;grid-template-columns:1fr 1.15fr;gap:14px;animation:pop .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes pop{from{transform:translateX(-50%) translateY(-6px) scale(.98)}to{transform:translateX(-50%)}}
+.mega h5{margin:6px 8px 10px;font:500 .66rem/1 var(--f-m);letter-spacing:.16em;text-transform:uppercase;color:var(--dim)}
+.mega .sysl{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.mega .sysl a{display:flex;flex-direction:column;gap:4px;padding:14px;border-radius:16px;background:var(--glass);border:1px solid var(--line);text-decoration:none;transition:border-color .25s,background .25s}
+.mega .sysl a:hover{border-color:rgba(228,199,146,.4);background:rgba(228,199,146,.06)}
+.mega .sysl b{font:600 1.1rem/1 var(--f-d)}
+.mega .sysl span{font-size:.78rem;color:var(--muted);line-height:1.3}
+.mega .appl a{display:grid;grid-template-columns:76px 1fr;gap:14px;align-items:center;padding:8px;border-radius:16px;text-decoration:none;transition:background .25s}
+.mega .appl a:hover{background:var(--glass-2)}
+.mega .appl img{width:76px;height:56px;object-fit:cover;border-radius:12px}
+.mega .appl b{display:block;font-weight:500;font-size:.95rem}
+.mega .appl span{font-size:.78rem;color:var(--muted)}
+.mega .all{display:block;margin:8px;font-size:.85rem;color:var(--gold);text-decoration:none}
+.tools{display:flex;gap:8px;align-items:center}
+.lang{display:flex;padding:3px;border-radius:999px;background:var(--glass);border:1px solid var(--line)}
+.lang button{font:500 .7rem/1 var(--f-m);letter-spacing:.06em;padding:9px 10px;border-radius:999px;background:none;border:0;color:var(--muted);cursor:pointer;transition:all .25s}
+.lang button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.burger{display:none;width:44px;height:44px;border-radius:50%;border:1px solid var(--line-2);background:var(--glass-2);color:var(--fg);cursor:pointer;place-items:center}
+.mnav{position:fixed;inset:0;z-index:55;background:rgba(9,10,12,.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);padding:calc(env(safe-area-inset-top,0px) + 92px) var(--gut) 40px;overflow:auto;display:flex;flex-direction:column;gap:4px}
+.mnav a{font:500 1.6rem/1.15 var(--f-d);letter-spacing:-.03em;text-decoration:none;padding:12px 0;border-bottom:1px solid var(--line)}
+.mnav a.sub{font:400 1rem/1 var(--f-b);letter-spacing:0;padding:11px 0 11px 18px;color:var(--muted)}
+.mnav .btn{margin-top:22px;align-self:flex-start;font:500 .95rem/1 var(--f-b);border:0;padding:8px 8px 8px 22px}
+@media (max-width:1140px){.nav,.tools .btn{display:none}.burger{display:grid}.tools{margin-left:auto}}
+
+/* hero */
+.hero{position:relative;min-height:min(96svh,920px);display:flex;align-items:flex-end;padding:150px 0 44px;overflow:hidden;isolation:isolate}
+.hero-3d,.hero-fallback{position:absolute;inset:0;z-index:-2}
+.hero-fallback{background-size:cover;background-position:center;filter:saturate(.7) brightness(.6)}
+
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:linear-gradient(90deg,rgba(10,12,14,.92) 0%,rgba(10,12,14,.55) 40%,rgba(10,12,14,0) 70%),linear-gradient(0deg,var(--bg) 0%,rgba(10,12,14,0) 35%),linear-gradient(180deg,rgba(10,12,14,.7) 0%,rgba(10,12,14,0) 22%)}
+.hero .wrap{width:100%;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:40px;align-items:end}
+.hero-copy{display:flex;flex-direction:column;gap:28px;min-width:0}
+.hero h1{max-width:11ch}
+.hero .lead{max-width:44ch;color:rgba(243,242,239,.72)}
+.phase{width:300px;padding:18px;border-radius:22px;background:rgba(14,16,19,.5);border:1px solid var(--line);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);display:flex;flex-direction:column;gap:14px}
+.phase-top{display:flex;justify-content:space-between;align-items:center;font:500 .66rem/1 var(--f-m);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.live{display:flex;gap:7px;align-items:center;color:var(--gold)}
+.live::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--gold);animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.25}}
+.phase ol{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.phase li{display:flex;justify-content:space-between;font-size:.88rem;color:var(--dim);transition:color .4s}
+.phase li span{font:400 .72rem/1.6 var(--f-m)}
+.phase li.on{color:var(--fg)}
+.phase li.done{color:var(--muted)}
+.bar{height:3px;border-radius:3px;background:var(--line);overflow:hidden}
+.bar i{display:block;height:100%;width:0;background:var(--grad)}
+.scrollhint{position:absolute;left:50%;bottom:16px;transform:translateX(-50%);width:22px;height:34px;border:1px solid var(--line-2);border-radius:12px}
+.scrollhint::after{content:"";position:absolute;left:50%;top:7px;width:3px;height:7px;margin-left:-1.5px;border-radius:2px;background:var(--gold);animation:sh 1.8s infinite}
+@keyframes sh{0%{transform:translateY(0)}60%{transform:translateY(10px);opacity:0}100%{opacity:0}}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr}.phase{width:100%}.scrollhint{display:none}
+ .hero::before{background:linear-gradient(0deg,var(--bg) 0%,rgba(10,12,14,.85) 38%,rgba(10,12,14,0) 60%)}}
+
+/* hero scene */
+.hero-3d{overflow:hidden}
+.hs{position:absolute;inset:0;perspective:2200px;perspective-origin:68% 28%}
+.hs-stage{--sw:min(35vw,580px);--sd:calc(var(--sw) * .64);--th:clamp(48px,6vw,84px);position:absolute;right:max(5vw,40px);top:54%;width:var(--sw);height:var(--sd);margin-top:calc(var(--sd) / -2);transform-style:preserve-3d;transform:rotateX(calc(60deg + var(--rx,0deg))) rotateZ(calc(-32deg + var(--rz,0deg)));transition:transform .8s ease-out}
+.hs-shadow{position:absolute;inset:-14%;background:radial-gradient(closest-side,rgba(0,0,0,.85),transparent);filter:blur(16px)}
+.hs-slab{position:absolute;inset:0;transform-style:preserve-3d}
+.hs-f{position:absolute;background-size:100% 100%}
+.hs-top{inset:0;transform:translateZ(var(--th))}
+.hs-fr{left:0;bottom:0;width:100%;height:var(--th);transform-origin:50% 100%;transform:rotateX(-90deg);filter:brightness(.8)}
+.hs-lf{left:0;top:0;width:var(--sd);height:var(--th);transform-origin:0 0;transform:rotateZ(90deg) rotateX(90deg);filter:brightness(.56)}
+.hs-cfr{position:absolute;left:0;top:0;width:100%;height:5px;background:linear-gradient(#d2d5d6,#9fa3a6)}
+.hs-clf{position:absolute;left:0;bottom:0;width:100%;height:5px;background:linear-gradient(0deg,#d2d5d6,#9fa3a6)}
+.hs-coatplane{position:absolute;inset:0;transform-style:preserve-3d;transform:translateZ(calc(var(--th) + 1.5px))}
+.hs-coat{position:absolute;inset:0;filter:drop-shadow(-1px -1px 0 rgba(255,255,255,.5)) drop-shadow(2px 3px 2px rgba(0,0,0,.55))}
+.hs-fill{position:absolute;inset:0;background-size:100% 100%;-webkit-mask-size:100% 100%;mask-size:100% 100%;overflow:hidden}
+.hs-fill::before{content:"";position:absolute;inset:0;background:radial-gradient(55% 45% at 30% 38%,rgba(255,255,255,.42),transparent 70%),radial-gradient(30% 25% at 70% 70%,rgba(255,255,255,.12),transparent 70%);opacity:calc(.35 + var(--wet,1) * .65)}
+.hs-flakes{position:absolute;inset:0;background-size:100% 100%;opacity:0}
+.hs-shine{position:absolute;inset:0;background:linear-gradient(110deg,transparent 42%,rgba(255,255,255,.6) 50%,transparent 58%);background-size:300% 100%;background-position:var(--gp,130%) 0;opacity:0}
+.hs-wave{position:absolute;top:2%;bottom:2%;width:2.6%;margin-left:16px;border-radius:50%/8%;background:linear-gradient(90deg,rgba(160,164,167,.95),rgba(255,255,255,.7) 35%,rgba(150,154,157,.95) 60%,rgba(120,124,127,0));filter:drop-shadow(2px 2px 2px rgba(0,0,0,.4));opacity:0;transform:translateZ(1px)}
+.hs-ripple{position:absolute;left:27%;top:47%;width:70px;height:70px;margin:-35px;border-radius:50%;border:2px solid rgba(255,255,255,.4);animation:rip 1.3s linear infinite;visibility:hidden}
+.hs-ripple.d2{animation-delay:.65s}
+@keyframes rip{from{transform:translateZ(2px) scale(.15);opacity:1}to{transform:translateZ(2px) scale(2.6);opacity:0}}
+.hs-mk{position:absolute;left:27%;top:47%;width:1px;height:1px}
+.hs-drops{position:absolute;inset:0;transform-style:preserve-3d}
+.hs-drops span{position:absolute;width:5px;height:3px;border-radius:1px;background:#f3f2ed;animation:fall 1s cubic-bezier(.55,0,1,.6) both}
+.hs-drops span:nth-child(3n){background:#17181a}.hs-drops span:nth-child(4n){background:#7b7e81;width:4px}
+@keyframes fall{from{transform:translateZ(300px) rotate(0);opacity:0}12%{opacity:1}to{transform:translateZ(1px) rotate(220deg);opacity:1}}
+.hs-sq{--sql:calc(var(--sd) * .96);position:absolute;top:2%;width:18px;height:96%;transform-style:preserve-3d;opacity:0}
+.sq-f{position:absolute}
+.sq-top{inset:0;transform:translateZ(26px);background:linear-gradient(90deg,#8d6a35,#f2e0b4 45%,#a47c40)}
+.sq-lf{left:0;top:0;width:var(--sql);height:26px;transform-origin:0 0;transform:rotateZ(90deg) rotateX(90deg);background:linear-gradient(180deg,#0d0e0f 0 46%,#2b2d2f 46% 50%,#b48e52 50%,#f2e2bb 74%,#8f6c35);filter:brightness(.75)}
+.sq-fr{left:0;bottom:0;width:100%;height:26px;transform-origin:50% 100%;transform:rotateX(-90deg);background:linear-gradient(0deg,#0d0e0f 0 46%,#b48e52 50%,#f2e2bb 74%,#8f6c35)}
+.sq-pole{position:absolute;left:5px;top:calc(50% - 460px);width:9px;height:460px;background-size:100% 100%;transform-origin:50% 100%;transform:translateZ(26px) rotateY(-42deg) rotateX(-90deg)}
+.hs-bucket{position:absolute;left:0;top:0;width:340px;height:340px;max-width:none;pointer-events:none;filter:drop-shadow(0 24px 30px rgba(0,0,0,.55));opacity:0}
+.hs-stream{position:absolute;width:0;pointer-events:none;opacity:0}
+.hs-stream i{position:absolute;left:calc(var(--sw,8px) / -2);top:0;bottom:-2px;width:var(--sw,8px);border-radius:0 0 50% 50%/0 0 10px 10px;background:linear-gradient(90deg,#7f8386,#c9cdcf 32%,#fff 44%,#b2b6b8 62%,#787c7f);box-shadow:0 0 10px rgba(255,255,255,.18);animation:wob .32s ease-in-out infinite alternate}
+@keyframes wob{to{transform:scaleX(.8) translateX(1px)}}
+@media (max-width:900px){.hs{perspective-origin:50% 20%}.hs-stage{--sw:min(78vw,520px);right:auto;left:50%;margin-left:calc(var(--sw) / -2);top:calc(185px + 24vw)}.hero{padding-top:calc(185px + 66vw)}}
+/* marquee */
+.marquee{overflow:hidden;border-block:1px solid var(--line);padding-block:26px;mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.mtrack{display:flex;width:max-content;gap:44px;animation:mq 42s linear infinite}
+.marquee:hover .mtrack{animation-play-state:paused}
+.mtrack span{font:500 clamp(1.8rem,4vw,3.4rem)/1 var(--f-d);letter-spacing:-.03em;white-space:nowrap;display:flex;align-items:center;gap:44px}
+.mtrack span:nth-child(even){color:transparent;-webkit-text-stroke:1px rgba(243,242,239,.4)}
+.mtrack span::after{content:"✦";font-size:.5em;color:var(--gold);-webkit-text-stroke:0}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* statement + stats */
+.statement{font:300 clamp(1.5rem,3.3vw,2.9rem)/1.22 var(--f-b);letter-spacing:-.02em;max-width:30ch;text-wrap:balance}
+.statement b{font-weight:500}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin-top:clamp(40px,6vw,72px)}
+.stat{padding:26px;border-radius:var(--r);background:var(--glass);border:1px solid var(--line);display:flex;flex-direction:column;gap:12px;min-width:0}
+.stat b{font:500 clamp(2.2rem,4vw,3.4rem)/1 var(--f-d);letter-spacing:-.04em}
+.stat span{color:var(--muted);font-size:.92rem;line-height:1.4}
+@media (max-width:860px){.stats{grid-template-columns:1fr 1fr}}
+
+.shead{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap;margin-bottom:clamp(36px,5vw,64px)}
+.shead .stack{max-width:760px}
+.shead>p{max-width:42ch}
+
+/* spotlight cards */
+.spot{position:relative;overflow:hidden;isolation:isolate}
+.spot::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;opacity:0;transition:opacity .4s;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),rgba(228,199,146,.14),transparent 45%)}
+.spot:hover::after{opacity:1}
+
+/* bento systems */
+.bento{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px}
+.bcard{grid-column:span 6;min-height:440px;border-radius:var(--r);border:1px solid var(--line);background:var(--bg-2);text-decoration:none;display:flex;flex-direction:column;justify-content:space-between;padding:26px;color:var(--fg)}
+.bcard:nth-child(1),.bcard:nth-child(4){grid-column:span 7}
+.bcard:nth-child(2),.bcard:nth-child(3){grid-column:span 5}
+.bcard>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1.4s cubic-bezier(.2,.8,.2,1),filter .6s;filter:saturate(.75) brightness(.8)}
+.bcard::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,12,14,.15) 0%,rgba(10,12,14,.35) 40%,rgba(10,12,14,.94) 100%)}
+.bcard:hover>img{transform:scale(1.06);filter:saturate(.9) brightness(.9)}
+.btop{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.chip{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border-radius:999px;background:rgba(10,12,14,.5);border:1px solid var(--line-2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font:500 .72rem/1 var(--f-m);letter-spacing:.04em;color:var(--fg);white-space:nowrap}
+.arrow{width:48px;height:48px;border-radius:50%;flex-shrink:0;display:grid;place-items:center;background:rgba(255,255,255,.1);border:1px solid var(--line-2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);transition:all .45s cubic-bezier(.2,.8,.2,1)}
+a:hover>.btop .arrow,a:hover .arrow{background:var(--gold);color:var(--gold-ink);transform:rotate(-45deg);border-color:transparent}
+.bbot{display:flex;flex-direction:column;gap:14px}
+.bcode{font:600 clamp(3rem,6vw,5.4rem)/.9 var(--f-d);letter-spacing:-.05em}
+.bcard p{color:rgba(243,242,239,.72);font-size:.96rem;max-width:46ch}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips .chip{white-space:normal;line-height:1.3}
+@media (max-width:900px){.bcard,.bcard:nth-child(n){grid-column:span 12;min-height:380px}}
+
+/* layers iso */
+.layers{display:grid;grid-template-columns:minmax(0,.95fr) minmax(0,1.05fr);gap:clamp(30px,5vw,80px);align-items:center}
+@media (max-width:900px){.layers{grid-template-columns:1fr}}
+.seg{display:inline-flex;flex-wrap:wrap;padding:4px;border-radius:999px;background:var(--glass);border:1px solid var(--line);align-self:flex-start;gap:2px}
+.seg button{font:500 .8rem/1 var(--f-m);padding:11px 16px;border-radius:999px;border:0;background:none;color:var(--muted);cursor:pointer;transition:all .3s}
+.seg button[aria-selected="true"]{background:var(--fg);color:var(--bg)}
+.isobox{position:relative;border-radius:var(--r);border:1px solid var(--line);background:radial-gradient(circle at 50% 40%,rgba(228,199,146,.08),transparent 60%),var(--glass);padding:26px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px;align-items:center;min-height:460px}
+.legend{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.legend li{display:grid;grid-template-columns:14px minmax(0,1fr);gap:12px;align-items:start;padding:10px 12px;border-radius:14px;background:rgba(255,255,255,.03);border:1px solid var(--line);animation:fadeL .5s both;animation-delay:calc(var(--i) * 70ms)}
+@keyframes fadeL{from{transform:translateX(10px)}}
+.legend i{width:14px;height:14px;border-radius:4px;margin-top:3px;box-shadow:0 0 0 1px rgba(255,255,255,.2) inset}
+.legend b{font-weight:500;font-size:.9rem;display:block;line-height:1.3}
+.legend span{font:400 .74rem/1.4 var(--f-m);color:var(--gold)}
+.isonote{grid-column:1/-1;font:400 .7rem/1.4 var(--f-m);color:var(--dim)}
+
+/* expanding panels */
+.panels{display:flex;gap:14px;height:600px}
+.pan{position:relative;flex:1;min-width:0;border-radius:var(--r);overflow:hidden;text-decoration:none;color:var(--fg);border:1px solid var(--line);transition:flex .8s cubic-bezier(.2,.8,.2,1);isolation:isolate}
+.panels:hover .pan{flex:.8}.panels .pan:hover{flex:1.9}
+.pan img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;transition:transform 1.4s cubic-bezier(.2,.8,.2,1);filter:saturate(.75)}
+.pan:hover img{transform:scale(1.05)}
+.pan::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,12,14,.2),rgba(10,12,14,.25) 40%,rgba(10,12,14,.95))}
+.pan-in{position:absolute;inset:0;padding:26px;display:flex;flex-direction:column;justify-content:space-between}
+.pan-num{font:500 .74rem/1 var(--f-m);color:var(--gold);letter-spacing:.14em}
+.pan h3{font-size:clamp(1.3rem,2vw,1.9rem);max-width:16ch}
+.pan p{color:rgba(243,242,239,.72);font-size:.95rem;max-width:40ch}
+.pan .bbot{gap:12px}
+@media (max-width:900px){.panels{flex-direction:column;height:auto}.pan{min-height:380px;flex:none!important}}
+
+/* timeline */
+.tl{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(30px,6vw,96px)}
+.tl-head{position:sticky;top:120px;align-self:start}
+.tl-list{display:flex;flex-direction:column;gap:14px;position:relative}
+.tstep{display:grid;grid-template-columns:auto minmax(0,1fr);gap:22px;padding:26px;border-radius:var(--r);background:var(--glass);border:1px solid var(--line);transition:border-color .4s,background .4s}
+.tstep:hover{border-color:rgba(228,199,146,.35);background:rgba(228,199,146,.04)}
+.tnum{font:500 2.6rem/1 var(--f-d);letter-spacing:-.05em;color:transparent;-webkit-text-stroke:1px rgba(228,199,146,.7);min-width:2.2ch}
+.tstep .stack{gap:10px}
+.tstep p{color:var(--muted);font-size:.96rem}
+@media (max-width:900px){.tl{grid-template-columns:1fr}.tl-head{position:static}}
+.hsteps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.hsteps .tstep{grid-template-columns:1fr;gap:16px;padding:22px}
+.hsteps .tnum{font-size:2rem}
+@media (max-width:1000px){.hsteps{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.hsteps{grid-template-columns:1fr}}
+
+/* gallery */
+.mosaic{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:220px;gap:14px;grid-auto-flow:dense}
+.mosaic figure:nth-child(6){grid-column:span 2}
+.mosaic figure{margin:0;position:relative;border-radius:22px;overflow:hidden;cursor:zoom-in;border:1px solid var(--line);background:var(--bg-2)}
+.mosaic figure:nth-child(1){grid-column:span 2;grid-row:span 2}
+.mosaic figure:nth-child(4){grid-row:span 2}
+.mosaic img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.mosaic figure:hover img{transform:scale(1.05)}
+.mosaic figcaption{position:absolute;inset:auto 10px 10px 10px;padding:12px 14px;border-radius:14px;background:rgba(10,12,14,.6);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);font-size:.84rem;display:flex;flex-direction:column;gap:4px;transform:translateY(6px);opacity:.92;transition:all .4s}
+.mosaic figure:hover figcaption{transform:none;opacity:1}
+.mosaic figcaption small{font:500 .62rem/1 var(--f-m);letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+@media (max-width:860px){.mosaic{grid-template-columns:1fr 1fr;grid-auto-rows:200px}.mosaic figure:nth-child(1),.mosaic figure:nth-child(6){grid-column:span 2}.mosaic figure:nth-child(7){display:none}}
+.mason{columns:3 300px;column-gap:14px}
+.mason figure{margin:0 0 14px;break-inside:avoid;position:relative;border-radius:22px;overflow:hidden;cursor:zoom-in;border:1px solid var(--line)}
+.mason img{width:100%;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.mason figure:hover img{transform:scale(1.04)}
+.mason figcaption{position:absolute;inset:auto 10px 10px 10px;padding:12px 14px;border-radius:14px;background:rgba(10,12,14,.6);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);font-size:.84rem;display:flex;flex-direction:column;gap:4px}
+.mason figcaption small{font:500 .62rem/1 var(--f-m);letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.filters{display:inline-flex;flex-wrap:wrap;gap:6px;padding:5px;border-radius:999px;background:var(--glass);border:1px solid var(--line);margin-bottom:28px}
+.filters button{font:500 .85rem/1 var(--f-b);padding:11px 16px;border-radius:999px;border:0;background:none;color:var(--muted);cursor:pointer;transition:all .3s}
+.filters button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.lb{position:fixed;inset:0;z-index:120;background:rgba(6,7,8,.94);backdrop-filter:blur(10px);display:grid;place-items:center;padding:24px}
+.lb img{max-height:84vh;max-width:min(1100px,100%);object-fit:contain;border-radius:18px}
+.lb button{position:absolute;top:calc(18px + env(safe-area-inset-top,0px));right:18px;width:48px;height:48px;border-radius:50%;background:var(--glass-2);border:1px solid var(--line-2);color:#fff;font-size:20px;cursor:pointer}
+.lb p{color:var(--muted);margin:14px auto 0;font-size:.9rem;text-align:center}
+
+/* norms ribbon */
+.ribbon{display:flex;flex-wrap:wrap;gap:10px}
+.ribbon a{display:inline-flex;align-items:center;gap:10px;padding:14px 18px;border-radius:999px;background:var(--glass);border:1px solid var(--line);text-decoration:none;font:500 .82rem/1 var(--f-m);transition:all .3s}
+.ribbon a:hover{border-color:rgba(228,199,146,.45);color:var(--gold)}
+.ribbon a span{color:var(--muted);font-family:var(--f-b);font-size:.82rem}
+
+/* CTA */
+.cta-card{position:relative;border-radius:36px;overflow:hidden;padding:clamp(32px,6vw,80px);border:1px solid rgba(228,199,146,.25);background:radial-gradient(120% 120% at 100% 0%,rgba(214,171,106,.28),transparent 50%),radial-gradient(80% 100% at 0% 100%,rgba(120,140,160,.14),transparent 55%),var(--bg-2);display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,.7fr);gap:40px;align-items:center;isolation:isolate}
+.cta-card::before{content:"";position:absolute;inset:0;z-index:-1;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:48px 48px;mask-image:radial-gradient(circle at 80% 30%,#000,transparent 70%);-webkit-mask-image:radial-gradient(circle at 80% 30%,#000,transparent 70%)}
+.cta-logo{justify-self:end;width:min(100%,320px);filter:drop-shadow(0 30px 50px rgba(0,0,0,.55));animation:float 6s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px) rotate(-1deg)}}
+@media (max-width:860px){.cta-card{grid-template-columns:1fr}.cta-logo{justify-self:start;width:220px}}
+
+/* subpage hero */
+.phero{position:relative;margin:0 12px;border-radius:0 0 36px 36px;overflow:hidden;min-height:min(70svh,640px);display:flex;align-items:flex-end;padding:150px 0 56px;isolation:isolate}
+.phero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2;filter:saturate(.75);animation:kb 18s ease-out both}
+@keyframes kb{from{transform:scale(1.1)}to{transform:scale(1)}}
+.phero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(10,12,14,.9),rgba(10,12,14,.4) 60%,rgba(10,12,14,.15)),linear-gradient(0deg,rgba(10,12,14,.9),transparent 50%)}
+.phero .wrap{width:100%;display:flex;flex-direction:column;gap:22px}
+.phero h1{font-size:clamp(2.4rem,6vw,5.6rem);max-width:14ch}
+.phero .lead{color:rgba(243,242,239,.75);max-width:52ch}
+.crumbs{display:inline-flex;align-self:flex-start;gap:8px;align-items:center;padding:8px 14px;border-radius:999px;background:rgba(10,12,14,.45);border:1px solid var(--line);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);font:500 .7rem/1 var(--f-m);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.crumbs a{text-decoration:none;color:var(--fg)}
+@media (max-width:760px){.phero{margin:0;border-radius:0 0 28px 28px}.phero::before{background:linear-gradient(0deg,rgba(10,12,14,.95),rgba(10,12,14,.45))}}
+
+/* generic layout pieces */
+.split{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,6vw,96px);align-items:center}
+.split.rev>:first-child{order:2}
+@media (max-width:900px){.split{grid-template-columns:1fr}.split.rev>:first-child{order:0}}
+.photo{border-radius:var(--r);overflow:hidden;aspect-ratio:4/5;max-width:100%;border:1px solid var(--line);position:relative}
+.photo img{width:100%;height:100%;object-fit:cover}
+.photo .chip{position:absolute;left:16px;bottom:16px}
+.glass{background:var(--glass);border:1px solid var(--line);border-radius:var(--r);padding:clamp(22px,3vw,36px)}
+.specgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.spec{padding:18px;border-radius:18px;background:rgba(255,255,255,.035);border:1px solid var(--line);display:flex;flex-direction:column;gap:10px;min-width:0}
+.spec small{font:500 .66rem/1.3 var(--f-m);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.spec b{font:500 1.02rem/1.25 var(--f-d);letter-spacing:-.02em;overflow-wrap:anywhere}
+@media (max-width:480px){.specgrid{grid-template-columns:1fr}}
+.checks{list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.checks li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:14px;align-items:center;padding:14px 16px;border-radius:16px;background:var(--glass);border:1px solid var(--line);font-size:.98rem}
+.checks li::before{content:"";width:28px;height:28px;border-radius:50%;background:var(--grad);box-shadow:inset 0 0 0 1px rgba(255,255,255,.3)}
+.checks li{position:relative}
+.checks li::after{content:"";position:absolute;left:25px;top:50%;width:8px;height:5px;border-left:2px solid var(--gold-ink);border-bottom:2px solid var(--gold-ink);transform:translateY(-70%) rotate(-45deg)}
+.cards3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.cards3>div{padding:28px;border-radius:var(--r);background:var(--glass);border:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
+.cards3>div p{color:var(--muted);font-size:.96rem}
+.cards3 .ico{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;background:rgba(228,199,146,.1);border:1px solid rgba(228,199,146,.25);color:var(--gold);font:600 .9rem/1 var(--f-m)}
+@media (max-width:860px){.cards3{grid-template-columns:1fr}}
+.mini{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.mini a{display:flex;flex-direction:column;gap:18px;padding:26px;border-radius:var(--r);background:var(--glass);border:1px solid var(--line);text-decoration:none;transition:border-color .3s}
+.mini a:hover{border-color:rgba(228,199,146,.4)}
+.mini .bcode{font-size:2.8rem}
+.mini p{color:var(--muted);font-size:.93rem}
+@media (max-width:860px){.mini{grid-template-columns:1fr}}
+.recs{display:flex;flex-direction:column;gap:10px}
+.recs a{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:20px;align-items:center;padding:20px 20px 20px 26px;border-radius:22px;background:var(--glass);border:1px solid var(--line);text-decoration:none;transition:border-color .3s}
+.recs a:hover{border-color:rgba(228,199,146,.4)}
+.recs .code{font:600 1.7rem/1 var(--f-d);letter-spacing:-.04em}
+.recs span{color:var(--muted);font-size:.88rem}
+
+/* table */
+.tablecard{border-radius:var(--r);border:1px solid var(--line);background:var(--glass);overflow-x:auto}
+.cmp{width:100%;min-width:760px;border-collapse:collapse}
+.cmp th,.cmp td{padding:18px 22px;text-align:left;border-bottom:1px solid var(--line);font-size:.92rem}
+.cmp thead th{font:600 1.15rem/1 var(--f-d);letter-spacing:-.03em}
+.cmp tbody th{font:500 .72rem/1.3 var(--f-m);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);font-weight:500}
+.cmp td{font-family:var(--f-m);font-size:.84rem}
+.cmp tbody tr:last-child>*{border-bottom:0}
+.cmp tbody tr:hover{background:rgba(255,255,255,.025)}
+
+/* norms */
+.norms{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.norm{padding:28px;border-radius:var(--r);background:var(--glass);border:1px solid var(--line);display:flex;flex-direction:column;gap:12px}
+.norm code{align-self:flex-start;padding:7px 12px;border-radius:999px;background:rgba(228,199,146,.1);border:1px solid rgba(228,199,146,.3);color:var(--gold);font:500 .78rem/1 var(--f-m)}
+.norm p{color:var(--muted);font-size:.95rem}
+@media (max-width:860px){.norms{grid-template-columns:1fr}}
+.rscale{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.rs{padding:22px 18px;border-radius:22px;border:1px solid var(--line);display:flex;flex-direction:column;gap:14px;background:var(--glass);position:relative;overflow:hidden}
+.rs b{font:600 2rem/1 var(--f-d);letter-spacing:-.04em}
+.rs .meter{height:6px;border-radius:6px;background:var(--line);overflow:hidden}
+.rs .meter i{display:block;height:100%;background:var(--grad)}
+.rs p{color:var(--muted);font-size:.88rem;line-height:1.45}
+@media (max-width:900px){.rscale{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.rscale{grid-template-columns:1fr}}
+
+/* faq */
+.faq{display:flex;flex-direction:column;gap:10px;max-width:920px}
+.faq details{border-radius:22px;background:var(--glass);border:1px solid var(--line);transition:border-color .3s,background .3s}
+.faq details[open]{border-color:rgba(228,199,146,.3);background:rgba(228,199,146,.035)}
+.faq summary{cursor:pointer;list-style:none;padding:24px 26px;display:flex;justify-content:space-between;align-items:center;gap:20px;font:500 clamp(1rem,1.5vw,1.15rem)/1.35 var(--f-d);letter-spacing:-.02em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";flex-shrink:0;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--glass-2);font:300 1.3rem/1 var(--f-b);color:var(--gold);transition:transform .35s}
+.faq details[open] summary::after{transform:rotate(45deg)}
+.faq details p{padding:0 26px 26px;color:var(--muted)}
+
+/* form */
+.form{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form .full{grid-column:1/-1}
+.form label{display:flex;flex-direction:column;gap:9px;font:500 .7rem/1 var(--f-m);letter-spacing:.1em;text-transform:uppercase;color:var(--muted);min-width:0}
+.form input,.form select,.form textarea{font:400 1rem/1.4 var(--f-b);color:var(--fg);background:rgba(255,255,255,.04);border:1px solid var(--line);padding:16px 18px;border-radius:16px;width:100%;letter-spacing:0;text-transform:none;transition:border-color .25s,box-shadow .25s,background .25s}
+.form input:focus,.form select:focus,.form textarea:focus{outline:none;border-color:rgba(228,199,146,.6);background:rgba(255,255,255,.06);box-shadow:0 0 0 4px rgba(228,199,146,.12)}
+.form select option{background:#15181b}
+.form textarea{min-height:140px;resize:vertical}
+.radios{display:flex;flex-wrap:wrap;gap:8px}
+.radios label{flex-direction:row;align-items:center;gap:10px;padding:13px 16px;border-radius:999px;border:1px solid var(--line);background:var(--glass);cursor:pointer;color:var(--fg);font:450 .88rem/1 var(--f-b);letter-spacing:0;text-transform:none;transition:all .25s}
+.radios input{position:absolute;opacity:0;width:1px;height:1px}
+.radios label:has(input:checked){border-color:transparent;background:var(--grad);color:var(--gold-ink)}
+.radios label:has(input:focus-visible){outline:2px solid var(--gold);outline-offset:2px}
+@media (max-width:640px){.form{grid-template-columns:1fr}}
+.ok{display:grid;gap:16px}
+.ok pre{white-space:pre-wrap;font:400 .82rem/1.6 var(--f-m);margin:0;background:rgba(0,0,0,.3);padding:18px;border-radius:16px;border:1px solid var(--line);overflow:auto}
+.clist{display:flex;flex-direction:column;gap:12px}
+.clist>div{padding:18px 20px;border-radius:18px;background:rgba(255,255,255,.035);border:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+.clist small{font:500 .66rem/1 var(--f-m);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.clist b{font:500 1.05rem/1.3 var(--f-d);letter-spacing:-.02em;user-select:all;overflow-wrap:anywhere}
+
+/* footer */
+.ftr{padding-block:72px 0;border-top:1px solid var(--line);overflow:hidden}
+.ftr .grid{display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:36px}
+.ftr h6{font:500 .66rem/1 var(--f-m);letter-spacing:.16em;text-transform:uppercase;color:var(--dim);margin:0 0 16px}
+.ftr a{display:block;text-decoration:none;padding:5px 0;color:rgba(243,242,239,.82);font-size:.93rem;transition:color .25s}
+.ftr a:hover{color:var(--gold)}
+.ftr a.btn{display:inline-flex;padding:5px 5px 5px 18px;color:var(--gold-ink)}
+.ftr a.btn:hover{color:var(--gold-ink)}
+.ftr .base{margin-top:56px;padding-top:22px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:var(--dim);font:400 .74rem/1.4 var(--f-m)}
+.giant{font:600 clamp(3rem,15.5vw,15rem)/.8 var(--f-d);letter-spacing:-.06em;text-align:center;margin-top:40px;white-space:nowrap;background:linear-gradient(180deg,rgba(243,242,239,.14),rgba(243,242,239,0) 85%);-webkit-background-clip:text;background-clip:text;color:transparent;user-select:none;transform:translateY(12%)}
+@media (max-width:860px){.ftr .grid{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.ftr .grid{grid-template-columns:1fr}}
+
+
+/* wizard */
+.wiz{display:flex;flex-direction:column;gap:22px;min-width:0}
+.wsteps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.wsteps button{width:100%;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.02);color:var(--dim);font:500 .82rem/1.2 var(--f-b);cursor:pointer;text-align:left}
+.wsteps button:disabled{cursor:default}
+.wsteps span{flex-shrink:0;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;border:1px solid var(--line-2);font:500 .74rem/1 var(--f-m)}
+.wsteps .on button{color:var(--fg);border-color:rgba(228,199,146,.45);background:rgba(228,199,146,.07)}
+.wsteps .on span{background:var(--grad);color:var(--gold-ink);border-color:transparent}
+.wsteps .done button{color:var(--muted)}
+.wsteps .done span{background:rgba(228,199,146,.15);color:var(--gold);border-color:transparent}
+@media (max-width:640px){.wsteps button{flex-direction:column;align-items:flex-start;font-size:.72rem;padding:9px}}
+.wbar{height:3px;border-radius:3px;background:var(--line);overflow:hidden}
+.wbar i{display:block;height:100%;background:var(--grad);transition:width .5s cubic-bezier(.2,.8,.2,1)}
+#qform{display:flex;flex-direction:column;gap:30px;animation:pageIn .5s cubic-bezier(.2,.8,.2,1) both}
+.fset{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;min-width:0}
+.fset legend{display:flex;align-items:center;gap:12px;padding:0;margin-bottom:4px;font:500 clamp(1.05rem,1.6vw,1.25rem)/1.2 var(--f-d);letter-spacing:-.02em}
+.fnum{width:30px;height:30px;border-radius:10px;display:grid;place-items:center;background:rgba(228,199,146,.1);border:1px solid rgba(228,199,146,.3);color:var(--gold);font:500 .74rem/1 var(--f-m);flex-shrink:0}
+.help{color:var(--muted);font-size:.9rem}
+.opts{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:8px}
+.opt{position:relative;display:flex;flex-direction:column;gap:6px;padding:16px 44px 16px 16px;border-radius:18px;border:1px solid var(--line);background:rgba(255,255,255,.03);cursor:pointer;transition:border-color .25s,background .25s,transform .25s;min-width:0}
+.opt:hover{border-color:var(--line-2);transform:translateY(-1px)}
+.opt input{position:absolute;opacity:0;width:1px;height:1px}
+.opt b{font-weight:500;font-size:.95rem;line-height:1.3}
+.opt span{font:400 .7rem/1.3 var(--f-m);color:var(--muted);letter-spacing:.02em}
+.opt::after{content:"";position:absolute;top:14px;right:14px;width:20px;height:20px;border-radius:50%;border:1px solid var(--line-2);transition:all .25s}
+.opt:has(input:checked){border-color:rgba(228,199,146,.6);background:rgba(228,199,146,.08)}
+.opt:has(input:checked)::after{background:var(--grad);border-color:transparent;box-shadow:0 0 14px rgba(228,199,146,.5)}
+.opt:has(input:checked)::before{content:"";position:absolute;top:20px;right:20px;width:8px;height:5px;border-left:2px solid var(--gold-ink);border-bottom:2px solid var(--gold-ink);transform:rotate(-45deg);z-index:1}
+.opt:has(input:checked) span{color:var(--gold)}
+.opt:has(input:focus-visible){outline:2px solid var(--gold);outline-offset:2px}
+.consent{display:flex!important;flex-direction:row!important;gap:12px;align-items:flex-start;margin-top:8px;font:400 .9rem/1.45 var(--f-b)!important;letter-spacing:0!important;text-transform:none!important;color:var(--muted)!important;cursor:pointer}
+.consent input{width:20px;height:20px;accent-color:var(--gold);margin-top:1px;flex-shrink:0}
+.werr{padding:14px 18px;border-radius:14px;background:rgba(228,199,146,.08);border:1px solid rgba(228,199,146,.4);color:var(--gold);font-size:.92rem}
+.wnav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-top:8px;border-top:1px solid var(--line)}
+.wa-pre{white-space:pre-wrap;font:400 .84rem/1.6 var(--f-m);margin:0;padding:20px;border-radius:18px;background:#0b141a;border:1px solid rgba(37,211,102,.25);color:#e9edef;max-height:420px;overflow:auto}
+.btn-wa{background:#25d366;color:#06200f;box-shadow:0 12px 34px -12px rgba(37,211,102,.6)}
+.btn-wa .ic{background:#06200f;color:#25d366}
+.btn-wa:hover{transform:translateY(-2px)}
+.wa-float{position:fixed;right:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:58;display:flex;align-items:center;gap:10px;height:56px;padding:0 18px;border-radius:999px;background:#25d366;color:#06200f;text-decoration:none;font:600 .9rem/1 var(--f-b);box-shadow:0 14px 40px -10px rgba(37,211,102,.6);transition:transform .3s}
+.wa-float svg{width:24px;height:24px}
+.wa-float:hover{transform:translateY(-3px)}
+@media (max-width:640px){.wa-float span{display:none}.wa-float{width:56px;padding:0;justify-content:center}}
+
+.csplit{grid-template-columns:minmax(0,1.6fr) minmax(0,1fr);align-items:start}
+.caside{position:sticky;top:110px}
+@media (max-width:900px){.csplit{grid-template-columns:1fr}.caside{position:static}}
+.wiz .row .btn{white-space:normal}
+@media (max-width:640px){.opts{grid-template-columns:repeat(auto-fill,minmax(138px,1fr))}.opt{padding:14px 38px 14px 14px}.opt b{font-size:.88rem}}
+.isobox{grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr)!important;align-items:center;padding:22px!important}
+.iso-ui{grid-column:1/-1;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;position:relative;z-index:3}
+.seg.sm button{padding:9px 14px;font-size:.74rem}
+.seg.sm button[aria-pressed="true"]{background:var(--fg);color:var(--bg)}
+.playb{display:inline-flex;align-items:center;gap:9px;padding:10px 16px;border-radius:999px;border:1px solid rgba(228,199,146,.4);background:rgba(228,199,146,.08);color:var(--gold);font:500 .78rem/1 var(--f-m);cursor:pointer;transition:background .25s}
+.playb:hover{background:rgba(228,199,146,.16)}
+.iso{position:relative;height:430px;display:grid;place-items:center;perspective:1800px;perspective-origin:50% 30%}
+.iso-step{position:absolute;top:6px;left:6px;z-index:3;padding:8px 13px;border-radius:999px;background:rgba(10,12,14,.6);border:1px solid var(--line-2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);font:500 .72rem/1 var(--f-m);color:var(--gold);max-width:calc(100% - 12px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.iso-stack{--s:200px;--gap:34px;width:var(--s);height:var(--s);margin-top:150px;position:relative;transform-style:preserve-3d;transform:rotateX(calc(57deg + var(--rx,0deg))) rotateZ(calc(-40deg + var(--rz,0deg)));transition:transform .5s ease-out}
+.iso-stack[data-mode="assembled"]{--gap:0px}
+.iso-shadow{position:absolute;inset:-14%;background:radial-gradient(closest-side,rgba(0,0,0,.75),transparent);filter:blur(8px);transform:translateZ(-1px)}
+.box{--zz:calc(var(--z0) + var(--lvl) * var(--gap));position:absolute;inset:0;transform-style:preserve-3d;transform:translateZ(var(--zz));transition:transform 1s cubic-bezier(.2,.8,.2,1);transition-delay:calc(var(--lvl) * 70ms)}
+.box.hl{transform:translateZ(calc(var(--zz) + 18px));transition-delay:0s}
+.f{position:absolute;background-size:100% 100%;background-color:transparent}
+.f.top{inset:0;transform:translateZ(var(--h));border-radius:2px}
+.f.fr{left:0;bottom:0;width:100%;height:var(--h);transform-origin:50% 100%;transform:rotateX(-90deg);filter:brightness(.8)}
+.f.lf{left:0;top:0;width:var(--s);height:var(--h);transform-origin:0 0;transform:rotateZ(90deg) rotateX(90deg);filter:brightness(.6)}
+.box.hl .f.top{box-shadow:inset 0 0 0 2px var(--gold),0 0 40px rgba(228,199,146,.45)}
+.box.hl .f.fr,.box.hl .f.lf{box-shadow:inset 0 0 0 1px var(--gold)}
+.box.pre{transition:none}
+.box.pre .f,.box.pre .drop{opacity:0}
+.box.go[data-kind="solid"]{animation:dropIn 1s cubic-bezier(.2,.8,.2,1) both}
+@keyframes dropIn{from{transform:translateZ(calc(var(--zz) + 240px))}to{transform:translateZ(var(--zz))}}
+.box.go[data-kind="solid"] .f{animation:sideIn .5s both}
+.box.go[data-kind="liquid"] .f.top{animation:spread 1.1s cubic-bezier(.3,.7,.2,1) both}
+@keyframes spread{from{clip-path:circle(0% at 32% 38%)}to{clip-path:circle(150% at 32% 38%)}}
+.box.go[data-kind="liquid"] .f.fr,.box.go[data-kind="liquid"] .f.lf{animation:sideIn .7s .45s both}
+@keyframes sideIn{from{opacity:0}}
+.box.go[data-kind="grain"] .f{animation:grainIn .9s .45s both}
+@keyframes grainIn{from{opacity:0;filter:brightness(1.8)}}
+.box.go[data-kind="trowel"] .f.top{animation:trowel 1.1s cubic-bezier(.5,0,.2,1) both}
+.box.go[data-kind="trowel"] .f.fr{animation:trowel 1.1s cubic-bezier(.5,0,.2,1) both}
+.box.go[data-kind="trowel"] .f.lf{animation:sideIn .6s .5s both}
+@keyframes trowel{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+.drop{position:absolute;width:3px;height:3px;border-radius:50%;background:#e2ded3;box-shadow:0 0 0 .5px rgba(0,0,0,.4);animation:rain .75s cubic-bezier(.55,0,1,.6) both}
+.drop:nth-child(3n){background:#55595c}.drop:nth-child(5n){width:4px;height:4px;background:#b9b6ad}
+@keyframes rain{from{transform:translateZ(230px);opacity:0}15%{opacity:1}to{transform:translateZ(var(--h));opacity:1}}
+.legend li{transition:border-color .25s,background .25s;cursor:default}
+.legend li.hl{border-color:rgba(228,199,146,.6);background:rgba(228,199,146,.08)}
+.legend i{background-size:cover;width:18px!important;height:18px!important;border-radius:5px}
+@media (max-width:900px){.isobox{grid-template-columns:1fr!important}.iso{height:400px}}
+@media (max-width:560px){.iso{height:340px}.iso-stack{--s:150px;--gap:26px;margin-top:120px}}
+.box[data-i="0"] .f.top{overflow:hidden}
+.box[data-i="0"] .f.top::after{content:"";position:absolute;inset:0;background:linear-gradient(115deg,transparent 35%,rgba(255,255,255,.28) 50%,transparent 65%);background-size:250% 100%;animation:gloss 5s ease-in-out infinite}
+@keyframes gloss{0%,55%{background-position:120% 0}100%{background-position:-120% 0}}
+/* motion */
+.page{animation:pageIn .7s cubic-bezier(.2,.8,.2,1) both}
+@keyframes pageIn{from{transform:translateY(14px)}to{transform:none}}
+@supports (animation-timeline:view()){
+  .rv{animation:rv linear both;animation-timeline:view();animation-range:entry 0% cover 22%}
+  @keyframes rv{from{opacity:.55;transform:translateY(44px) scale(.985)}to{opacity:1;transform:none}}
+}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+
+
+<div class="ambient" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<header class="nav-shell" id="hdr">
+  <div class="nav-in">
+    <a class="logo" href="#home" aria-label="Premium CoatUp"><img src="img/logo-sm.png" alt="Premium CoatUp" width="80" height="40"></a>
+    <nav class="nav" id="nav" aria-label="Main"></nav>
+    <div class="tools">
+      <div class="lang" role="group" aria-label="Language">
+        <button id="lang-nl" data-lang="nl">NL</button><button id="lang-en" data-lang="en">EN</button><button id="lang-pl" data-lang="pl" title="Tymczasowo, do sprawdzania">PL</button>
+      </div>
+      <a class="btn btn-gold sm" href="#contact" id="hdr-cta"></a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 18 18"><path d="M2 6h14M2 12h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+    </div>
+  </div>
+</header>
+<div class="mnav" id="mnav" hidden></div>
+<main id="app"></main>
+<footer class="ftr" id="ftr"></footer>
+<a class="wa-float" id="wa-float" href="https://wa.me/31628199203" target="_blank" rel="noopener" aria-label="WhatsApp"></a>
+<div class="lb" id="lb" hidden><button id="lb-x" aria-label="Close">×</button><div><img id="lb-img" alt=""><p id="lb-cap"></p></div></div>
+
+<script>
+(function(){
+const NLD={"PMMA coatings": "PMMA-coatings", "Rapid-cure waterproofing": "Snelhardende waterdichting", "Methyl methacrylate cures in about an hour, even in cold weather. Ideal for balconies, galleries and ramps where residents cannot wait.": "Methylmethacrylaat hardt uit in ongeveer een uur, ook bij koud weer. Ideaal voor balkons, galerijen en hellingbanen waar bewoners niet kunnen wachten.", "PMMA is a liquid waterproofing membrane and a wearing floor in one. It cures in about 60 minutes, resists UV and standing water, and with a fleece reinforcement it bridges cracks in the concrete. It is our standard for balconies, galleries (galerijen) and terraces on VvE projects.": "PMMA is een vloeibare waterdichting en een slijtvaste vloer in één. Het hardt uit in ongeveer 60 minuten, is bestand tegen UV en staand water en overbrugt met een vliesversterking scheuren in het beton. Het is onze standaard voor balkons, galerijen en terrassen bij VvE-projecten.", "Because PMMA cures chemically rather than by evaporation, we can work at substrate temperatures from around 0 °C. Layers go on the same day, so a 40 m gallery is often finished in one or two working days, in sections, so residents always keep access to their front door.": "Omdat PMMA chemisch uithardt en niet door verdamping, kunnen we werken bij een ondergrondtemperatuur vanaf circa 0 °C. Alle lagen gaan dezelfde dag op, dus een galerij van 40 m is vaak in één tot twee werkdagen klaar, in secties, zodat bewoners altijd bij hun voordeur kunnen.", "We finish with a coloured-quartz or flake broadcast and a slip class chosen for the location: R10 on covered galleries, R11–R12 on open balconies and ramps. Details at thresholds, drains and balustrade posts are done in the same material, without joints.": "We werken af met ingestrooid gekleurd kwarts of flakes en een slipklasse die past bij de plek: R10 op overdekte galerijen, R11–R12 op open balkons en hellingbanen. Details bij dorpels, afvoeren en balusterstaanders maken we naadloos in hetzelfde materiaal.", "System thickness": "Systeemdikte", "Cure (20 °C)": "Uitharding (20 °C)", "approx. 60 min": "ca. 60 min", "Foot traffic": "Beloopbaar", "after approx. 2 h": "na ca. 2 uur", "Application temp.": "Verwerkingstemp.", "from approx. 0 °C (substrate)": "vanaf ca. 0 °C (ondergrond)", "UV resistance": "UV-bestendigheid", "yes, non-yellowing": "ja, vergeelt niet", "Crack bridging": "Scheuroverbruggend", "yes (with fleece)": "ja (met vlies)", "Slip resistance": "Slipweerstand", "Balconies and loggias": "Balkons en loggia's", "Galleries and outdoor stairwells (VvE)": "Galerijen en buitentrappenhuizen (VvE)", "Terraces over living space": "Terrassen boven woonruimte", "Ramps and driveways": "Hellingbanen en opritten", "Repairs in low temperatures": "Herstel bij lage temperaturen", "PMMA topcoat, matte": "PMMA-toplaag, mat", "Quartz / flake broadcast": "Kwarts- / flake-instrooiing", "PMMA membrane + fleece": "PMMA-membraan + vlies", "PMMA primer": "PMMA-primer", "Concrete (ground)": "Beton (geschuurd)", "Epoxy floors": "Epoxyvloeren", "Hardness and chemical resistance": "Hardheid en chemische bestendigheid", "Self-levelling or roller-applied epoxy systems for halls, warehouses, workshops and showrooms. Seamless and easy to maintain.": "Zelfnivellerende of gerolde epoxysystemen voor hallen, magazijnen, werkplaatsen en showrooms. Naadloos en onderhoudsvriendelijk.", "Epoxy resin gives a very hard, sealed and chemically resistant surface. We apply it as a rolled coating (0.3–0.5 mm), a quartz-broadcast system or a 2–3 mm self-levelling floor, classified to NEN-EN 13813 as SR.": "Epoxyhars geeft een zeer hard, gesloten en chemisch bestendig oppervlak. We brengen het aan als gerolde coating (0,3–0,5 mm), als ingestrooid kwartssysteem of als zelfnivellerende gietvloer van 2–3 mm, geclassificeerd volgens NEN-EN 13813 als SR.", "Epoxy performs best indoors. Outdoors, and wherever daylight reaches the floor, we seal it with a UV-stable polyurethane topcoat, because epoxy alone yellows over time. Colours come from the RAL range; the floor can get decorative flakes, safety lines and zone markings.": "Epoxy presteert het best binnen. Buiten, en overal waar daglicht op de vloer valt, sluiten we af met een UV-bestendige polyurethaan toplaag, omdat epoxy alleen na verloop van tijd vergeelt. Kleuren kiest u uit het RAL-palet; de vloer kan decoratieve flakes, veiligheidslijnen en zonemarkering krijgen.", "Before pouring we measure concrete moisture by the CM method (max. approx. 4 % for cementitious substrates), pull-off strength (min. 1.5 N/mm²) and the dew point. We do not give a warranty without these measurements, because they decide adhesion.": "Voordat we gieten meten we het vochtgehalte van het beton met de CM-methode (max. ca. 4 % bij cementgebonden ondergronden), de hechttreksterkte (min. 1,5 N/mm²) en het dauwpunt. Zonder deze metingen geven we geen garantie, want zij bepalen de hechting.", "Thickness": "Dikte", "Classification": "Classificatie", "after approx. 24 h": "na ca. 24 uur", "Full load": "Volledig belastbaar", "after approx. 7 days": "na ca. 7 dagen", "Chemical resistance": "Chemische bestendigheid", "very high": "zeer hoog", "needs PU topcoat": "PU-toplaag nodig", "Warehouses and logistics centres": "Magazijnen en distributiecentra", "Production halls": "Productiehallen", "Workshops and garages": "Werkplaatsen en garages", "Showrooms": "Showrooms", "Technical corridors": "Technische gangen", "Sealer coat": "Sealerlaag", "Self-levelling EP layer": "Zelfnivellerende EP-laag", "EP primer + quartz broadcast": "EP-primer + kwartsinstrooiing", "Concrete (diamond ground)": "Beton (diamantgeschuurd)", "Polyurethane systems": "Polyurethaansystemen", "Elasticity and UV stability": "Elasticiteit en UV-bestendigheid", "Elastic, crack-bridging PU coatings for car parks, ramps and balconies, and PU-cement for the food industry.": "Elastische, scheuroverbruggende PU-coatings voor parkeergarages, hellingbanen en balkons, en PU-cement voor de voedingsindustrie.", "Polyurethane moves with the concrete. Where the structure deflects, and where road salt and sunlight act on it, an elastic PU system protects the reinforcement from water and chlorides. We use it on parking decks, ramps and trafficable roofs.": "Polyurethaan beweegt mee met het beton. Waar de constructie doorbuigt en waar strooizout en zonlicht inwerken, beschermt een elastisch PU-systeem de wapening tegen water en chloriden. We passen het toe op parkeerdekken, hellingbanen en beloopbare daken.", "For car parks we build a multi-layer system: epoxy primer, elastic PU membrane, wearing layer with coarse quartz and a UV-stable topcoat. These systems protect concrete in line with NEN-EN 1504-2 and resist tyre marks, oil and salt.": "Voor parkeergarages bouwen we een meerlaags systeem op: epoxyprimer, elastisch PU-membraan, slijtlaag met grof kwarts en een UV-bestendige toplaag. Deze systemen beschermen beton volgens NEN-EN 1504-2 en zijn bestand tegen bandensporen, olie en zout.", "In commercial kitchens and food plants we use PU-cement: 6–9 mm, resistant to thermal shock from hot-water and steam cleaning, to fats and organic acids. We combine it with a coved skirting (holle plint) to meet HACCP requirements.": "In grootkeukens en voedingsbedrijven passen we PU-cement toe: 6–9 mm, bestand tegen thermische schokken bij reiniging met heet water en stoom, tegen vetten en organische zuren. We combineren het met een holle plint, zodat aan de HACCP-eisen wordt voldaan.", "2–4 mm (PU-cement 6–9 mm)": "2–4 mm (PU-cement 6–9 mm)", "yes, elastic system": "ja, elastisch systeem", "yes (aliphatic topcoat)": "ja (alifatische toplaag)", "Vehicle traffic": "Berijdbaar", "after approx. 3–5 days": "na ca. 3–5 dagen", "Concrete protection": "Betonbescherming", "Parking decks and garages": "Parkeerdekken en garages", "Access ramps": "Hellingbanen", "Trafficable roofs and terraces": "Beloopbare daken en terrassen", "Commercial kitchens (PU-cement)": "Grootkeukens (PU-cement)", "Food processing plants": "Voedselverwerkende bedrijven", "UV-stable PU topcoat": "UV-bestendige PU-toplaag", "Wearing layer + coarse quartz": "Slijtlaag + grof kwarts", "Elastic PU membrane": "Elastisch PU-membraan", "EP primer": "EP-primer", "Concrete (shot-blasted)": "Beton (gestraald)", "Troffelvloer": "Troffelvloer", "Trowelled epoxy-quartz screed": "Getroffelde epoxy-kwartsvloer", "The toughest system: 4–8 mm of epoxy-quartz mortar, power-trowelled. For commercial kitchens, production and heavy-duty areas.": "Het zwaarste systeem: 4–8 mm epoxy-kwartsmortel, machinaal getroffeld. Voor grootkeukens, productie en zwaarbelaste ruimtes.", "A troffelvloer is a mortar of epoxy resin and kiln-dried quartz sand, laid 4–8 mm thick and finished with a hand or power trowel. The result is a floor with very high compressive and impact strength, sealed with a closed topcoat.": "Een troffelvloer is een mortel van epoxyhars en gedroogd kwartszand, aangebracht in 4–8 mm en afgewerkt met de hand- of machinetroffel. Het resultaat is een vloer met een zeer hoge druk- en slagvastheid, afgesloten met een dichte toplaag.", "This system is the choice for commercial kitchens, bakeries, meat processing, workshops and halls with forklift traffic. The quartz texture gives R11–R13 slip resistance even on a wet, greasy floor, and the sealer makes daily cleaning easy.": "Dit systeem is de keuze voor grootkeukens, bakkerijen, vleesverwerking, werkplaatsen en hallen met heftruckverkeer. De kwartsstructuur geeft slipklasse R11–R13, ook op een natte, vette vloer, en de sealer maakt dagelijkse reiniging eenvoudig.", "A troffelvloer also lets us form falls to drains and channel gutters without an extra screed. We form coved skirtings (holle plint) from the same mortar, as in the photos from our kitchen project.": "Met een troffelvloer kunnen we ook afschot naar putten en goten maken zonder extra dekvloer. Holle plinten zetten we in dezelfde mortel, zoals op de foto's van ons keukenproject.", "Composition": "Samenstelling", "EP resin + quartz sand": "EP-hars + kwartszand", "Compressive strength": "Druksterkte", "very high (> 60 N/mm², per system)": "zeer hoog (> 60 N/mm², per systeem)", "after approx. 24–48 h": "na ca. 24–48 uur", "Falls to drains": "Afschot naar putten", "yes, in one layer": "ja, in één laag", "Hygiene": "Hygiëne", "seamless, coved skirting, HACCP": "naadloos, holle plint, HACCP", "Commercial kitchens and catering": "Grootkeukens en horeca", "Food production": "Voedselproductie", "Halls with forklift traffic": "Hallen met heftruckverkeer", "Workshops and wash bays": "Werkplaatsen en wasplaatsen", "Wet rooms": "Natte ruimtes", "EP pore sealer": "EP-poriënsealer", "EP + quartz mortar, trowelled": "EP + kwartsmortel, getroffeld", "Concrete (blasted / milled)": "Beton (gestraald / gefreesd)", "Large-format surfaces": "Grote oppervlakken", "Halls · warehouses · kitchens": "Hallen · magazijnen · keukens", "End to end: from grinding and substrate preparation to a finished floor across thousands of m².": "Compleet: van schuren en voorbereiden van de ondergrond tot een afgewerkte vloer over duizenden m².", "A large project is won in substrate preparation. We diamond-grind, shot-blast or mill the concrete, remove old coatings and repair cracks and voids before the system goes down. Always with dust extraction.": "Een groot project wordt gewonnen in de voorbereiding. We schuren het beton met diamant, stralen of frezen het, verwijderen oude coatings en herstellen scheuren en gaten voordat het systeem erop gaat. Altijd met stofafzuiging.", "We work in live buildings: we split the hall into phases, agree night and weekend work windows with the facility manager and hand over zone by zone. Every phase has a record: CM moisture, pull-off strength, temperature and dew point, layer thickness.": "We werken in panden die in gebruik zijn: we delen de hal op in fases, spreken met de facilitair manager nacht- en weekendvensters af en leveren zone voor zone op. Elke fase krijgt een verslag: CM-vocht, hechttreksterkte, temperatuur en dauwpunt, laagdikte.", "We match the system to the load: self-levelling epoxy for warehouses, troffelvloer for kitchens and production, PU-cement where there is hot water and chemicals. We also detail movement joints, safety lines and traffic-route marking.": "We stemmen het systeem af op de belasting: zelfnivellerende epoxy voor magazijnen, troffelvloer voor keukens en productie, PU-cement waar heet water en chemicaliën zijn. Ook dilatatievoegen, veiligheidslijnen en looproutemarkering werken we uit.", "Diamond grinding and shot blasting with dust extraction": "Diamantschuren en kogelstralen met stofafzuiging", "Repair of cracks, voids and joints": "Herstel van scheuren, gaten en voegen", "CM, pull-off and dew-point measurement with a record": "CM-, hechttrek- en dauwpuntmeting met verslag", "Phasing in live buildings": "Gefaseerd werken in panden in gebruik", "Safety lines and zone marking": "Veiligheidslijnen en zonemarkering", "Balconies, terraces and galleries": "Balkons, terrassen en galerijen", "Residential · VvE": "Woningbouw · VvE", "Watertight, slip-resistant PMMA coatings for balconies and galleries. Fast, clean, without long closures.": "Waterdichte, slipvaste PMMA-coatings voor balkons en galerijen. Snel, schoon en zonder lange afsluiting.", "Balconies and galleries in the Netherlands work in rain, frost and sun. Leaks into the flats below and corroded reinforcement are the most common problems VvEs and property managers bring to us. We solve them with seamless PMMA waterproofing finished with coloured quartz.": "Balkons en galerijen in Nederland staan in regen, vorst en zon. Lekkage naar de woningen eronder en gecorrodeerde wapening zijn de meest voorkomende problemen waarmee VvE's en beheerders bij ons komen. We lossen ze op met naadloze PMMA-waterdichting, afgewerkt met gekleurd kwarts.", "On galleries we work in sections and always leave a walkway to front doors. Residents receive a letter with the schedule in advance. PMMA cures in an hour, so even in autumn weather we close a section the same day.": "Op galerijen werken we in secties en laten we altijd een looppad naar de voordeuren vrij. Bewoners krijgen vooraf een brief met de planning. PMMA hardt in een uur uit, dus zelfs bij herfstweer sluiten we een sectie dezelfde dag af.", "Details decide watertightness: balcony door thresholds, balustrade posts, drains, gutters and slab edges. We form them in the same system, reinforced with fleece. Colour separation lines are taped and cut precisely, as in the photos of our projects.": "Details bepalen de waterdichtheid: dorpels van balkondeuren, balusterstaanders, afvoeren, goten en plaatranden. We maken ze in hetzelfde systeem, versterkt met vlies. Kleurscheidingslijnen worden strak afgeplakt en gesneden, zoals op de foto's van onze projecten.", "PMMA waterproofing with fleece": "PMMA-waterdichting met vlies", "Coloured-quartz or flake finish": "Afwerking met gekleurd kwarts of flakes", "Slip resistance R10–R12": "Slipweerstand R10–R12", "Sectional work with door access": "Werken in secties met toegang tot de deur", "Schedule and resident notices": "Planning en bewonersbrieven", "Garages and car parks": "Garages en parkeergarages", "Garages · ramps · car parks": "Garages · hellingbanen · parkeergarages", "Resistant to salt, oil and tyre marks. From a private garage to a multi-storey car park and outdoor ramp.": "Bestand tegen zout, olie en bandensporen. Van een privégarage tot een parkeergarage met meerdere lagen en een buitenhellingbaan.", "Road salt carried in on tyres is the biggest enemy of garage concrete. Chlorides penetrate and corrode the reinforcement. A sealed coating stops them at the surface and protects the structure for years.": "Strooizout dat via de banden binnenkomt is de grootste vijand van garagebeton. Chloriden dringen het beton in en tasten de wapening aan. Een gesloten coating houdt ze aan het oppervlak tegen en beschermt de constructie jarenlang.", "In underground garages we use epoxy systems with quartz broadcast; on open-air decks and ramps, elastic UV-stable PU or PMMA systems. Ramps receive coarser quartz for tyre grip, also in rain.": "In ondergrondse garages gebruiken we epoxysystemen met kwartsinstrooiing; op open parkeerdekken en hellingbanen elastische, UV-bestendige PU- of PMMA-systemen. Hellingbanen krijgen grover kwarts voor grip, ook bij regen.", "We finish with markings: bay lines, direction arrows, pedestrian crossings and protective kerbs, as on the ramp in our project. For private garages we recommend flake epoxy, which looks good and does not absorb oil.": "We werken af met markering: vakbelijning, richtingspijlen, voetgangersoversteken en schrikranden, zoals op de hellingbaan van ons project. Voor privégarages adviseren we epoxy met flakes: dat oogt goed en neemt geen olie op.", "Protection against chlorides and road salt": "Bescherming tegen chloriden en strooizout", "Elastic systems for decks and ramps": "Elastische systemen voor dekken en hellingbanen", "Coarse quartz on ramps (R12–R13)": "Grof kwarts op hellingbanen (R12–R13)", "Lines, arrows and markings": "Belijning, pijlen en markering", "Private garages with flakes": "Privégarages met flakes", "Balcony, PMMA with coloured quartz": "Balkon, PMMA met gekleurd kwarts", "Gallery in progress, colour line": "Galerij in uitvoering, kleurlijn", "Commercial kitchen, troffelvloer": "Grootkeuken, troffelvloer", "Residential gallery after renovation": "Woongalerij na renovatie", "Car park ramp with kerb": "Hellingbaan parkeergarage met schrikrand", "Flakes and coved skirting": "Flakes en holle plint", "Balcony, slip-resistant coating": "Balkon, slipvaste coating", "Garage entrance, markings": "Garage-inrit, markering", "Gallery at front doors": "Galerij bij de voordeuren", "Technical corridor, epoxy": "Technische gang, epoxy", "Inspection & measurement": "Inspectie & meting", "We visit the site, assess the concrete and take measurements. On that basis we prepare a quotation with the chosen system.": "We komen langs, beoordelen het beton en voeren metingen uit. Op basis daarvan maken we een offerte met het gekozen systeem.", "CM moisture": "CM-vocht", "dew point": "dauwpunt", "Substrate preparation": "Voorbereiding ondergrond", "Diamond grinding, shot blasting or milling to an open, sound surface.": "Diamantschuren, kogelstralen of frezen tot een open, draagkrachtig oppervlak.", "old coating removal": "verwijderen oude coatings", "dust extraction": "stofafzuiging", "Repair & primer": "Herstel & primer", "We fill cracks and voids, level and apply a primer matched to the system.": "We vullen scheuren en gaten, egaliseren en brengen een primer aan die past bij het systeem.", "cracks, joints": "scheuren, voegen", "primer + broadcast": "primer + instrooiing", "System application": "Aanbrengen systeem", "We pour and spread base layers, broadcast and topcoat, checking thickness as we go.": "We gieten en verdelen de basislagen, de instrooiing en de toplaag en controleren de laagdikte tijdens het werk.", "thickness control": "laagdiktecontrole", "temp. +3 K above dew point": "temp. +3 K boven dauwpunt", "Handover & warranty": "Oplevering & garantie", "Final check, handover record, maintenance guide and written warranty terms.": "Eindcontrole, opleverrapport, onderhoudsadvies en schriftelijke garantievoorwaarden.", "handover report (opleverrapport)": "opleverrapport", "maintenance advice": "onderhoudsadvies", "Synthetic resin screeds": "Kunstharsgebonden vloeren", "Classification of synthetic resin floors (SR) for bond strength, wear and impact resistance. We describe the performance of our epoxy and troffelvloer systems to this standard.": "Classificatie van kunstharsvloeren (SR) op hechtsterkte, slijtvastheid en slagvastheid. Volgens deze norm beschrijven we de prestaties van onze epoxy- en troffelvloersystemen.", "Surface protection of concrete": "Oppervlaktebescherming van beton", "The standard for systems protecting concrete against water, chlorides and CO₂. It applies to coatings on car parks, balconies and galleries.": "De norm voor systemen die beton beschermen tegen water, chloriden en CO₂. Van toepassing op coatings in parkeergarages, op balkons en galerijen.", "Liquid-applied waterproofing": "Vloeibaar aangebrachte waterdichting", "European technical assessment for liquid membranes such as PMMA on balconies and terraces. We use systems that carry such an approval.": "Europese technische beoordeling voor vloeibare membranen zoals PMMA op balkons en terrassen. We werken met systemen die zo'n goedkeuring hebben.", "Classes R9–R13 describe slip resistance in footwear. We match the class to the zone: kitchen, ramp, balcony, warehouse.": "De klassen R9–R13 beschrijven de slipweerstand met schoeisel. We kiezen de klasse per zone: keuken, hellingbaan, balkon, magazijn.", "Besluit bouwwerken leefomgeving": "Besluit bouwwerken leefomgeving", "Replaced the Bouwbesluit in 2024. We take its safety-in-use requirements into account, for example on galleries and escape routes.": "Vervangt sinds 2024 het Bouwbesluit. We houden rekening met de eisen voor gebruiksveiligheid, bijvoorbeeld op galerijen en vluchtroutes.", "Food-zone hygiene": "Hygiëne in voedselzones", "Seamless floors with coved skirting (holle plint), easy to clean and disinfect, for kitchens and food plants.": "Naadloze vloeren met holle plint, eenvoudig te reinigen en te desinfecteren, voor keukens en voedingsbedrijven.", "Health & safety": "Veiligheid & gezondheid", "We work in line with the Arbowet and VCA rules: protective equipment, ventilation, marked work zones and safe handling of resins.": "We werken volgens de Arbowet en de VCA-regels: beschermingsmiddelen, ventilatie, afgezette werkzones en veilig werken met harsen.", "Measurements": "Metingen", "Quality record": "Kwaliteitsverslag", "CM moisture (cementitious approx. ≤ 4 %), pull-off ≥ 1.5 N/mm², substrate at least 3 K above dew point, air humidity and layer thickness.": "CM-vocht (cementgebonden ca. ≤ 4 %), hechttrek ≥ 1,5 N/mm², ondergrond minimaal 3 K boven het dauwpunt, luchtvochtigheid en laagdikte.", "Which system: PMMA, epoxy or PU?": "Welk systeem: PMMA, epoxy of PU?", "Outdoors and where time matters (balconies, galleries), usually PMMA. Inside halls and warehouses, epoxy. For car parks and structures that move, elastic PU. For kitchens and production, troffelvloer or PU-cement. We make the final choice after on-site measurements.": "Buiten en waar tijd telt (balkons, galerijen) meestal PMMA. In hallen en magazijnen epoxy. Voor parkeergarages en constructies die bewegen elastisch PU. Voor keukens en productie een troffelvloer of PU-cement. De definitieve keuze maken we na metingen op locatie.", "How long does it take?": "Hoe lang duurt het?", "A balcony or gallery section in PMMA: usually one day. A private garage: 2–3 days. A hall of several thousand m²: from a few days to a few weeks, in phases. The exact schedule is in the quotation.": "Een balkon of galerijsectie in PMMA: meestal één dag. Een privégarage: 2–3 dagen. Een hal van enkele duizenden m²: van enkele dagen tot enkele weken, in fases. De exacte planning staat in de offerte.", "Can you work in low temperatures?": "Kunnen jullie werken bij lage temperaturen?", "PMMA yes, from approx. 0 °C substrate temperature. Epoxy and PU usually need at least 10 °C and a substrate at least 3 K above the dew point. We check this with an instrument before every layer.": "PMMA wel, vanaf een ondergrondtemperatuur van ca. 0 °C. Epoxy en PU hebben meestal minimaal 10 °C nodig en een ondergrond die minstens 3 K boven het dauwpunt ligt. We meten dit vóór elke laag.", "Is the work dusty or disruptive?": "Geeft het werk veel stof of overlast?", "We grind and blast with industrial dust extraction, so there is little dust. Resins smell during application, so we provide ventilation and inform building users.": "We schuren en stralen met industriële stofafzuiging, dus er komt weinig stof vrij. Harsen ruiken tijdens het aanbrengen; daarom zorgen we voor ventilatie en informeren we de gebruikers van het gebouw.", "Do you give a warranty?": "Geven jullie garantie?", "Yes. Warranty terms and period are written into the quotation for the specific system and substrate. They are based on the measurement records taken before work.": "Ja. De garantievoorwaarden en -termijn leggen we vast in de offerte, per systeem en ondergrond. Ze zijn gebaseerd op de meetverslagen van vóór de werkzaamheden.", "Do you work for VvEs and property managers?": "Werken jullie voor VvE's en beheerders?", "Yes, it is a large part of our balcony and gallery work. We prepare a quotation the VvE board can follow, a schedule and resident letters.": "Ja, dat is een groot deel van ons werk aan balkons en galerijen. We maken een offerte die het VvE-bestuur goed kan volgen, een planning en bewonersbrieven.", "How do I maintain a resin floor?": "Hoe onderhoud ik een kunstharsvloer?", "Day to day, cleaning with a neutral detergent (pH 7–9) and a soft brush or scrubber is enough. At handover we give a maintenance guide matched to the system.": "Dagelijks reinigen met een neutraal middel (pH 7–9) en een zachte borstel of schrobmachine is voldoende. Bij de oplevering krijgt u een onderhoudsadvies dat past bij het systeem.", "Which region do you cover?": "In welke regio werken jullie?", "The whole of the Netherlands. For large projects also Belgium and Germany by arrangement.": "In heel Nederland. Voor grote projecten in overleg ook in België en Duitsland.", "Free inspection": "Gratis inspectie", "Tell us about your surface. We reply with a plan and a quote.": "Vertel ons over uw oppervlak. U krijgt een plan en een offerte.", "We visit, measure and advise a system. Quotation (offerte) within a few working days.": "We komen langs, meten en adviseren een systeem. Offerte binnen enkele werkdagen.", "Request a quote": "Offerte aanvragen", "Home": "Home", "Concrete protection · since 2016": "Betonbescherming · sinds 2016", "Concrete that <em>outlasts</em> everything.": "Beton dat <em>alles</em> doorstaat.", "Seamless PMMA, epoxy and polyurethane coatings and troffelvloer. From halls of thousands of m² to balconies, galleries and garages, across the Netherlands.": "Naadloze PMMA-, epoxy- en polyurethaancoatings en troffelvloeren. Van hallen van duizenden m² tot balkons, galerijen en garages, in heel Nederland.", "See our work": "Bekijk ons werk", "Pour": "Gieten", "Spread": "Verdelen", "Broadcast": "Instrooien", "Seal": "Afsluiten", "years of experience in the Netherlands": "jaar ervaring in Nederland", "systems: PMMA, EP, PU, troffel": "systemen: PMMA, EP, PU, troffel", "PMMA cure on a balcony": "uitharding PMMA op een balkon", "work to NEN-EN standards": "werk volgens NEN-EN-normen", "Systems": "Systemen", "Four chemistries. One rule: match the substrate and the load.": "Vier chemieën. Eén regel: afgestemd op ondergrond en belasting.", "We do not sell one resin for everything. Each system has different strengths, and we choose after measuring on site.": "We verkopen niet één hars voor alles. Elk systeem heeft andere sterke punten, en we kiezen pas na metingen op locatie.", "Details": "Details", "System cross-section": "Doorsnede van het systeem", "Protection is built layer by layer.": "Bescherming wordt laag voor laag opgebouwd.", "Every layer has a job: the primer bonds to the concrete, the membrane seals, the broadcast gives grip and the topcoat protects against UV, chemicals and wear.": "Elke laag heeft een taak: de primer hecht aan het beton, het membraan dicht af, de instrooiing geeft grip en de toplaag beschermt tegen UV, chemicaliën en slijtage.", "typical thicknesses, not to scale": "gangbare laagdiktes, niet op schaal", "Applications": "Toepassingen", "From thousands of metres to a single balcony.": "Van duizenden meters tot één balkon.", "We do large surfaces end to end, with grinding and substrate preparation. Small ones with the same care, and fast.": "Grote oppervlakken doen we compleet, inclusief schuren en voorbereiden van de ondergrond. Kleine met dezelfde zorg, en snel.", "Werkwijze": "Werkwijze", "Five stages. Each one recorded.": "Vijf stappen. Elke stap vastgelegd.", "Most of a coating’s life is decided in preparation. That is why we measure before we pour anything.": "De levensduur van een coating wordt grotendeels bepaald in de voorbereiding. Daarom meten we voordat we ook maar iets gieten.", "Full process": "Volledige werkwijze", "About us": "Over ons", "Ten years, hundreds of balconies and halls. <b>No shortcuts</b> in substrate preparation.": "Tien jaar, honderden balkons en hallen. <b>Geen concessies</b> bij de voorbereiding van de ondergrond.", "Premium CoatUp is a team of resin-flooring specialists working in the Netherlands since 2016. We work for companies, VvEs, property managers and private clients.": "Premium CoatUp is een team van specialisten in kunstharsvloeren, sinds 2016 actief in Nederland. We werken voor bedrijven, VvE's, vastgoedbeheerders en particulieren.", "Meet us": "Maak kennis", "Our specialist at work on a gallery": "Onze specialist aan het werk op een galerij", "Services": "Diensten", "Systems and applications": "Systemen en toepassingen", "Choose a system by chemistry, or by the place you want to protect.": "Kies een systeem op basis van de chemie, of op basis van de plek die u wilt beschermen.", "By system": "Per systeem", "The chemistries we work with": "De chemieën waarmee we werken", "By location": "Per locatie", "Where we work": "Waar we werken", "Comparison": "Vergelijking", "Systems side by side": "Systemen naast elkaar", "Typical values. Exact performance depends on product and substrate.": "Gangbare waarden. De exacte prestaties hangen af van product en ondergrond.", "Curing": "Uitharding", "~1 h": "~1 uur", "Outdoor / UV": "Buiten / UV", "with PU topcoat": "met PU-toplaag", "indoor": "binnen", "Elasticity": "Elasticiteit", "high": "hoog", "low": "laag", "Mechanical load": "Mechanische belasting", "medium": "gemiddeld", "medium–high": "gemiddeld–hoog", "Slip": "Slip", "System": "Systeem", "What it is and when we use it": "Wat het is en wanneer we het toepassen", "Datasheet": "Technische gegevens", "Typical values; final figures per product datasheet and site conditions.": "Gangbare waarden; definitieve waarden volgens het productblad en de omstandigheden op locatie.", "Build-up": "Opbouw", "Layer build-up": "Laagopbouw", "From concrete to the wearing surface.": "Van beton tot slijtlaag.", "Typical uses": "Toepassingen", "Typical thicknesses, not to scale": "Gangbare laagdiktes, niet op schaal", "Other systems": "Andere systemen", "Compare with the others": "Vergelijk met de andere", "How we work": "Onze werkwijze", "Included": "Inbegrepen", "What the service covers": "Wat de dienst omvat", "Recommended systems": "Aanbevolen systemen", "Projects": "Projecten", "From our sites": "Van onze bouwplaatsen", "Balconies & galleries": "Balkons & galerijen", "Garages & car parks": "Garages & parkeergarages", "Industrial & kitchens": "Industrie & keukens", "Our projects": "Onze projecten", "Photos of work done by our team: galleries, balconies, car park ramps and commercial kitchens.": "Foto's van werk door ons team: galerijen, balkons, hellingbanen van parkeergarages en grootkeukens.", "All": "Alle", "A process in line with Dutch contracting practice: from measurements and substrate preparation to the handover report (opleverrapport).": "Een werkwijze volgens de Nederlandse aannemerspraktijk: van metingen en voorbereiding van de ondergrond tot het opleverrapport.", "Grinding, shot blasting, milling": "Schuren, stralen, frezen", "A coating is only as good as the concrete beneath it. We remove laitance, old paints and contamination, open the pores and check the strength.": "Een coating is zo goed als het beton eronder. We verwijderen cementhuid, oude verf en vervuiling, openen de poriën en controleren de sterkte.", "Diamond grinding: indoor floors, smooth substrates": "Diamantschuren: binnenvloeren, gladde ondergronden", "Shot blasting: large halls and car parks, fast and dust-free": "Kogelstralen: grote hallen en parkeergarages, snel en stofvrij", "Milling: thick old coatings and unevenness": "Frezen: dikke oude coatings en oneffenheden", "Repairs with resin and PCC mortars": "Herstel met hars en PCC-mortels", "Documentation": "Documentatie", "What you get in writing": "Wat u op papier krijgt", "System description, layer thicknesses, substrate preparation, schedule, price per m² and warranty terms.": "Systeembeschrijving, laagdiktes, voorbereiding van de ondergrond, planning, prijs per m² en garantievoorwaarden.", "Measurement record": "Meetverslag", "CM moisture, pull-off, temperature, air humidity and dew point for each phase.": "CM-vocht, hechttrek, temperatuur, luchtvochtigheid en dauwpunt per fase.", "Handover report with photos, maintenance guide and usage recommendations.": "Opleverrapport met foto's, onderhoudsadvies en gebruiksaanwijzingen.", "Quality & standards": "Kwaliteit & normen", "We work to Dutch and European standards": "We werken volgens Nederlandse en Europese normen", "We select and document every system to the standards that apply in the Netherlands, so the inspector, the VvE and the insurer have clarity.": "Elk systeem kiezen en documenteren we volgens de normen die in Nederland gelden, zodat de inspecteur, de VvE en de verzekeraar duidelijkheid hebben.", "Standards": "Normen", "R-class matched to the zone": "R-klasse afgestemd op de zone", "Too little grip is an accident risk; too much makes cleaning hard. We find the balance.": "Te weinig grip is een risico op ongevallen, te veel maakt reinigen lastig. Wij vinden de balans.", "corridors, offices, showrooms": "gangen, kantoren, showrooms", "covered galleries, garages, warehouses": "overdekte galerijen, garages, magazijnen", "balconies, kitchens, workshops": "balkons, keukens, werkplaatsen", "commercial kitchens, ramps": "grootkeukens, hellingbanen", "oily and greasy zones, steep ramps": "zones met olie en vet, steile hellingbanen", "10 years of precision in concrete": "10 jaar precisie in beton", "Premium CoatUp has worked in the Netherlands since 2016. We specialise only in resin coatings for concrete.": "Premium CoatUp werkt sinds 2016 in Nederland. We zijn uitsluitend gespecialiseerd in kunstharscoatings op beton.", "Story": "Ons verhaal", "Narrow focus, full responsibility": "Smalle focus, volledige verantwoordelijkheid", "We started with balconies and garages. Today we also do halls, commercial kitchens and multi-storey car parks, but the rule is the same: one team from measurement to handover.": "We begonnen met balkons en garages. Nu doen we ook hallen, grootkeukens en parkeergarages, maar de regel is dezelfde: één team van meting tot oplevering.", "We do not subcontract substrate preparation, because it decides durability. We have our own grinders, shot blasters and industrial extractors, and our people know how each resin behaves in the Dutch climate.": "We besteden de voorbereiding van de ondergrond niet uit, want die bepaalt de levensduur. We hebben eigen schuurmachines, straalmachines en industriële stofzuigers, en onze mensen weten hoe elke hars zich gedraagt in het Nederlandse klimaat.", "founded": "opgericht", "years in the NL market": "jaar op de Nederlandse markt", "languages we speak": "talen die we spreken", "team from survey to handover": "team van inspectie tot oplevering", "Values": "Waarden", "What we care about": "Waar we om geven", "Measure before we promise": "Eerst meten, dan beloven", "No warranty without measurements. That is why our floors do not peel.": "Geen garantie zonder metingen. Daarom laten onze vloeren niet los.", "A clean site": "Een schone bouwplaats", "Dust extraction, protected walls and doors, a tidy site at the end of every day.": "Stofafzuiging, beschermde wanden en deuren, een opgeruimde werkplek aan het eind van elke dag.", "Clear communication": "Heldere communicatie", "Quotation, schedule and records in Polish, English or Dutch.": "Offerte, planning en verslagen in het Nederlands, Engels of Pools.", "Frequently asked questions": "Veelgestelde vragen", "If you cannot find the answer, write to us.": "Staat uw antwoord er niet bij? Schrijf ons.", "Contact": "Contact", "Request a free inspection": "Vraag een gratis inspectie aan", "Describe your surface and we will get back to you within one working day.": "Beschrijf uw oppervlak en u hoort binnen één werkdag van ons.", "Surface type": "Type oppervlak", "Balcony / terrace / gallery": "Balkon / terras / galerij", "Garage / car park": "Garage / parkeergarage", "Hall / warehouse": "Hal / magazijn", "Kitchen / food": "Keuken / voeding", "Area (m²)": "Oppervlakte (m²)", "Preferred system": "Voorkeurssysteem", "Advise me": "Adviseer mij", "Name / company": "Naam / bedrijf", "City": "Plaats", "Phone": "Telefoon", "Description": "Omschrijving", "Concrete condition, timing, access, whether the building is in use…": "Staat van het beton, gewenste periode, bereikbaarheid, of het pand in gebruik is…", "Send request": "Aanvraag versturen", "Phone / WhatsApp": "Telefoon / WhatsApp", "Service area": "Werkgebied", "The whole Netherlands": "Heel Nederland", "Hours": "Openingstijden", "Mon–Fri 7:00–17:00": "ma–vr 7:00–17:00", "All services": "Alle diensten", "Process": "Werkwijze", "About": "Over ons", "PMMA, epoxy and PU coatings and troffelvloer. Concrete protection across the Netherlands since 2016.": "PMMA-, epoxy- en PU-coatings en troffelvloeren. Betonbescherming in heel Nederland sinds 2016.", "Company": "Bedrijf", "Get a quote": "Offerte", "Enter your name or company and a valid e-mail address so we can reply.": "Vul uw naam of bedrijfsnaam en een geldig e-mailadres in, zodat we kunnen reageren.", "Quote request": "Offerteaanvraag", "Surface": "Oppervlak", "Client": "Klant", "Thank you, your request is ready": "Bedankt, uw aanvraag staat klaar", "Copy the text and send it to": "Kopieer de tekst en stuur hem naar", "or via WhatsApp.": "of via WhatsApp.", "Copy text": "Tekst kopiëren", "Copied": "Gekopieerd", "Selected, press Ctrl+C": "Geselecteerd, druk op Ctrl+C"};
+
+let lang='nl';
+try{const s=localStorage.getItem('pcu-lang-v2');if(s==='en'||s==='pl'||s==='nl')lang=s;}catch(e){}
+const L=(pl,en)=>lang==='pl'?pl:lang==='nl'?(NLD[en]??en):en;
+const T=(pl,en,nl)=>lang==='pl'?pl:lang==='nl'?nl:en;
+const IMG=n=>'img/p'+String(n).padStart(2,'0')+'.jpg';
+const ARW='<svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+const ic='<span class="ic">'+ARW+'</span>';
+const arrowC='<span class="arrow">'+ARW+'</span>';
+const EMAIL='info@premiumcoatup.nl', PHONE='+31 6 28199203';
+const WA_ICON='<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.6-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3z"/></svg>';
+
+/* ---------- content ---------- */
+const SYS=()=>[
+ {id:'pmma',code:'PMMA',img:5,
+  name:L('Powłoki PMMA','PMMA coatings'),
+  tag:L('Szybkoschnąca hydroizolacja','Rapid-cure waterproofing'),
+  short:L('Metakrylan metylu utwardza się w ok. godzinę, także przy niskiej temperaturze. Idealny na balkony, galerie i rampy, gdzie mieszkańcy nie mogą czekać.','Methyl methacrylate cures in about an hour, even in cold weather. Ideal for balconies, galleries and ramps where residents cannot wait.'),
+  lead:L('PMMA to system płynnej hydroizolacji i posadzki w jednym. Utwardza się w około 60 minut, jest odporny na UV i wodę stojącą, a dzięki zbrojeniu z włókniny mostkuje rysy w betonie. To nasz standard na balkonach, galeriach (galerijen) i tarasach w projektach dla VvE.','PMMA is a liquid waterproofing membrane and a wearing floor in one. It cures in about 60 minutes, resists UV and standing water, and with a fleece reinforcement it bridges cracks in the concrete. It is our standard for balconies, galleries (galerijen) and terraces on VvE projects.'),
+  body:[L('Ponieważ PMMA utwardza się chemicznie, a nie przez odparowanie, możemy pracować przy temperaturze podłoża od ok. 0 °C. Kolejne warstwy nakładamy tego samego dnia, więc galerię o długości 40 m zamykamy często w jeden–dwa dni robocze, sekcjami, tak żeby mieszkańcy zawsze mieli dojście do drzwi.','Because PMMA cures chemically rather than by evaporation, we can work at substrate temperatures from around 0 °C. Layers go on the same day, so a 40 m gallery is often finished in one or two working days, in sections, so residents always keep access to their front door.'),
+        L('Wykończenie wykonujemy z posypką z kolorowego kwarcu lub z płatków (flakes), z klasą antypoślizgowości dobraną do miejsca: R10 na zadaszonych galeriach, R11–R12 na otwartych balkonach i rampach. Detale przy progach, odpływach i balustradach wykonujemy z tego samego materiału, bez łączeń.','We finish with a coloured-quartz or flake broadcast and a slip class chosen for the location: R10 on covered galleries, R11–R12 on open balconies and ramps. Details at thresholds, drains and balustrade posts are done in the same material, without joints.')],
+  specs:[[L('Grubość systemu','System thickness'),'2–4 mm'],[L('Utwardzenie (20 °C)','Cure (20 °C)'),L('ok. 60 min','approx. 60 min')],[L('Ruch pieszy','Foot traffic'),L('po ok. 2 h','after approx. 2 h')],[L('Temp. aplikacji','Application temp.'),L('od ok. 0 °C (podłoże)','from approx. 0 °C (substrate)')],[L('Odporność UV','UV resistance'),L('tak, nie żółknie','yes, non-yellowing')],[L('Mostkowanie rys','Crack bridging'),L('tak (z włókniną)','yes (with fleece)')],[L('Antypoślizg','Slip resistance'),'R10 – R12 (DIN 51130)']],
+  uses:[L('Balkony i loggie','Balconies and loggias'),L('Galerie i klatki zewnętrzne (VvE)','Galleries and outdoor stairwells (VvE)'),L('Tarasy nad pomieszczeniami','Terraces over living space'),L('Rampy i najazdy','Ramps and driveways'),L('Remonty przy niskich temperaturach','Repairs in low temperatures')],
+  layers:[['#b9bdbf',L('Zamknięcie PMMA, mat','PMMA topcoat, matte'),'0.3–0.5 mm',22],['#8e9396',L('Posypka kwarcowa / flakes','Quartz / flake broadcast'),'0.7–1.2 mm',30],['#6f7477',L('Membrana PMMA + włóknina','PMMA membrane + fleece'),'2 mm',40],['#55595c',L('Grunt PMMA','PMMA primer'),'0.2 mm',16],['#3a3d3f',L('Beton (przeszlifowany)','Concrete (ground)'),'',58]]},
+ {id:'epoxy',code:'EP',img:8,
+  name:L('Posadzki epoksydowe','Epoxy floors'),
+  tag:L('Twardość i odporność chemiczna','Hardness and chemical resistance'),
+  short:L('Samopoziomujące lub malowane systemy epoksydowe do hal, magazynów, warsztatów i showroomów. Bezspoinowe i łatwe w utrzymaniu.','Self-levelling or roller-applied epoxy systems for halls, warehouses, workshops and showrooms. Seamless and easy to maintain.'),
+  lead:L('Żywica epoksydowa daje bardzo twardą, szczelną i odporną chemicznie powierzchnię. Wykonujemy ją jako powłokę wałkowaną (0,3–0,5 mm), system z posypką kwarcową albo posadzkę samopoziomującą 2–3 mm, sklasyfikowaną według NEN-EN 13813 jako SR.','Epoxy resin gives a very hard, sealed and chemically resistant surface. We apply it as a rolled coating (0.3–0.5 mm), a quartz-broadcast system or a 2–3 mm self-levelling floor, classified to NEN-EN 13813 as SR.'),
+  body:[L('Epoksyd najlepiej sprawdza się wewnątrz budynków. Na zewnątrz i tam, gdzie pada światło dzienne, zamykamy go lakierem poliuretanowym odpornym na UV, bo sam epoksyd z czasem żółknie. Kolor dobieramy z palety RAL; posadzka może dostać płatki dekoracyjne, linie BHP i oznakowanie stref.','Epoxy performs best indoors. Outdoors, and wherever daylight reaches the floor, we seal it with a UV-stable polyurethane topcoat, because epoxy alone yellows over time. Colours come from the RAL range; the floor can get decorative flakes, safety lines and zone markings.'),
+        L('Przed wylaniem mierzymy wilgotność betonu metodą CM (maks. ok. 4 % dla podłoży cementowych), wytrzymałość na odrywanie (min. 1,5 N/mm²) i punkt rosy. Bez tych pomiarów nie podajemy gwarancji, bo to one decydują o przyczepności.','Before pouring we measure concrete moisture by the CM method (max. approx. 4 % for cementitious substrates), pull-off strength (min. 1.5 N/mm²) and the dew point. We do not give a warranty without these measurements, because they decide adhesion.')],
+  specs:[[L('Grubość','Thickness'),'0.3 – 3 mm'],[L('Klasyfikacja','Classification'),'NEN-EN 13813 SR'],[L('Ruch pieszy','Foot traffic'),L('po ok. 24 h','after approx. 24 h')],[L('Pełne obciążenie','Full load'),L('po ok. 7 dniach','after approx. 7 days')],[L('Odporność chemiczna','Chemical resistance'),L('bardzo wysoka','very high')],[L('Odporność UV','UV resistance'),L('wymaga topcoatu PU','needs PU topcoat')],[L('Antypoślizg','Slip resistance'),'R9 – R11']],
+  uses:[L('Magazyny i centra logistyczne','Warehouses and logistics centres'),L('Hale produkcyjne','Production halls'),L('Warsztaty i garaże','Workshops and garages'),L('Showroomy i salony','Showrooms'),L('Korytarze techniczne','Technical corridors')],
+  layers:[['#c3c6c7',L('Lakier zamykający','Sealer coat'),'0.1 mm',16],['#9da1a3',L('Warstwa samopoziomująca EP','Self-levelling EP layer'),'2–3 mm',48],['#6f7477',L('Grunt EP + posypka kwarcowa','EP primer + quartz broadcast'),'0.3 mm',20],['#3a3d3f',L('Beton (szlif diamentowy)','Concrete (diamond ground)'),'',58]]},
+ {id:'pu',code:'PU',img:6,
+  name:L('Systemy poliuretanowe','Polyurethane systems'),
+  tag:L('Elastyczność i odporność UV','Elasticity and UV stability'),
+  short:L('Elastyczne, mostkujące rysy powłoki PU do parkingów, ramp i balkonów oraz poliuretan-cement do przemysłu spożywczego.','Elastic, crack-bridging PU coatings for car parks, ramps and balconies, and PU-cement for the food industry.'),
+  lead:L('Poliuretan pracuje razem z betonem. Tam, gdzie konstrukcja się odkształca, gdzie działa sól drogowa i słońce, elastyczny system PU chroni zbrojenie przed wodą i chlorkami. Stosujemy go na stropach parkingowych, rampach i dachach użytkowych.','Polyurethane moves with the concrete. Where the structure deflects, and where road salt and sunlight act on it, an elastic PU system protects the reinforcement from water and chlorides. We use it on parking decks, ramps and trafficable roofs.'),
+  body:[L('Dla parkingów budujemy system wielowarstwowy: grunt epoksydowy, elastyczna membrana PU, warstwa użytkowa z grubym kwarcem i zamknięcie odporne na UV. Takie systemy chronią beton zgodnie z zasadami NEN-EN 1504-2 i są odporne na ślady opon, olej i sól.','For car parks we build a multi-layer system: epoxy primer, elastic PU membrane, wearing layer with coarse quartz and a UV-stable topcoat. These systems protect concrete in line with NEN-EN 1504-2 and resist tyre marks, oil and salt.'),
+        L('W kuchniach przemysłowych i zakładach spożywczych stosujemy poliuretan-cement: 6–9 mm, odporny na szok termiczny przy myciu gorącą wodą i parą, na tłuszcze i kwasy organiczne. Łączymy go z wyobleniem przy ścianie (holle plint), co spełnia wymagania HACCP.','In commercial kitchens and food plants we use PU-cement: 6–9 mm, resistant to thermal shock from hot-water and steam cleaning, to fats and organic acids. We combine it with a coved skirting (holle plint) to meet HACCP requirements.')],
+  specs:[[L('Grubość','Thickness'),L('2–4 mm (PU-cement 6–9 mm)','2–4 mm (PU-cement 6–9 mm)')],[L('Mostkowanie rys','Crack bridging'),L('tak, system elastyczny','yes, elastic system')],[L('Odporność UV','UV resistance'),L('tak (alifatyczny topcoat)','yes (aliphatic topcoat)')],[L('Ruch pieszy','Foot traffic'),L('po ok. 24 h','after approx. 24 h')],[L('Ruch kołowy','Vehicle traffic'),L('po ok. 3–5 dniach','after approx. 3–5 days')],[L('Ochrona betonu','Concrete protection'),'NEN-EN 1504-2'],[L('Antypoślizg','Slip resistance'),'R11 – R13']],
+  uses:[L('Stropy i hale parkingowe','Parking decks and garages'),L('Rampy wjazdowe','Access ramps'),L('Dachy użytkowe i tarasy','Trafficable roofs and terraces'),L('Kuchnie przemysłowe (PU-cement)','Commercial kitchens (PU-cement)'),L('Zakłady spożywcze','Food processing plants')],
+  layers:[['#c3c6c7',L('Topcoat PU odporny na UV','UV-stable PU topcoat'),'0.2 mm',16],['#909497',L('Warstwa użytkowa + gruby kwarc','Wearing layer + coarse quartz'),'1–1.5 mm',32],['#6c7174',L('Elastyczna membrana PU','Elastic PU membrane'),'2 mm',36],['#53575a',L('Grunt EP','EP primer'),'0.3 mm',16],['#3a3d3f',L('Beton (śrutowany)','Concrete (shot-blasted)'),'',58]]},
+ {id:'troffel',code:'TR',img:9,
+  name:L('Troffelvloer','Troffelvloer'),
+  tag:L('Zacierana posadzka epoksydowo-kwarcowa','Trowelled epoxy-quartz screed'),
+  short:L('Najmocniejszy system: 4–8 mm zaprawy epoksydowo-kwarcowej zacieranej mechanicznie. Do kuchni przemysłowych, produkcji i miejsc o dużym obciążeniu.','The toughest system: 4–8 mm of epoxy-quartz mortar, power-trowelled. For commercial kitchens, production and heavy-duty areas.'),
+  lead:L('Troffelvloer to zaprawa z żywicy epoksydowej i suszonego piasku kwarcowego, rozkładana na grubość 4–8 mm i zacierana packą lub zacieraczką mechaniczną. Powstaje posadzka o bardzo wysokiej wytrzymałości na ściskanie i uderzenia, którą wykańczamy szczelnym zamknięciem.','A troffelvloer is a mortar of epoxy resin and kiln-dried quartz sand, laid 4–8 mm thick and finished with a hand or power trowel. The result is a floor with very high compressive and impact strength, sealed with a closed topcoat.'),
+  body:[L('Ten system wybierają kuchnie przemysłowe, piekarnie, rzeźnie, warsztaty i hale, w których jeżdżą wózki widłowe. Struktura kwarcu daje antypoślizg R11–R13 nawet przy mokrej, tłustej podłodze, a zamknięcie ułatwia codzienne mycie.','This system is the choice for commercial kitchens, bakeries, meat processing, workshops and halls with forklift traffic. The quartz texture gives R11–R13 slip resistance even on a wet, greasy floor, and the sealer makes daily cleaning easy.'),
+        L('Troffelvloer pozwala też wyprofilować spadki do odpływów i korytek liniowych bez dodatkowej wylewki. Wykonujemy wyoblenia przy ścianach (holle plint) z tej samej zaprawy, tak jak na zdjęciach z naszej realizacji kuchni.','A troffelvloer also lets us form falls to drains and channel gutters without an extra screed. We form coved skirtings (holle plint) from the same mortar, as in the photos from our kitchen project.')],
+  specs:[[L('Grubość','Thickness'),'4 – 8 mm'],[L('Skład','Composition'),L('żywica EP + piasek kwarcowy','EP resin + quartz sand')],[L('Wytrzymałość na ściskanie','Compressive strength'),L('bardzo wysoka (> 60 N/mm², wg systemu)','very high (> 60 N/mm², per system)')],[L('Ruch pieszy','Foot traffic'),L('po ok. 24–48 h','after approx. 24–48 h')],[L('Spadki do odpływów','Falls to drains'),L('tak, w jednej warstwie','yes, in one layer')],[L('Higiena','Hygiene'),L('bezspoinowa, holle plint, HACCP','seamless, coved skirting, HACCP')],[L('Antypoślizg','Slip resistance'),'R11 – R13']],
+  uses:[L('Kuchnie przemysłowe i gastronomia','Commercial kitchens and catering'),L('Zakłady spożywcze','Food production'),L('Hale z wózkami widłowymi','Halls with forklift traffic'),L('Warsztaty i myjnie','Workshops and wash bays'),L('Pomieszczenia mokre','Wet rooms')],
+  layers:[['#bfc2c3',L('Zamknięcie porów EP','EP pore sealer'),'0.2 mm',16],['#8d9193',L('Zaprawa EP + kwarc, zacierana','EP + quartz mortar, trowelled'),'4–8 mm',70],['#5f6366',L('Grunt EP','EP primer'),'0.3 mm',16],['#3a3d3f',L('Beton (śrutowany / frezowany)','Concrete (blasted / milled)'),'',58]]}
+];
+const APPS=()=>[
+ {id:'industrial',img:9,name:L('Powierzchnie wielkoformatowe','Large-format surfaces'),tag:L('Hale · magazyny · kuchnie','Halls · warehouses · kitchens'),
+  short:L('Kompleksowo: od szlifowania i przygotowania podłoża po gotową posadzkę na tysiącach m².','End to end: from grinding and substrate preparation to a finished floor across thousands of m².'),
+  lead:L('Duży projekt wygrywa się na przygotowaniu podłoża. Szlifujemy beton diamentowo, śrutujemy lub frezujemy, usuwamy stare powłoki, naprawiamy rysy i ubytki, a dopiero potem wylewamy system. Cały czas z odsysaniem pyłu.','A large project is won in substrate preparation. We diamond-grind, shot-blast or mill the concrete, remove old coatings and repair cracks and voids before the system goes down. Always with dust extraction.'),
+  body:[L('Pracujemy w obiektach czynnych: dzielimy halę na etapy, ustalamy z kierownikiem obiektu okna robocze w nocy i w weekendy i oddajemy strefy po kolei. Każdy etap ma protokół: wilgotność CM, wytrzymałość na odrywanie, temperatura i punkt rosy, grubość warstw.','We work in live buildings: we split the hall into phases, agree night and weekend work windows with the facility manager and hand over zone by zone. Every phase has a record: CM moisture, pull-off strength, temperature and dew point, layer thickness.'),
+        L('Dobieramy system do obciążenia: epoksyd samopoziomujący do magazynów, troffelvloer do kuchni i produkcji, PU-cement tam, gdzie jest gorąca woda i chemia. Wykonujemy też szczeliny dylatacyjne, linie BHP i oznakowanie dróg transportowych.','We match the system to the load: self-levelling epoxy for warehouses, troffelvloer for kitchens and production, PU-cement where there is hot water and chemicals. We also detail movement joints, safety lines and traffic-route marking.')],
+  checks:[L('Szlifowanie diamentowe i śrutowanie z odsysaniem pyłu','Diamond grinding and shot blasting with dust extraction'),L('Naprawa rys, ubytków i dylatacji','Repair of cracks, voids and joints'),L('Pomiar CM, pull-off i punktu rosy z protokołem','CM, pull-off and dew-point measurement with a record'),L('Etapowanie w obiektach czynnych','Phasing in live buildings'),L('Linie BHP i oznakowanie stref','Safety lines and zone marking')],
+  sys:['epoxy','troffel','pu']},
+ {id:'balcony',img:3,name:L('Balkony, tarasy i galerie','Balconies, terraces and galleries'),tag:L('Mieszkaniówka · VvE','Residential · VvE'),
+  short:L('Szczelne, antypoślizgowe powłoki PMMA na balkony i galerie. Szybko, czysto, bez długiego wyłączania z użytku.','Watertight, slip-resistant PMMA coatings for balconies and galleries. Fast, clean, without long closures.'),
+  lead:L('Balkony i galerie w Holandii pracują w deszczu, mrozie i słońcu. Przecieki do mieszkań poniżej i skorodowane zbrojenie to najczęstsze problemy, z którymi przychodzą do nas VvE i zarządcy. Rozwiązujemy je bezspoinową hydroizolacją PMMA z wykończeniem z kolorowego kwarcu.','Balconies and galleries in the Netherlands work in rain, frost and sun. Leaks into the flats below and corroded reinforcement are the most common problems VvEs and property managers bring to us. We solve them with seamless PMMA waterproofing finished with coloured quartz.'),
+  body:[L('Na galeriach pracujemy sekcjami i zawsze zostawiamy przejście do drzwi wejściowych. Mieszkańców informujemy z wyprzedzeniem pismem z harmonogramem. PMMA utwardza się w godzinę, więc nawet przy jesiennej pogodzie zamykamy odcinek tego samego dnia.','On galleries we work in sections and always leave a walkway to front doors. Residents receive a letter with the schedule in advance. PMMA cures in an hour, so even in autumn weather we close a section the same day.'),
+        L('Detale decydują o szczelności: progi drzwi balkonowych, słupki balustrad, odpływy, rynny i krawędzie płyty. Wykonujemy je z tego samego systemu, wzmacniane włókniną. Linie odcinające kolor wykonujemy precyzyjnie na taśmie, jak na zdjęciach z naszych realizacji.','Details decide watertightness: balcony door thresholds, balustrade posts, drains, gutters and slab edges. We form them in the same system, reinforced with fleece. Colour separation lines are taped and cut precisely, as in the photos of our projects.')],
+  checks:[L('Hydroizolacja PMMA z włókniną','PMMA waterproofing with fleece'),L('Wykończenie z kolorowego kwarcu lub flakes','Coloured-quartz or flake finish'),L('Antypoślizg R10–R12','Slip resistance R10–R12'),L('Praca sekcjami, z dojściem do drzwi','Sectional work with door access'),L('Harmonogram i informacja dla mieszkańców','Schedule and resident notices')],
+  sys:['pmma','pu']},
+ {id:'garage',img:7,name:L('Garaże i parkingi','Garages and car parks'),tag:L('Garaże · rampy · parkingi','Garages · ramps · car parks'),
+  short:L('Odporność na sól, olej i ślady opon. Od prywatnego garażu po wielopoziomowy parking i rampę zewnętrzną.','Resistant to salt, oil and tyre marks. From a private garage to a multi-storey car park and outdoor ramp.'),
+  lead:L('Sól drogowa przenoszona na kołach to największy wróg betonu w garażu. Chlorki wnikają w beton i powodują korozję zbrojenia. Szczelna powłoka zatrzymuje je na powierzchni i chroni konstrukcję na lata.','Road salt carried in on tyres is the biggest enemy of garage concrete. Chlorides penetrate and corrode the reinforcement. A sealed coating stops them at the surface and protects the structure for years.'),
+  body:[L('W garażach podziemnych stosujemy systemy epoksydowe z posypką kwarcową, na stropach pod gołym niebem i na rampach elastyczne systemy PU lub PMMA odporne na UV. Rampy dostają grubszy kwarc dla przyczepności opon, także przy deszczu.','In underground garages we use epoxy systems with quartz broadcast; on open-air decks and ramps, elastic UV-stable PU or PMMA systems. Ramps receive coarser quartz for tyre grip, also in rain.'),
+        L('Kończymy oznakowaniem: linie miejsc postojowych, strzałki kierunkowe, przejścia dla pieszych i krawężniki ochronne, jak na rampie z naszej realizacji. Na prywatne garaże polecamy epoksyd z płatkami, który dobrze wygląda i nie przyjmuje oleju.','We finish with markings: bay lines, direction arrows, pedestrian crossings and protective kerbs, as on the ramp in our project. For private garages we recommend flake epoxy, which looks good and does not absorb oil.')],
+  checks:[L('Ochrona przed chlorkami i solą drogową','Protection against chlorides and road salt'),L('Systemy elastyczne na stropy i rampy','Elastic systems for decks and ramps'),L('Gruby kwarc na rampach (R12–R13)','Coarse quartz on ramps (R12–R13)'),L('Linie, strzałki i oznakowanie','Lines, arrows and markings'),L('Garaże prywatne z płatkami','Private garages with flakes')],
+  sys:['pu','pmma','epoxy']}
+];
+const PHOTOS=()=>[
+ {n:1,c:'balcony',t:L('Balkon, PMMA z kolorowym kwarcem','Balcony, PMMA with coloured quartz')},
+ {n:3,c:'balcony',t:L('Galeria w trakcie prac, linia odcinająca','Gallery in progress, colour line')},
+ {n:9,c:'industrial',t:L('Kuchnia przemysłowa, troffelvloer','Commercial kitchen, troffelvloer')},
+ {n:4,c:'balcony',t:L('Galeria mieszkaniowa po renowacji','Residential gallery after renovation')},
+ {n:6,c:'garage',t:L('Rampa parkingu z krawężnikiem','Car park ramp with kerb')},
+ {n:10,c:'industrial',t:L('Płatki i wyoblenie przy ścianie','Flakes and coved skirting')},
+ {n:2,c:'balcony',t:L('Balkon, powłoka antypoślizgowa','Balcony, slip-resistant coating')},
+ {n:7,c:'garage',t:L('Wjazd do garażu, oznakowanie','Garage entrance, markings')},
+ {n:5,c:'balcony',t:L('Galeria przy wejściu do mieszkań','Gallery at front doors')},
+ {n:8,c:'industrial',t:L('Korytarz techniczny, epoksyd','Technical corridor, epoxy')}
+];
+const STEPS=()=>[
+ [L('Inspekcja i pomiar','Inspection & measurement'),L('Przyjeżdżamy na miejsce, oceniamy beton i robimy pomiary. Na tej podstawie przygotowujemy offerte z doborem systemu.','We visit the site, assess the concrete and take measurements. On that basis we prepare a quotation with the chosen system.'),[L('wilgotność CM','CM moisture'),'pull-off ≥ 1.5 N/mm²',L('punkt rosy','dew point')]],
+ [L('Przygotowanie podłoża','Substrate preparation'),L('Szlifowanie diamentowe, śrutowanie lub frezowanie do uzyskania otwartej, nośnej powierzchni.','Diamond grinding, shot blasting or milling to an open, sound surface.'),[L('usuwanie starych powłok','old coating removal'),L('odsysanie pyłu','dust extraction')]],
+ [L('Naprawy i grunt','Repair & primer'),L('Wypełniamy rysy i ubytki, wyrównujemy, nakładamy grunt dopasowany do systemu.','We fill cracks and voids, level and apply a primer matched to the system.'),[L('rysy, dylatacje','cracks, joints'),L('grunt + posypka','primer + broadcast')]],
+ [L('Aplikacja systemu','System application'),L('Wylewamy i rozprowadzamy warstwy bazowe, posypkę i zamknięcie, kontrolując grubość na bieżąco.','We pour and spread base layers, broadcast and topcoat, checking thickness as we go.'),[L('kontrola grubości','thickness control'),L('temp. +3 K nad pkt. rosy','temp. +3 K above dew point')]],
+ [L('Odbiór i gwarancja','Handover & warranty'),L('Kontrola końcowa, protokół odbioru, instrukcja utrzymania i warunki gwarancji na piśmie.','Final check, handover record, maintenance guide and written warranty terms.'),[L('protokół (opleverrapport)','handover report (opleverrapport)'),L('advies onderhoud','maintenance advice')]]
+];
+const NORMS=()=>[
+ ['NEN-EN 13813',L('Posadzki z żywic syntetycznych','Synthetic resin screeds'),L('Klasyfikacja posadzek żywicznych (SR) pod kątem przyczepności, ścieralności i odporności na uderzenia. Według niej opisujemy parametry naszych systemów epoksydowych i troffelvloer.','Classification of synthetic resin floors (SR) for bond strength, wear and impact resistance. We describe the performance of our epoxy and troffelvloer systems to this standard.')],
+ ['NEN-EN 1504-2',L('Ochrona powierzchni betonu','Surface protection of concrete'),L('Norma dla systemów ochrony betonu przed wodą, chlorkami i CO₂. Dotyczy powłok na parkingach, balkonach i galeriach.','The standard for systems protecting concrete against water, chlorides and CO₂. It applies to coatings on car parks, balconies and galleries.')],
+ ['ETAG 005 / EAD',L('Płynne hydroizolacje','Liquid-applied waterproofing'),L('Europejska ocena techniczna dla płynnych membran, takich jak PMMA na balkonach i tarasach. Stosujemy systemy z takim dopuszczeniem.','European technical assessment for liquid membranes such as PMMA on balconies and terraces. We use systems that carry such an approval.')],
+ ['DIN 51130 · NEN 7909',L('Antypoślizgowość','Slip resistance'),L('Klasy R9–R13 opisują antypoślizgowość posadzki w obuwiu. Dobieramy klasę do strefy: kuchnia, rampa, balkon, magazyn.','Classes R9–R13 describe slip resistance in footwear. We match the class to the zone: kitchen, ramp, balcony, warehouse.')],
+ ['Bbl',L('Besluit bouwwerken leefomgeving','Besluit bouwwerken leefomgeving'),L('Od 2024 r. zastępuje Bouwbesluit. Uwzględniamy jego wymagania dotyczące bezpieczeństwa użytkowania, m.in. przy galeriach i drogach ewakuacyjnych.','Replaced the Bouwbesluit in 2024. We take its safety-in-use requirements into account, for example on galleries and escape routes.')],
+ ['HACCP',L('Higiena w strefach żywności','Food-zone hygiene'),L('Bezspoinowe posadzki z wyobleniem przy ścianie (holle plint), łatwe do mycia i dezynfekcji, dla kuchni i zakładów spożywczych.','Seamless floors with coved skirting (holle plint), easy to clean and disinfect, for kitchens and food plants.')],
+ ['Arbo · VCA',L('Bezpieczeństwo pracy','Health & safety'),L('Pracujemy zgodnie z Arbowet i zasadami VCA: środki ochrony, wentylacja, oznakowanie strefy prac i bezpieczne obchodzenie się z żywicami.','We work in line with the Arbowet and VCA rules: protective equipment, ventilation, marked work zones and safe handling of resins.')],
+ [L('Pomiary','Measurements'),L('Protokół jakości','Quality record'),L('Wilgotność CM (podłoża cementowe ok. ≤ 4 %), pull-off ≥ 1,5 N/mm², temperatura podłoża min. 3 K nad punktem rosy, wilgotność powietrza i grubość warstw.','CM moisture (cementitious approx. ≤ 4 %), pull-off ≥ 1.5 N/mm², substrate at least 3 K above dew point, air humidity and layer thickness.')]
+];
+const FAQ=()=>[
+ [L('Jaki system wybrać: PMMA, epoksyd czy PU?','Which system: PMMA, epoxy or PU?'),L('Na zewnątrz i tam, gdzie liczy się czas (balkony, galerie), zwykle PMMA. Wewnątrz hal i magazynów epoksyd. Na parkingi i konstrukcje, które pracują, elastyczny PU. Do kuchni i produkcji troffelvloer lub PU-cement. Ostateczny wybór robimy po pomiarach na miejscu.','Outdoors and where time matters (balconies, galleries), usually PMMA. Inside halls and warehouses, epoxy. For car parks and structures that move, elastic PU. For kitchens and production, troffelvloer or PU-cement. We make the final choice after on-site measurements.')],
+ [L('Ile trwa wykonanie?','How long does it take?'),L('Balkon lub odcinek galerii w PMMA: zwykle jeden dzień. Garaż prywatny: 2–3 dni. Hala kilku tysięcy m²: od kilku dni do kilku tygodni, w etapach. Dokładny harmonogram jest w offerte.','A balcony or gallery section in PMMA: usually one day. A private garage: 2–3 days. A hall of several thousand m²: from a few days to a few weeks, in phases. The exact schedule is in the quotation.')],
+ [L('Czy można pracować przy niskiej temperaturze?','Can you work in low temperatures?'),L('PMMA tak, od ok. 0 °C temperatury podłoża. Epoksyd i PU potrzebują zwykle min. 10 °C i temperatury podłoża co najmniej 3 K powyżej punktu rosy. Kontrolujemy to przyrządem przed każdą warstwą.','PMMA yes, from approx. 0 °C substrate temperature. Epoxy and PU usually need at least 10 °C and a substrate at least 3 K above the dew point. We check this with an instrument before every layer.')],
+ [L('Czy prace są pyłowe i uciążliwe?','Is the work dusty or disruptive?'),L('Szlifujemy i śrutujemy maszynami z odsysaniem przemysłowym, więc pyłu jest niewiele. Żywice mają zapach w trakcie aplikacji, dlatego zapewniamy wentylację i informujemy użytkowników budynku.','We grind and blast with industrial dust extraction, so there is little dust. Resins smell during application, so we provide ventilation and inform building users.')],
+ [L('Czy dajecie gwarancję?','Do you give a warranty?'),L('Tak. Warunki i okres gwarancji zapisujemy w offerte dla konkretnego systemu i podłoża. Podstawą są protokoły pomiarów przed pracami.','Yes. Warranty terms and period are written into the quotation for the specific system and substrate. They are based on the measurement records taken before work.')],
+ [L('Czy pracujecie dla VvE i zarządców?','Do you work for VvEs and property managers?'),L('Tak, to duża część naszej pracy przy balkonach i galeriach. Przygotowujemy offerte zrozumiałą dla zarządu VvE, harmonogram i pisma do mieszkańców.','Yes, it is a large part of our balcony and gallery work. We prepare a quotation the VvE board can follow, a schedule and resident letters.')],
+ [L('Jak dbać o posadzkę żywiczną?','How do I maintain a resin floor?'),L('Na co dzień wystarczy mycie neutralnym środkiem (pH 7–9) i miękką szczotką lub maszyną. Przy odbiorze dajemy instrukcję utrzymania dopasowaną do systemu.','Day to day, cleaning with a neutral detergent (pH 7–9) and a soft brush or scrubber is enough. At handover we give a maintenance guide matched to the system.')],
+ [L('W jakim regionie pracujecie?','Which region do you cover?'),L('W całej Holandii. Przy dużych projektach także w Belgii i Niemczech po wcześniejszym uzgodnieniu.','The whole of the Netherlands. For large projects also Belgium and Germany by arrangement.')]
+];
+
+
+
+/* ---------- helpers ---------- */
+const sysById=id=>SYS().find(s=>s.id===id), appById=id=>APPS().find(a=>a.id===id);
+const kick=t=>`<span class="kicker">${t}</span>`;
+const catName=c=>({balcony:L('Balkony i galerie','Balconies & galleries'),garage:L('Garaże i parkingi','Garages & car parks'),industrial:L('Przemysł i kuchnie','Industrial & kitchens')}[c]);
+const ctaBand=()=>`<section><div class="wrap"><div class="cta-card rv">
+ <div class="stack">${kick(L('Bezpłatna inspekcja','Free inspection'))}<h2>${L('Opisz nam swoją powierzchnię. Odpowiemy z planem i wyceną.','Tell us about your surface. We reply with a plan and a quote.')}</h2><p class="lead">${L('Przyjeżdżamy, mierzymy i doradzamy system. Wycena (offerte) w ciągu kilku dni roboczych.','We visit, measure and advise a system. Quotation (offerte) within a few working days.')}</p>
+ <div class="row"><a class="btn btn-gold" href="#contact">${L('Poproś o wycenę','Request a quote')} ${ic}</a><a class="btn btn-glass" href="#projects">${L('Zobacz realizacje','See our work')} ${ic}</a></div></div>
+ <img class="cta-logo" src="img/logo.png" alt="Premium CoatUp" loading="lazy"></div></div></section>`;
+const phero=(img,k,title,lead,crumb)=>`<section class="phero"><img src="${IMG(img)}" alt=""><div class="wrap"><div class="crumbs"><a href="#home">${L('Start','Home')}</a> / ${crumb}</div>${k?kick(k):''}<h1>${title}</h1>${lead?`<p class="lead">${lead}</p>`:''}</div></section>`;
+/* ---------- realistic layer stack ---------- */
+const MAT={pmma:['matte','quartz','fleece','primerP','concrete'],epoxy:['gloss','sl','primerQ','concreteG'],pu:['gloss','coarse','pu','primer','concreteB'],troffel:['seal','troffel','primer','concreteB']};
+/* h = drawn thickness (px, exaggerated), kind = how it is applied */
+const MDEF={
+ concrete:{h:58,kind:'solid'},concreteG:{h:58,kind:'solid'},concreteB:{h:58,kind:'solid'},
+ primer:{h:5,kind:'liquid'},primerP:{h:5,kind:'liquid'},primerQ:{h:7,kind:'grain'},
+ fleece:{h:16,kind:'liquid'},quartz:{h:12,kind:'grain'},coarse:{h:15,kind:'grain'},
+ sl:{h:18,kind:'liquid'},pu:{h:16,kind:'liquid'},troffel:{h:30,kind:'trowel'},
+ matte:{h:6,kind:'liquid'},gloss:{h:5,kind:'liquid'},seal:{h:4,kind:'liquid'}
+};
+const TEXC={};
+function rng(seed){let a=seed>>>0;return()=>{a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function grains(g,w,h,r,n,rmin,rmax,pal,relief){for(let i=0;i<n;i++){const x=r()*w,y=r()*h,s=rmin+r()*(rmax-rmin);if(relief){g.fillStyle='rgba(0,0,0,.35)';g.beginPath();g.arc(x+s*.45,y+s*.45,s,0,7);g.fill();}g.fillStyle=pal[(r()*pal.length)|0];g.beginPath();g.arc(x,y,s,0,7);g.fill();if(relief&&s>1.2){g.fillStyle='rgba(255,255,255,.35)';g.beginPath();g.arc(x-s*.3,y-s*.3,s*.35,0,7);g.fill();}}}
+function speck(g,w,h,r,n,a){for(let i=0;i<n;i++){const v=(r()*255)|0;g.fillStyle=`rgba(${v},${v},${v},${r()*a})`;g.fillRect(r()*w,r()*h,1+r()*1.5,1+r()*1.5);}}
+function stones(g,w,h,r,n,smin,smax,pal){for(let i=0;i<n;i++){const x=r()*w,y=r()*h,s=smin+r()*(smax-smin),k=5+((r()*4)|0);g.fillStyle=pal[(r()*pal.length)|0];g.beginPath();for(let j=0;j<k;j++){const a=j/k*6.283,rr=s*(.7+r()*.5);g.lineTo(x+Math.cos(a)*rr*1.2,y+Math.sin(a)*rr);}g.closePath();g.fill();g.strokeStyle='rgba(0,0,0,.25)';g.lineWidth=.8;g.stroke();}}
+function pores(g,w,h,r,n){for(let i=0;i<n;i++){const x=r()*w,y=r()*h,s=.6+r()*2.2;g.fillStyle='rgba(20,20,22,.7)';g.beginPath();g.arc(x,y,s,0,7);g.fill();g.strokeStyle='rgba(255,255,255,.12)';g.lineWidth=.6;g.beginPath();g.arc(x+.4,y+.4,s+.4,0,7);g.stroke();}}
+function sheen(g,w,h,a){const gr=g.createLinearGradient(0,0,w,h);gr.addColorStop(0,`rgba(255,255,255,${a})`);gr.addColorStop(.35,'rgba(255,255,255,0)');gr.addColorStop(.62,'rgba(255,255,255,0)');gr.addColorStop(.75,`rgba(255,255,255,${a*.6})`);gr.addColorStop(.85,'rgba(255,255,255,0)');g.fillStyle=gr;g.fillRect(0,0,w,h);}
+function tex(m,face){
+ const key=m+face;if(TEXC[key])return TEXC[key];
+ const top=face==='top',w=256,h=top?256:96,c=document.createElement('canvas');c.width=w;c.height=h;const g=c.getContext('2d');
+ const r=rng((m.length*977+(top?1:7))*131);let png=false;
+ const fill=col=>{g.fillStyle=col;g.fillRect(0,0,w,h);};
+ switch(m){
+  case 'concrete':case 'concreteG':case 'concreteB':
+   if(top){fill('#7c8083');speck(g,w,h,r,5000,.35);
+    if(m==='concreteG'){stones(g,w,h,r,140,1.5,4,['#a8a49b','#8f8b83','#5d5f60','#b8b2a6']);for(let i=0;i<70;i++){g.strokeStyle=`rgba(255,255,255,${.04+r()*.06})`;g.lineWidth=.6;g.beginPath();g.arc(r()*w,r()*h,20+r()*60,r()*6,r()*6+1.5);g.stroke();}}
+    else if(m==='concreteB'){grains(g,w,h,r,3000,.4,1.2,['#5c5f61','#9a9c9c','#6e7174'],false);}
+    else{for(let i=0;i<30;i++){g.strokeStyle=`rgba(255,255,255,${.03+r()*.05})`;g.lineWidth=.5;g.beginPath();g.arc(r()*w,r()*h,30+r()*70,r()*6,r()*6+1);g.stroke();}}
+    pores(g,w,h,r,60);}
+   else{fill('#6a6e71');speck(g,w,h,r,2500,.3);stones(g,w,h,r,26,4,11,['#8e897f','#a39c8f','#5f5b55','#7b766d','#b2ab9d']);stones(g,w,h,r,60,1.5,4,['#8e897f','#56534e','#9d978b']);pores(g,w,h,r,40);
+    const gr=g.createLinearGradient(0,0,0,h);gr.addColorStop(0,'rgba(255,255,255,.08)');gr.addColorStop(1,'rgba(0,0,0,.25)');g.fillStyle=gr;g.fillRect(0,0,w,h);}
+   break;
+  case 'primer':case 'primerP':
+   png=true;fill(m==='primerP'?'rgba(150,160,166,.55)':'rgba(186,136,62,.62)');speck(g,w,h,r,800,.2);if(top)sheen(g,w,h,.35);break;
+  case 'primerQ':
+   fill('rgba(170,128,66,.9)');grains(g,w,h,r,top?2600:500,.5,1.3,['#d9d3c4','#bdb6a6','#efe9da'],true);break;
+  case 'fleece':
+   fill('#686d71');for(let i=0;i<(top?1600:500);i++){const x=r()*w,y=r()*h,a=r()*6.28,l=4+r()*14;g.strokeStyle=`rgba(230,232,234,${.08+r()*.14})`;g.lineWidth=.6;g.beginPath();g.moveTo(x,y);g.quadraticCurveTo(x+Math.cos(a+.6)*l*.5,y+Math.sin(a+.6)*l*.5,x+Math.cos(a)*l,y+Math.sin(a)*l);g.stroke();}
+   if(top)sheen(g,w,h,.18);else{g.fillStyle='rgba(255,255,255,.12)';g.fillRect(0,h*.45,w,h*.12);}break;
+  case 'quartz':case 'coarse':
+   fill(m==='quartz'?'#8b8f92':'#7e8285');grains(g,w,h,r,m==='quartz'?(top?9000:2500):(top?3800:1100),m==='quartz'?.6:1.1,m==='quartz'?1.5:2.8,['#c9c7c0','#a2a5a6','#575b5e','#e6e3da','#3b3e40','#8f9396'],true);break;
+  case 'sl':
+   fill('#9a9ea1');for(let i=0;i<40;i++){g.fillStyle=`rgba(${r()>.5?255:0},${r()>.5?255:0},${r()>.5?255:0},.025)`;g.beginPath();g.arc(r()*w,r()*h,20+r()*50,0,7);g.fill();}speck(g,w,h,r,600,.08);if(top)sheen(g,w,h,.3);break;
+  case 'pu':
+   fill('#4d5255');for(let i=0;i<30;i++){g.fillStyle=`rgba(255,255,255,${r()*.03})`;g.beginPath();g.arc(r()*w,r()*h,15+r()*40,0,7);g.fill();}if(top)sheen(g,w,h,.22);break;
+  case 'troffel':
+   fill('#8d8a83');grains(g,w,h,r,top?12000:3400,.5,1.4,['#b6b1a6','#6f6c66','#9f9a8f','#d0cbbf','#57544f'],false);
+   if(top){for(let i=0;i<26;i++){g.strokeStyle=`rgba(255,255,255,${.04+r()*.05})`;g.lineWidth=6+r()*10;g.beginPath();const x=r()*w,y=r()*h;g.arc(x,y,40+r()*80,r()*6,r()*6+.9);g.stroke();}}break;
+  case 'matte':
+   png=true;fill('rgba(182,186,188,.5)');speck(g,w,h,r,3000,.12);break;
+  case 'gloss':case 'seal':
+   png=true;fill(top?'rgba(225,230,232,.10)':'rgba(225,230,232,.38)');if(top){sheen(g,w,h,.55);const gr=g.createRadialGradient(w*.25,h*.2,4,w*.25,h*.2,w*.5);gr.addColorStop(0,'rgba(255,255,255,.35)');gr.addColorStop(1,'rgba(255,255,255,0)');g.fillStyle=gr;g.fillRect(0,0,w,h);}break;
+ }
+ if(m==='quartz'&&top){/* flake accent for PMMA balcony finish */}
+ if(!top){const f=document.createElement('canvas');f.width=w;f.height=h;const fg=f.getContext('2d');fg.translate(0,h);fg.scale(1,-1);fg.drawImage(c,0,0);TEXC[m+'sideF']=f.toDataURL(png?'image/png':'image/jpeg',.82);}
+ return TEXC[key]=c.toDataURL(png?'image/png':'image/jpeg',.82);
+}
+let isoMode='exploded';
+function isoHTML(s){
+ const mats=MAT[s.id],n=s.layers.length;
+ let acc=0;const zs=[];for(let i=n-1;i>=0;i--){zs[i]=acc;acc+=MDEF[mats[i]].h;}
+ const boxes=s.layers.map((l,i)=>{const m=mats[i],d=MDEF[m],lvl=n-1-i;
+  return `<div class="box" data-i="${i}" data-kind="${d.kind}" style="--z0:${zs[i]}px;--lvl:${lvl};--h:${d.h}px">
+   <div class="f top" style="background-image:url(${tex(m,'top')})"></div>
+   <div class="f fr" style="background-image:url(${tex(m,'side')})"></div>
+   <div class="f lf" style="background-image:url(${(tex(m,'side'),TEXC[m+'sideF'])})"></div></div>`}).reverse().join('');
+ const leg=s.layers.map((l,i)=>`<li data-i="${i}" style="--i:${i}"><i style="background-image:url(${tex(mats[i],'top')})"></i><div><b>${l[1]}</b>${l[2]?`<span>${l[2]}</span>`:''}</div></li>`).join('');
+ return `<div class="iso-ui"><div class="seg sm" role="group"><button type="button" data-mode="exploded" aria-pressed="${isoMode==='exploded'}">${T('Rozłóż','Exploded','Uiteen')}</button><button type="button" data-mode="assembled" aria-pressed="${isoMode==='assembled'}">${T('Złóż','Assembled','Opgebouwd')}</button></div><button type="button" class="playb" data-play="${s.id}"><svg width="12" height="12" viewBox="0 0 12 12"><path d="M3 1.5v9l7.5-4.5z" fill="currentColor"/></svg>${T('Pokaż aplikację','Play application','Speel aanbrengen af')}</button></div>
+ <div class="iso" data-sys="${s.id}"><span class="iso-step" hidden></span><div class="iso-stack" data-mode="${isoMode}"><div class="iso-shadow"></div>${boxes}</div></div>
+ <ul class="legend">${leg}</ul><p class="isonote">${s.name} · ${L('grubości typowe, rysunek nie w skali','typical thicknesses, not to scale')}</p>`;
+}
+const isoTimers=new WeakMap();
+function isoPlay(box){
+ const iso=box.querySelector('.iso'),st=iso.querySelector('.iso-stack'),s=sysById(iso.dataset.sys);if(!st||!s)return;
+ (isoTimers.get(st)||[]).forEach(clearTimeout);const tm=[];isoTimers.set(st,tm);
+ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ st.dataset.mode='exploded';isoMode='exploded';box.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode==='exploded'));
+ if(reduce)return;
+ const bx=[...st.querySelectorAll('.box')].sort((a,b)=>b.dataset.i-a.dataset.i);/* bottom first */
+ const chip=iso.querySelector('.iso-step');
+ bx.forEach(b=>{b.classList.remove('go');b.classList.add('pre');});
+ st.querySelectorAll('.drop').forEach(d=>d.remove());
+ void st.offsetWidth;
+ bx.forEach((b,k)=>{
+  tm.push(setTimeout(()=>{
+   const i=+b.dataset.i;chip.hidden=false;chip.textContent=`${T('Warstwa','Layer','Laag')} ${k+1}/${bx.length} · ${s.layers[i][1]}`;
+   if(b.dataset.kind==='grain'){for(let j=0;j<46;j++){const d=document.createElement('span');d.className='drop';d.style.cssText=`left:${4+Math.random()*92}%;top:${4+Math.random()*92}%;--zt:calc(var(--zz) + var(--h));animation-delay:${Math.random()*500}ms`;b.appendChild(d);}}
+   b.classList.remove('pre');b.classList.add('go');
+  },250+k*1100));
+ });
+ tm.push(setTimeout(()=>{chip.hidden=true;st.dataset.mode='assembled';isoMode='assembled';box.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mode==='assembled'));st.querySelectorAll('.drop').forEach(d=>d.remove());},250+bx.length*1100+700));
+}
+let isoIO=null;
+function isoInit(){
+ if(isoIO)isoIO.disconnect();
+ if(!('IntersectionObserver' in window))return;
+ isoIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting&&!e.target.dataset.played){e.target.dataset.played='1';isoPlay(e.target);}}),{threshold:.45});
+ document.querySelectorAll('.isobox').forEach(b=>isoIO.observe(b));
+}
+document.addEventListener('click',e=>{
+ const mb=e.target.closest('.isobox [data-mode]');
+ if(mb){const box=mb.closest('.isobox'),st=box.querySelector('.iso-stack');(isoTimers.get(st)||[]).forEach(clearTimeout);box.querySelectorAll('.box').forEach(b=>b.classList.remove('pre'));box.querySelector('.iso-step').hidden=true;isoMode=mb.dataset.mode;st.dataset.mode=isoMode;box.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',b===mb));return;}
+ const pb=e.target.closest('.isobox [data-play]');if(pb)isoPlay(pb.closest('.isobox'));
+});
+document.addEventListener('pointerover',e=>{
+ const li=e.target.closest&&e.target.closest('.legend li,.iso .box');if(!li)return;const box=li.closest('.isobox');if(!box)return;const i=li.dataset.i;
+ box.querySelectorAll('.box,.legend li').forEach(x=>x.classList.toggle('hl',x.dataset.i===i));
+});
+document.addEventListener('pointerout',e=>{const li=e.target.closest&&e.target.closest('.legend li,.iso .box');if(li&&!li.contains(e.relatedTarget))li.closest('.isobox')?.querySelectorAll('.hl').forEach(x=>x.classList.remove('hl'));});
+document.addEventListener('pointermove',e=>{const iso=e.target.closest&&e.target.closest('.iso');if(!iso)return;const r=iso.getBoundingClientRect();iso.style.setProperty('--rx',((e.clientY-r.top)/r.height-.5)*-10+'deg');iso.style.setProperty('--rz',((e.clientX-r.left)/r.width-.5)*16+'deg');});
+
+function bento(list){return `<div class="bento">${list.map(s=>`<a class="bcard spot rv" href="#${s.id}"><img src="${IMG(s.img)}" alt="" loading="lazy"><div class="btop"><span class="chip">${s.tag}</span>${arrowC}</div><div class="bbot"><div class="bcode">${s.code}</div><h3>${s.name}</h3><p>${s.short}</p><div class="chips">${s.specs.slice(0,3).map(r=>`<span class="chip">${r[0]}: ${r[1]}</span>`).join('')}</div></div></a>`).join('')}</div>`;}
+function panels(){return `<div class="panels">${APPS().map((a,i)=>`<a class="pan" href="#${a.id}"><img src="${IMG(a.img)}" alt="" loading="lazy"><div class="pan-in"><div class="btop"><span class="pan-num">0${i+1} — ${a.tag}</span>${arrowC}</div><div class="bbot"><h3>${a.name}</h3><p>${a.short}</p></div></div></a>`).join('')}</div>`;}
+function timeline(){return `<div class="tl-list">${STEPS().map((s,i)=>`<div class="tstep rv"><div class="tnum">0${i+1}</div><div class="stack"><h3>${s[0]}</h3><p>${s[1]}</p><div class="chips">${s[2].map(x=>`<span class="chip">${x}</span>`).join('')}</div></div></div>`).join('')}</div>`;}
+function hsteps(){return `<div class="hsteps">${STEPS().map((s,i)=>`<div class="tstep rv"><div class="tnum">0${i+1}</div><div class="stack"><h3>${s[0]}</h3><p>${s[1]}</p></div></div>`).join('')}</div>`;}
+const figHTML=p=>`<figure data-n="${p.n}" data-t="${p.t.replace(/"/g,'&quot;')}" tabindex="0"><img src="${IMG(p.n)}" alt="${p.t}" loading="lazy"><figcaption><small>${catName(p.c)}</small>${p.t}</figcaption></figure>`;
+const MQ=()=>['PMMA','Epoxy','Polyurethaan','Troffelvloer',T('Galerie','Galleries','Galerijen'),T('Balkony','Balconies','Balkons'),T('Parkingi','Car parks','Parkeergarages'),T('Hale','Halls','Bedrijfshallen'),T('Kuchnie','Kitchens','Grootkeukens')];
+
+/* ---------- pages ---------- */
+function home(){
+ const sys=SYS();
+ const mq=MQ().map(x=>`<span>${x}</span>`).join('');
+ return `
+ <section class="hero" id="hero"><div class="hero-fallback" style="background-image:url(${IMG(10)})"></div><div class="hero-3d" id="hero3d" aria-hidden="true"></div>
+  <div class="wrap">
+   <div class="hero-copy">
+    ${kick(L('Ochrona betonu · od 2016','Concrete protection · since 2016'))}
+    <h1>${T('Beton, który przetrwa <span class="gt">wszystko.</span>','Concrete that outlasts <span class="gt">everything.</span>','Beton dat <span class="gt">alles</span> doorstaat.')}</h1>
+    <p class="lead">${L('Bezspoinowe powłoki PMMA, epoksydowe i poliuretanowe oraz troffelvloer. Od hal na tysiące m² po balkony, galerie i garaże, w całej Holandii.','Seamless PMMA, epoxy and polyurethane coatings and troffelvloer. From halls of thousands of m² to balconies, galleries and garages, across the Netherlands.')}</p>
+    <div class="row"><a class="btn btn-gold" href="#contact">${L('Bezpłatna inspekcja','Free inspection')} ${ic}</a><a class="btn btn-glass" href="#projects">${L('Zobacz realizacje','See our work')} ${ic}</a></div>
+   </div>
+   <div class="phase" id="phase"><div class="phase-top"><span>${T('Na żywo · system EP','Live · EP system','Live · EP-systeem')}</span><span class="live">3D</span></div>
+    <ol>${[[L('Wylewanie','Pour'),'01'],[L('Rozprowadzanie','Spread'),'02'],[L('Posypka','Broadcast'),'03'],[L('Zamknięcie','Seal'),'04']].map((p,i)=>`<li data-p="${i}">${p[0]}<span>${p[1]}</span></li>`).join('')}</ol>
+    <div class="bar"><i id="phase-bar"></i></div></div>
+  </div><span class="scrollhint" aria-hidden="true"></span>
+ </section>
+ <div class="marquee" aria-hidden="true"><div class="mtrack">${mq}${mq}</div></div>
+ <section><div class="wrap">
+  <div class="stack rv">${kick(T('Kim jesteśmy','Who we are','Wie we zijn'))}
+  <p class="statement">${T('Chronimy beton przed <b class="gt">wodą, solą, chemią</b> i ścieraniem. Bezspoinowymi powłokami, które sami <b>mierzymy, przygotowujemy i nakładamy</b>.','We protect concrete against <b class="gt">water, salt, chemicals</b> and wear. With seamless coatings we <b>measure, prepare and apply</b> ourselves.','Wij beschermen beton tegen <b class="gt">water, zout, chemie</b> en slijtage. Met naadloze coatings die we zelf <b>meten, voorbereiden en aanbrengen</b>.')}</p></div>
+  <div class="stats">
+   <div class="stat spot rv"><b>10<span class="gt">+</span></b><span>${L('lat doświadczenia w Holandii','years of experience in the Netherlands')}</span></div>
+   <div class="stat spot rv"><b>4</b><span>${L('systemy: PMMA, EP, PU, troffel','systems: PMMA, EP, PU, troffel')}</span></div>
+   <div class="stat spot rv"><b>60<span class="gt">′</span></b><span>${L('utwardzanie PMMA na balkonie','PMMA cure on a balcony')}</span></div>
+   <div class="stat spot rv"><b>1</b><span>${L('zespół od pomiaru do odbioru','team from survey to handover')}</span></div>
+  </div>
+ </div></section>
+ <section style="padding-top:0"><div class="wrap">
+  <div class="shead rv"><div class="stack">${kick(L('Systemy','Systems'))}<h2>${L('Cztery chemie. Jedna zasada: dobór do podłoża i obciążenia.','Four chemistries. One rule: match the substrate and the load.')}</h2></div><p class="lead">${L('Nie sprzedajemy jednej żywicy do wszystkiego. Każdy system ma inne zalety, a wybieramy go po pomiarach na miejscu.','We do not sell one resin for everything. Each system has different strengths, and we choose after measuring on site.')}</p></div>
+  ${bento(sys)}
+ </div></section>
+ <section style="padding-top:0"><div class="wrap layers">
+  <div class="stack rv">${kick(L('Przekrój systemu','System cross-section'))}<h2>${L('Ochrona powstaje warstwa po warstwie.','Protection is built layer by layer.')}</h2><p class="lead">${L('Każda warstwa ma swoje zadanie: grunt wiąże się z betonem, membrana uszczelnia, posypka daje przyczepność, a zamknięcie chroni przed UV, chemią i ścieraniem.','Every layer has a job: the primer bonds to the concrete, the membrane seals, the broadcast gives grip and the topcoat protects against UV, chemicals and wear.')}</p>
+   <div class="seg" role="tablist">${sys.map((s,i)=>`<button role="tab" id="lt-${s.id}" data-sys="${s.id}" aria-selected="${i===0}">${s.code}</button>`).join('')}</div>
+  </div>
+  <div class="isobox spot rv" id="isobox">${isoHTML(sys[0])}</div>
+ </div></section>
+ <section style="padding-top:0"><div class="wrap">
+  <div class="shead rv"><div class="stack">${kick(L('Zastosowania','Applications'))}<h2>${L('Od tysięcy metrów do jednego balkonu.','From thousands of metres to a single balcony.')}</h2></div><p class="lead">${L('Duże powierzchnie robimy kompleksowo ze szlifowaniem i przygotowaniem podłoża. Małe z tą samą starannością i szybko.','We do large surfaces end to end, with grinding and substrate preparation. Small ones with the same care, and fast.')}</p></div>
+  ${panels()}
+ </div></section>
+ <section style="padding-top:0"><div class="wrap tl">
+  <div class="tl-head stack">${kick(L('Werkwijze','Werkwijze'))}<h2>${L('Pięć etapów. Każdy z protokołem.','Five stages. Each one recorded.')}</h2><p class="lead">${L('Trwałość powłoki zależy w 80 % od przygotowania. Dlatego mierzymy, zanim wylejemy cokolwiek.','Most of a coating’s life is decided in preparation. That is why we measure before we pour anything.')}</p><div class="row"><a class="btn btn-glass" href="#process">${L('Cały proces','Full process')} ${ic}</a></div></div>
+  ${timeline()}
+ </div></section>
+ <section style="padding-top:0"><div class="wrap">
+  <div class="shead rv"><div class="stack">${kick(L('Realizacje','Projects'))}<h2>${L('Z naszych budów','From our sites')}</h2></div><a class="btn btn-glass" href="#projects">${T('Wszystkie realizacje','All projects','Alle projecten')} ${ic}</a></div>
+  <div class="mosaic rv">${[10,3,9,6,1,7,4].map(n=>figHTML(PHOTOS().find(p=>p.n===n))).join('')}</div>
+ </div></section>
+ <section style="padding-top:0"><div class="wrap">
+  <div class="shead rv"><div class="stack">${kick(L('Jakość i normy','Quality & standards'))}<h2>${L('Pracujemy według holenderskich i europejskich norm','We work to Dutch and European standards')}</h2></div></div>
+  <div class="ribbon rv">${NORMS().slice(0,7).map(n=>`<a href="#standards">${n[0]}<span>${n[1]}</span></a>`).join('')}</div>
+ </div></section>
+ ${ctaBand()}`;
+}
+function services(){
+ const sys=SYS();
+ const rows=[[L('Grubość','Thickness'),'2–4 mm','0.3–3 mm','2–4 mm','4–8 mm'],[L('Utwardzanie','Curing'),L('ok. 1 h','~1 h'),'~24 h','~24 h','24–48 h'],[L('Na zewnątrz / UV','Outdoor / UV'),'✓',L('z topcoatem PU','with PU topcoat'),'✓',L('wewnątrz','indoor')],[L('Elastyczność','Elasticity'),L('wysoka','high'),L('niska','low'),L('wysoka','high'),L('niska','low')],[L('Obciążenie mech.','Mechanical load'),L('średnie','medium'),L('wysokie','high'),L('średnie–wysokie','medium–high'),L('bardzo wysokie','very high')],[L('Antypoślizg','Slip'),'R10–R12','R9–R11','R11–R13','R11–R13']];
+ return phero(10,L('Usługi','Services'),L('Systemy i zastosowania','Systems and applications'),L('Wybierz system według chemii lub według miejsca, które chcesz zabezpieczyć.','Choose a system by chemistry, or by the place you want to protect.'),L('Usługi','Services'))+
+ `<section><div class="wrap"><div class="shead rv"><div class="stack">${kick(L('Według systemu','By system'))}<h2>${L('Chemie, z którymi pracujemy','The chemistries we work with')}</h2></div></div>${bento(sys)}</div></section>
+ <section style="padding-top:0"><div class="wrap"><div class="shead rv"><div class="stack">${kick(L('Według miejsca','By location'))}<h2>${L('Gdzie pracujemy','Where we work')}</h2></div></div>${panels()}</div></section>
+ <section style="padding-top:0"><div class="wrap"><div class="shead rv"><div class="stack">${kick(L('Porównanie','Comparison'))}<h2>${L('Systemy obok siebie','Systems side by side')}</h2></div><p class="lead">${L('Wartości typowe. Dokładne parametry zależą od produktu i podłoża.','Typical values. Exact performance depends on product and substrate.')}</p></div>
+ <div class="tablecard rv"><table class="cmp"><thead><tr><th></th>${sys.map(s=>`<th>${s.code}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr><th>${r[0]}</th>${r.slice(1).map(c=>`<td>${c}</td>`).join('')}</tr>`).join('')}</tbody></table></div></div></section>`+ctaBand();
+}
+function systemPage(id){
+ const s=sysById(id);
+ return phero(s.img,s.tag,s.name,s.short,`<a href="#services">${L('Usługi','Services')}</a> / ${s.code}`)+
+ `<section><div class="wrap split" style="align-items:start"><div class="stack rv">${kick(L('System','System')+' '+s.code)}<h2>${L('Co to jest i kiedy go stosujemy','What it is and when we use it')}</h2><p class="lead">${s.lead}</p>${s.body.map(p=>`<p class="muted">${p}</p>`).join('')}</div>
+ <div class="glass stack rv">${kick(L('Karta techniczna','Datasheet'))}<div class="specgrid">${s.specs.map(r=>`<div class="spec"><small>${r[0]}</small><b>${r[1]}</b></div>`).join('')}</div><p class="isonote">${L('Wartości typowe; ostateczne według karty produktu i warunków na miejscu.','Typical values; final figures per product datasheet and site conditions.')}</p></div></div></section>
+ <section style="padding-top:0"><div class="wrap layers"><div class="stack rv">${kick(L('Budowa','Build-up'))}<h2>${L('Przekrój warstw','Layer build-up')}</h2><p class="lead">${L('Od betonu do powierzchni użytkowej.','From concrete to the wearing surface.')}</p><h3 style="margin-top:12px">${L('Zastosowania','Typical uses')}</h3><ul class="checks">${s.uses.map(u=>`<li>${u}</li>`).join('')}</ul></div><div class="isobox spot rv">${isoHTML(s)}</div></div></section>
+ <section style="padding-top:0"><div class="wrap"><div class="shead rv"><div class="stack">${kick('Werkwijze')}<h2>${L('Jak pracujemy','How we work')}</h2></div></div>${hsteps()}</div></section>
+ <section style="padding-top:0"><div class="wrap"><div class="shead rv"><div class="stack">${kick(L('Inne systemy','Other systems'))}<h2>${L('Porównaj z pozostałymi','Compare with the others')}</h2></div></div><div class="mini">${SYS().filter(x=>x.id!==id).map(x=>`<a class="spot rv" href="#${x.id}"><div class="btop"><div class="bcode">${x.code}</div>${arrowC}</div><h3>${x.name}</h3><p>${x.short}</p></a>`).join('')}</div></div></section>`+ctaBand();
+}
+function appPage(id){
+ const a=appById(id);const ph=PHOTOS().filter(p=>p.c===id);
+ return phero(a.img,a.tag,a.name,a.short,`<a href="#services">${L('Usługi','Services')}</a> / ${a.name}`)+
+ `<section><div class="wrap split"><div class="stack rv">${kick(L('Jak pracujemy','How we work'))}<h2>${a.name}</h2><p class="lead">${a.lead}</p>${a.body.map(p=>`<p class="muted">${p}</p>`).join('')}</div><div class="photo rv"><img src="${IMG(ph[1]?ph[1].n:a.img)}" alt="${a.name}" loading="lazy"><span class="chip">${ph[1]?ph[1].t:a.name}</span></div></div></section>
+ <section style="padding-top:0"><div class="wrap split" style="align-items:start"><div class="stack rv">${kick(L('W zakresie','Included'))}<h2>${L('Co obejmuje usługa','What the service covers')}</h2><ul class="checks">${a.checks.map(c=>`<li>${c}</li>`).join('')}</ul></div>
+ <div class="stack rv">${kick(L('Zalecane systemy','Recommended systems'))}<div class="recs">${a.sys.map(sid=>{const s=sysById(sid);return `<a class="spot" href="#${s.id}"><span class="code">${s.code}</span><div><b>${s.name}</b><br><span>${s.tag}</span></div>${arrowC}</a>`}).join('')}</div></div></div></section>
+ <section style="padding-top:0"><div class="wrap"><div class="shead rv"><div class="stack">${kick(L('Realizacje','Projects'))}<h2>${L('Z naszych budów','From our sites')}</h2></div></div><div class="mason rv">${ph.map(figHTML).join('')}</div></div></section>`+ctaBand();
+}
+let galFilter='all';
+function projects(){
+ const ph=PHOTOS().filter(p=>galFilter==='all'||p.c===galFilter);
+ const chip=(v,l)=>`<button data-f="${v}" aria-pressed="${galFilter===v}">${l}</button>`;
+ return phero(4,L('Realizacje','Projects'),L('Nasze realizacje','Our projects'),L('Zdjęcia z prac wykonanych przez nasz zespół: galerie, balkony, rampy parkingowe i kuchnie przemysłowe.','Photos of work done by our team: galleries, balconies, car park ramps and commercial kitchens.'),L('Realizacje','Projects'))+
+ `<section><div class="wrap"><div class="filters" id="chips">${chip('all',L('Wszystkie','All'))}${chip('balcony',L('Balkony i galerie','Balconies & galleries'))}${chip('garage',L('Garaże i parkingi','Garages & car parks'))}${chip('industrial',L('Przemysł i kuchnie','Industrial & kitchens'))}</div><div class="mason">${ph.map(figHTML).join('')}</div></div></section>`+ctaBand();
+}
+function process(){
+ return phero(1,'Werkwijze',L('Jak pracujemy','How we work'),L('Proces zgodny z holenderską praktyką wykonawczą: od pomiarów przez przygotowanie podłoża po protokół odbioru (opleverrapport).','A process in line with Dutch contracting practice: from measurements and substrate preparation to the handover report (opleverrapport).'),'Werkwijze')+
+ `<section><div class="wrap tl"><div class="tl-head stack">${kick(L('Werkwijze','Werkwijze'))}<h2>${L('Pięć etapów. Każdy z protokołem.','Five stages. Each one recorded.')}</h2><p class="lead">${L('Trwałość powłoki zależy w 80 % od przygotowania. Dlatego mierzymy, zanim wylejemy cokolwiek.','Most of a coating’s life is decided in preparation. That is why we measure before we pour anything.')}</p></div>${timeline()}</div></section>
+ <section style="padding-top:0"><div class="wrap split"><div class="stack rv">${kick(L('Przygotowanie podłoża','Substrate preparation'))}<h2>${L('Szlifowanie, śrutowanie, frezowanie','Grinding, shot blasting, milling')}</h2><p class="lead">${L('Powłoka jest tak dobra jak beton pod nią. Usuwamy mleczko cementowe, stare farby i zanieczyszczenia, otwieramy pory i sprawdzamy nośność.','A coating is only as good as the concrete beneath it. We remove laitance, old paints and contamination, open the pores and check the strength.')}</p>
+ <ul class="checks"><li>${L('Szlifowanie diamentowe: posadzki wewnętrzne, gładkie podłoża','Diamond grinding: indoor floors, smooth substrates')}</li><li>${L('Śrutowanie: duże hale i parkingi, szybkie i bezpyłowe','Shot blasting: large halls and car parks, fast and dust-free')}</li><li>${L('Frezowanie: grube stare powłoki i nierówności','Milling: thick old coatings and unevenness')}</li><li>${L('Naprawy żywicą i zaprawami PCC','Repairs with resin and PCC mortars')}</li></ul></div><div class="photo rv"><img src="${IMG(8)}" alt="" loading="lazy"></div></div></section>
+ <section style="padding-top:0"><div class="wrap"><div class="shead rv"><div class="stack">${kick(L('Dokumentacja','Documentation'))}<h2>${L('Co dostajesz na piśmie','What you get in writing')}</h2></div></div>
+ <div class="cards3"><div class="spot rv"><span class="ico">01</span><h3>Offerte</h3><p>${L('Opis systemu, grubości warstw, przygotowania podłoża, harmonogram, cena za m² i warunki gwarancji.','System description, layer thicknesses, substrate preparation, schedule, price per m² and warranty terms.')}</p></div><div class="spot rv"><span class="ico">02</span><h3>${L('Protokół pomiarów','Measurement record')}</h3><p>${L('Wilgotność CM, pull-off, temperatura, wilgotność powietrza i punkt rosy dla każdego etapu.','CM moisture, pull-off, temperature, air humidity and dew point for each phase.')}</p></div><div class="spot rv"><span class="ico">03</span><h3>Opleverrapport</h3><p>${L('Protokół odbioru ze zdjęciami, instrukcja utrzymania i zalecenia dotyczące użytkowania.','Handover report with photos, maintenance guide and usage recommendations.')}</p></div></div></div></section>`+ctaBand();
+}
+function standards(){
+ const rs=[['R9',L('korytarze, biura, showroomy','corridors, offices, showrooms'),20],['R10',L('zadaszone galerie, garaże, magazyny','covered galleries, garages, warehouses'),40],['R11',L('balkony, kuchnie, warsztaty','balconies, kitchens, workshops'),60],['R12',L('kuchnie przemysłowe, rampy','commercial kitchens, ramps'),80],['R13',L('strefy z olejem i tłuszczem, strome rampy','oily and greasy zones, steep ramps'),100]];
+ return phero(10,L('Jakość i normy','Quality & standards'),L('Pracujemy według holenderskich i europejskich norm','We work to Dutch and European standards'),L('Każdy system dobieramy i dokumentujemy według norm obowiązujących w Holandii. Tak, żeby inspektor, VvE i ubezpieczyciel mieli jasność.','We select and document every system to the standards that apply in the Netherlands, so the inspector, the VvE and the insurer have clarity.'),L('Normy','Standards'))+
+ `<section><div class="wrap"><div class="norms">${NORMS().map(n=>`<div class="norm spot rv"><code>${n[0]}</code><h3>${n[1]}</h3><p>${n[2]}</p></div>`).join('')}</div></div></section>
+ <section style="padding-top:0"><div class="wrap"><div class="shead rv"><div class="stack">${kick(L('Antypoślizgowość','Slip resistance'))}<h2>${L('Klasa R dobrana do strefy','R-class matched to the zone')}</h2></div><p class="lead">${L('Za mała przyczepność to ryzyko wypadku, za duża utrudnia mycie. Dobieramy kompromis.','Too little grip is an accident risk; too much makes cleaning hard. We find the balance.')}</p></div>
+ <div class="rscale">${rs.map(r=>`<div class="rs spot rv"><b>${r[0]}</b><div class="meter"><i style="width:${r[2]}%"></i></div><p>${r[1]}</p></div>`).join('')}</div></div></section>`+ctaBand();
+}
+function about(){
+ return phero(3,L('O nas','About us'),L('10 lat precyzji w betonie','10 years of precision in concrete'),L('Premium CoatUp działa w Holandii od 2016 roku. Specjalizujemy się wyłącznie w powłokach żywicznych na beton.','Premium CoatUp has worked in the Netherlands since 2016. We specialise only in resin coatings for concrete.'),L('O nas','About us'))+
+ `<section><div class="wrap split"><div class="stack rv">${kick(L('Historia','Story'))}<h2>${L('Wąska specjalizacja, pełna odpowiedzialność','Narrow focus, full responsibility')}</h2><p class="lead">${L('Zaczynaliśmy od balkonów i garaży. Dziś wykonujemy też hale, kuchnie przemysłowe i parkingi wielopoziomowe, ale zasada jest ta sama: jeden zespół od pomiaru do odbioru.','We started with balconies and garages. Today we also do halls, commercial kitchens and multi-storey car parks, but the rule is the same: one team from measurement to handover.')}</p><p class="muted">${L('Nie podzlecamy przygotowania podłoża, bo to ono decyduje o trwałości. Mamy własne szlifierki, śrutownice i odkurzacze przemysłowe, a nasi ludzie znają zachowanie każdej żywicy w holenderskim klimacie.','We do not subcontract substrate preparation, because it decides durability. We have our own grinders, shot blasters and industrial extractors, and our people know how each resin behaves in the Dutch climate.')}</p></div>
+ <div class="photo rv" style="display:grid;place-items:center;background:#0d0f11"><img src="${IMG(10)}" alt="" loading="lazy" style="position:absolute;inset:0;opacity:.35"><img src="img/logo.png" alt="Premium CoatUp" style="position:relative;width:72%;height:auto;filter:drop-shadow(0 30px 50px rgba(0,0,0,.6))"></div></div></section>
+ <section style="padding-top:0"><div class="wrap"><div class="stats" style="margin-top:0"><div class="stat spot rv"><b>2016</b><span>${L('rok założenia','founded')}</span></div><div class="stat spot rv"><b>10<span class="gt">+</span></b><span>${L('lat na rynku NL','years in the NL market')}</span></div><div class="stat spot rv"><b style="font-size:clamp(1.6rem,2.6vw,2.2rem)">NL·EN·PL</b><span>${L('języki kontaktu','languages we speak')}</span></div><div class="stat spot rv"><b>1</b><span>${L('zespół od pomiaru do odbioru','team from survey to handover')}</span></div></div></div></section>
+ <section style="padding-top:0"><div class="wrap"><div class="shead rv"><div class="stack">${kick(L('Wartości','Values'))}<h2>${L('Na czym nam zależy','What we care about')}</h2></div></div><div class="cards3">
+ <div class="spot rv"><span class="ico">01</span><h3>${L('Pomiar przed obietnicą','Measure before we promise')}</h3><p>${L('Nie podajemy gwarancji bez pomiarów. Dzięki temu nasze posadzki się nie łuszczą.','No warranty without measurements. That is why our floors do not peel.')}</p></div>
+ <div class="spot rv"><span class="ico">02</span><h3>${L('Czysta budowa','A clean site')}</h3><p>${L('Odsysanie pyłu, zabezpieczone ściany i drzwi, porządek po każdym dniu.','Dust extraction, protected walls and doors, a tidy site at the end of every day.')}</p></div>
+ <div class="spot rv"><span class="ico">03</span><h3>${L('Jasna komunikacja','Clear communication')}</h3><p>${L('Offerte, harmonogram i protokoły w języku polskim, angielskim lub niderlandzkim.','Quotation, schedule and records in Polish, English or Dutch.')}</p></div></div></div></section>`+ctaBand();
+}
+function faq(){
+ return phero(2,'FAQ',L('Najczęstsze pytania','Frequently asked questions'),L('Jeśli nie znajdziesz odpowiedzi, napisz do nas.','If you cannot find the answer, write to us.'),'FAQ')+
+ `<section><div class="wrap"><div class="faq">${FAQ().map((q,i)=>`<details ${i===0?'open':''}><summary>${q[0]}</summary><p>${q[1]}</p></details>`).join('')}</div></div></section>`+ctaBand();
+}
+/* ---------- quote wizard ---------- */
+const WA_NUM='31628199203';
+const O=(k,nl,en,pl,sub)=>({k,nl,en,pl,sub});
+const OPT={
+ types:[O('balkon','Balkon / loggia','Balcony / loggia','Balkon / loggia','PMMA · R11'),O('terras','Terras / dakterras','Terrace / roof terrace','Taras / taras na dachu','PMMA · PU'),O('galerij','Galerij / buitentrap (VvE)','Gallery / outdoor stairs (VvE)','Galeria / schody zewnętrzne (VvE)','PMMA'),O('garage','Garage (privé)','Private garage','Garaż prywatny','EP · flakes'),O('parkeer','Parkeergarage / parkeerdek','Car park / parking deck','Parking / strop parkingowy','PU · EP'),O('helling','Hellingbaan / oprit','Ramp / driveway','Rampa / podjazd','PU · PMMA · R12'),O('hal','Bedrijfshal / magazijn','Industrial hall / warehouse','Hala / magazyn','EP · NEN-EN 13813'),O('keuken','Grootkeuken / voedingsbedrijf','Commercial kitchen / food plant','Kuchnia przemysłowa / spożywcze','TR · PU-cement · HACCP'),O('werkplaats','Werkplaats / showroom','Workshop / showroom','Warsztat / showroom','EP · flakes'),O('anders','Anders','Other','Inne','—')],
+ sys:[O('advies','Advies gewenst','Advise me','Doradźcie mi','—'),O('pmma','PMMA','PMMA','PMMA','~1 h'),O('epoxy','Epoxy','Epoxy','Epoksyd','EP'),O('pu','Polyurethaan (PU)','Polyurethane (PU)','Poliuretan (PU)','PU'),O('troffel','Troffelvloer','Troffelvloer','Troffelvloer','4–8 mm')],
+ m2r:[O('<25','< 25 m²','< 25 m²','< 25 m²'),O('25-100','25 – 100 m²','25 – 100 m²','25 – 100 m²'),O('100-500','100 – 500 m²','100 – 500 m²','100 – 500 m²'),O('500-2000','500 – 2.000 m²','500 – 2,000 m²','500 – 2 000 m²'),O('>2000','> 2.000 m²','> 2,000 m²','> 2 000 m²')],
+ loc:[O('binnen','Binnen','Indoor','Wewnątrz'),O('buiten','Buiten','Outdoor','Na zewnątrz'),O('beide','Binnen en buiten','Indoor and outdoor','Wewnątrz i na zewnątrz')],
+ cond:[O('nieuw','Nieuw beton','New concrete','Nowy beton'),O('coating','Bestaande coating / verf','Existing coating / paint','Stara powłoka / farba'),O('tegels','Tegels','Tiles','Płytki'),O('scheuren','Scheuren of beschadigingen','Cracks or damage','Rysy lub uszkodzenia'),O('lekkage','Lekkage naar onderliggende ruimte','Leaks into the space below','Przecieki do pomieszczeń poniżej'),O('onbekend','Weet ik niet','Not sure','Nie wiem')],
+ extras:[O('schuren','Schuren / stralen van de ondergrond','Grinding / blasting the substrate','Szlifowanie / śrutowanie podłoża'),O('verwijderen','Oude coating verwijderen','Remove old coating','Usunięcie starej powłoki'),O('herstel','Herstel van scheuren en gaten','Crack and hole repair','Naprawa rys i ubytków'),O('egaliseren','Egaliseren','Levelling','Wyrównanie podłoża'),O('antislip','Extra antislip','Extra slip resistance','Dodatkowy antypoślizg'),O('kleur','Kleur RAL / flakes / kwarts','RAL colour / flakes / quartz','Kolor RAL / płatki / kwarc'),O('plint','Holle plint (HACCP)','Coved skirting (HACCP)','Wyoblenie przy ścianie (HACCP)'),O('afschot','Afschot naar putten / goten','Falls to drains / gutters','Spadki do odpływów'),O('belijning','Belijning / vakmarkering','Line / bay marking','Linie / oznakowanie')],
+ use:[O('ja','Ja, in gebruik','Yes, in use','Tak, czynny'),O('nee','Nee, leeg','No, empty','Nie, pusty'),O('deels','Gedeeltelijk','Partly','Częściowo')],
+ plan:[O('asap','Zo snel mogelijk','As soon as possible','Jak najszybciej'),O('1m','Binnen 1 maand','Within 1 month','W ciągu miesiąca'),O('3m','Over 1 – 3 maanden','In 1 – 3 months','Za 1 – 3 miesiące'),O('later','Later / oriënterend','Later / just exploring','Później / rozeznanie')],
+ client:[O('particulier','Particulier','Private client','Klient prywatny'),O('bedrijf','Bedrijf','Company','Firma'),O('vve','VvE / vastgoedbeheerder','VvE / property manager','VvE / zarządca'),O('aannemer','Aannemer / architect','Contractor / architect','Wykonawca / architekt')],
+ pref:[O('whatsapp','WhatsApp','WhatsApp','WhatsApp'),O('telefoon','Telefoon','Phone','Telefon'),O('email','E-mail','E-mail','E-mail')]
+};
+const lab=o=>o[lang]||o.en;
+const nlOf=(g,k)=>{const o=OPT[g].find(x=>x.k===k);return o?o.nl:'';};
+let Q={types:[],sys:'advies',m2r:'',m2:'',units:'',loc:'',cond:[],extras:[],use:'',plan:'',client:'',name:'',company:'',phone:'',email:'',street:'',pc:'',city:'',pref:'whatsapp',msg:'',consent:false};
+let qStep=1, qErr='';
+const STEPN=()=>[T('Rodzaj prac','Type of work','Soort werk'),T('Szczegóły','Details','Details'),T('Twoje dane','Your details','Uw gegevens'),T('Wyślij','Send','Versturen')];
+const esc=v=>String(v??'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;');
+function cards(g,multi){return `<div class="opts">${OPT[g].map(o=>{const on=multi?Q[g].includes(o.k):Q[g]===o.k;return `<label class="opt"><input type="${multi?'checkbox':'radio'}" name="${g}" id="${g}-${o.k.replace(/[^a-z0-9]/gi,'')}" value="${o.k}" ${on?'checked':''}><b>${lab(o)}</b>${o.sub?`<span>${o.sub}</span>`:''}</label>`}).join('')}</div>`;}
+function pills(g,multi){return `<div class="radios">${OPT[g].map(o=>{const on=multi?Q[g].includes(o.k):Q[g]===o.k;return `<label><input type="${multi?'checkbox':'radio'}" name="${g}" id="${g}-${o.k.replace(/[^a-z0-9]/gi,'')}" value="${o.k}" ${on?'checked':''}>${lab(o)}</label>`}).join('')}</div>`;}
+const fs=(n,title,help,body)=>`<fieldset class="fset"><legend><span class="fnum">${n}</span>${title}</legend>${help?`<p class="help">${help}</p>`:''}${body}</fieldset>`;
+function waMessage(){
+ const m2=Q.m2?`${Q.m2} m²`:(Q.m2r?nlOf('m2r',Q.m2r):'onbekend');
+ const lines=['*Nieuwe offerteaanvraag – Premium CoatUp*','',
+  `*Soort werk:* ${Q.types.map(k=>nlOf('types',k)).join(', ')}`,
+  `*Voorkeurssysteem:* ${nlOf('sys',Q.sys)}`,
+  `*Oppervlakte:* ${m2}`];
+ if(Q.units)lines.push(`*Aantal (balkons/garages/ruimtes):* ${Q.units}`);
+ if(Q.loc)lines.push(`*Locatie:* ${nlOf('loc',Q.loc)}`);
+ if(Q.cond.length)lines.push(`*Huidige ondergrond:* ${Q.cond.map(k=>nlOf('cond',k)).join(', ')}`);
+ if(Q.extras.length)lines.push(`*Extra werkzaamheden:* ${Q.extras.map(k=>nlOf('extras',k)).join(', ')}`);
+ if(Q.use)lines.push(`*Pand in gebruik:* ${nlOf('use',Q.use)}`);
+ if(Q.plan)lines.push(`*Gewenste planning:* ${nlOf('plan',Q.plan)}`);
+ lines.push('');
+ if(Q.client)lines.push(`*Opdrachtgever:* ${nlOf('client',Q.client)}`);
+ lines.push(`*Naam:* ${Q.name}`);
+ if(Q.company)lines.push(`*Bedrijf / VvE:* ${Q.company}`);
+ if(Q.phone)lines.push(`*Telefoon:* ${Q.phone}`);
+ if(Q.email)lines.push(`*E-mail:* ${Q.email}`);
+ const adr=[Q.street,[Q.pc,Q.city].filter(Boolean).join(' ')].filter(Boolean).join(', ');
+ if(adr)lines.push(`*Adres project:* ${adr}`);
+ lines.push(`*Bij voorkeur contact via:* ${nlOf('pref',Q.pref)}`);
+ if(Q.msg.trim()){lines.push('','*Toelichting:*',Q.msg.trim());}
+ lines.push('','Foto’s van de situatie stuur ik hierna in deze chat.');
+ return lines.join('\n');
+}
+const waLink=()=>'https://wa.me/'+WA_NUM+'?text='+encodeURIComponent(waMessage());
+function wizStep(){
+ if(qStep===1)return fs(1,T('Co mamy zabezpieczyć?','What should we protect?','Wat moeten we beschermen?'),T('Możesz zaznaczyć kilka pozycji. Pod nazwą widzisz system, który zwykle stosujemy.','You can select several. Under each name you see the system we usually use.','U kunt meerdere kiezen. Onder elke naam ziet u het systeem dat we meestal toepassen.'),cards('types',true))
+  +fs(2,T('Preferowany system','Preferred system','Voorkeurssysteem'),T('Nie wiesz? Wybierz „Doradźcie mi”, dobierzemy go po pomiarach.','Not sure? Choose “Advise me” and we will choose after measuring.','Twijfelt u? Kies „Advies gewenst”, dan kiezen wij na de metingen.'),cards('sys',false));
+ if(qStep===2)return fs(3,T('Wielkość powierzchni','Surface size','Oppervlakte'),T('Wybierz zakres albo wpisz dokładną liczbę m².','Pick a range or enter the exact m².','Kies een bereik of vul het exacte aantal m² in.'),pills('m2r',false)+`<div class="form" style="margin-top:14px"><label>${T('Dokładnie (m²)','Exact (m²)','Exact (m²)')}<input id="q-m2" name="m2" type="number" min="1" inputmode="numeric" placeholder="120" value="${esc(Q.m2)}"></label><label>${T('Liczba balkonów / garaży / pomieszczeń','Number of balconies / garages / rooms','Aantal balkons / garages / ruimtes')}<input id="q-units" name="units" type="number" min="1" inputmode="numeric" placeholder="12" value="${esc(Q.units)}"></label></div>`)
+  +fs(4,T('Gdzie?','Where?','Waar?'),'',pills('loc',false))
+  +fs(5,T('Obecny stan podłoża','Current substrate','Huidige ondergrond'),T('Zaznacz wszystko, co pasuje.','Tick everything that applies.','Vink alles aan wat van toepassing is.'),pills('cond',true))
+  +fs(6,T('Dodatkowe prace','Additional work','Extra werkzaamheden'),'',cards('extras',true))
+  +fs(7,T('Czy obiekt jest w użyciu?','Is the building in use?','Is het pand in gebruik?'),'',pills('use',false))
+  +fs(8,T('Kiedy chcesz zacząć?','When do you want to start?','Wanneer wilt u starten?'),'',pills('plan',false));
+ if(qStep===3)return fs(9,T('Kim jesteś?','Who are you?','Wie bent u?'),'',pills('client',false))
+  +fs(10,T('Dane kontaktowe','Contact details','Contactgegevens'),T('Podaj telefon lub e-mail. Pola z * są wymagane.','Give a phone number or e-mail. Fields marked * are required.','Vul een telefoonnummer of e-mail in. Velden met * zijn verplicht.'),`<div class="form">
+   <label>${T('Imię i nazwisko','Name','Naam')} *<input id="q-name" name="name" autocomplete="name" value="${esc(Q.name)}"></label>
+   <label>${T('Firma / VvE','Company / VvE','Bedrijf / VvE')}<input id="q-company" name="company" autocomplete="organization" value="${esc(Q.company)}"></label>
+   <label>${T('Telefon','Phone','Telefoon')} *<input id="q-phone" name="phone" type="tel" autocomplete="tel" placeholder="+31 6 …" value="${esc(Q.phone)}"></label>
+   <label>E-mail<input id="q-email" name="email" type="email" autocomplete="email" value="${esc(Q.email)}"></label>
+   <label class="full">${T('Ulica i numer','Street and number','Straat en huisnummer')}<input id="q-street" name="street" autocomplete="street-address" value="${esc(Q.street)}"></label>
+   <label>${T('Kod pocztowy','Postcode','Postcode')}<input id="q-pc" name="pc" autocomplete="postal-code" placeholder="1234 AB" value="${esc(Q.pc)}"></label>
+   <label>${T('Miejscowość','City','Plaats')} *<input id="q-city" name="city" autocomplete="address-level2" placeholder="Rotterdam" value="${esc(Q.city)}"></label>
+   <label class="full">${T('Opis / uwagi','Description / notes','Toelichting')}<textarea id="q-msg" name="msg" placeholder="${T('Np. stan betonu, dostęp, piętro, termin…','E.g. concrete condition, access, floor level, deadline…','Bijv. staat van het beton, bereikbaarheid, verdieping, deadline…')}">${esc(Q.msg)}</textarea></label></div>`)
+  +fs(11,T('Preferowany kontakt','Preferred contact','Voorkeur contact'),'',pills('pref',false)+`<label class="consent"><input type="checkbox" id="q-consent" name="consent" ${Q.consent?'checked':''}><span>${T('Zgadzam się na wykorzystanie moich danych do przygotowania wyceny (zgodnie z AVG/RODO).','I agree that my details are used to prepare a quote (in line with the GDPR/AVG).','Ik ga akkoord dat mijn gegevens worden gebruikt voor het opstellen van een offerte (conform de AVG).')} *</span></label>`);
+ const msg=waMessage();
+ return `<div class="stack">${kick(T('Gotowe zlecenie po holendersku','Your request, ready in Dutch','Uw aanvraag, klaar in het Nederlands'))}<h3>${T('Sprawdź i wyślij przez WhatsApp','Check and send via WhatsApp','Controleer en verstuur via WhatsApp')}</h3><p class="muted">${T('Wiadomość otworzy się w WhatsApp z wpisaną treścią. Wystarczy nacisnąć „wyślij”, a potem dołączyć zdjęcia.','The message opens in WhatsApp with the text filled in. Just press send, then add photos.','Het bericht opent in WhatsApp met de tekst al ingevuld. Druk op verzenden en voeg daarna foto’s toe.')}</p>
+ <pre class="wa-pre" id="okpre">${esc(msg)}</pre>
+ <div class="row"><a class="btn btn-wa" href="${waLink()}" target="_blank" rel="noopener">${T('Wyślij na WhatsApp','Send on WhatsApp','Verstuur via WhatsApp')} <span class="ic">${WA_ICON}</span></a><button class="btn btn-glass plain" id="copy" type="button">${T('Kopiuj treść','Copy text','Tekst kopiëren')}</button></div>
+ <p class="isonote">${T('Nie otwiera się? Wyślij skopiowaną treść na','Not opening? Send the copied text to','Opent het niet? Stuur de gekopieerde tekst naar')} <b style="user-select:all;color:var(--fg)">${PHONE}</b>.</p></div>`;
+}
+function wizHTML(){
+ const n=STEPN();
+ return `<div class="wiz glass" id="wiz"><ol class="wsteps">${n.map((t,i)=>`<li class="${i+1===qStep?'on':i+1<qStep?'done':''}"><button type="button" data-go="${i+1}" ${i+1>qStep?'disabled':''}><span>${i+1<qStep?'✓':i+1}</span>${t}</button></li>`).join('')}</ol>
+ <div class="wbar"><i style="width:${(qStep-1)/3*100}%"></i></div>
+ <form id="qform" novalidate>${wizStep()}
+ ${qErr?`<p class="werr" role="alert">${qErr}</p>`:''}
+ <div class="wnav">${qStep>1?`<button type="button" class="btn btn-glass plain" data-go="${qStep-1}">← ${T('Wstecz','Back','Vorige')}</button>`:'<span></span>'}${qStep<4?`<button type="submit" class="btn btn-gold">${qStep===3?T('Podgląd zlecenia','Preview request','Bekijk aanvraag'):T('Dalej','Next','Volgende')} ${ic}</button>`:''}</div></form></div>`;
+}
+function wizValidate(){
+ if(qStep===1&&!Q.types.length)return T('Wybierz co najmniej jeden rodzaj prac.','Choose at least one type of work.','Kies minimaal één soort werk.');
+ if(qStep===2&&!Q.m2r&&!Q.m2)return T('Wybierz zakres powierzchni albo wpisz liczbę m².','Choose a size range or enter the m².','Kies een bereik of vul het aantal m² in.');
+ if(qStep===3){
+  if(!Q.name.trim())return T('Podaj imię i nazwisko.','Enter your name.','Vul uw naam in.');
+  if(!Q.phone.trim()&&!/^\S+@\S+\.\S+$/.test(Q.email))return T('Podaj numer telefonu lub poprawny e-mail.','Enter a phone number or a valid e-mail.','Vul een telefoonnummer of een geldig e-mailadres in.');
+  if(!Q.city.trim())return T('Podaj miejscowość projektu.','Enter the project city.','Vul de plaats van het project in.');
+  if(!Q.consent)return T('Zaznacz zgodę na przetwarzanie danych.','Tick the consent box.','Vink de toestemming aan.');
+ }
+ return '';
+}
+function wizRender(scrollTop){const w=document.getElementById('wiz');if(!w)return;w.outerHTML=wizHTML();if(scrollTop){const n=document.getElementById('wiz');const y=n.getBoundingClientRect().top+scrollY-110;if(Math.abs(y-scrollY)>40)scrollTo({top:y,behavior:'smooth'});}}
+function wizRead(t){
+ if(!t.closest||!t.closest('#qform'))return;
+ const g=t.name;if(!g)return;
+ if(t.type==='checkbox'&&Array.isArray(Q[g])){const s=new Set(Q[g]);t.checked?s.add(t.value):s.delete(t.value);Q[g]=[...s];}
+ else if(t.type==='checkbox')Q[g]=t.checked;
+ else if(t.type==='radio'){Q[g]=t.value;if(g==='m2r'){Q.m2='';const i=document.getElementById('q-m2');if(i)i.value='';}}
+ else{Q[g]=t.value;if(g==='m2'&&t.value){Q.m2r='';document.querySelectorAll('input[name="m2r"]').forEach(r=>r.checked=false);}}
+ if(qErr&&!wizValidate()){qErr='';const e=document.querySelector('.werr');if(e)e.remove();}
+}
+document.addEventListener('change',e=>wizRead(e.target));
+document.addEventListener('input',e=>{if(e.target.matches('#qform input:not([type=checkbox]):not([type=radio]),#qform textarea'))wizRead(e.target);});
+document.addEventListener('submit',e=>{
+ if(e.target.id!=='qform')return;e.preventDefault();
+ qErr=wizValidate();
+ if(!qErr)qStep=Math.min(4,qStep+1);
+ wizRender(true);
+});
+document.addEventListener('click',e=>{
+ const go=e.target.closest('#wiz [data-go]');
+ if(go&&!go.disabled){qStep=+go.dataset.go;qErr='';wizRender(true);return;}
+ const cp=e.target.closest('#copy');
+ if(cp){const txt=waMessage();navigator.clipboard.writeText(txt).then(()=>cp.textContent=T('Skopiowano','Copied','Gekopieerd')).catch(()=>{const r=document.createRange();r.selectNodeContents(document.getElementById('okpre'));const s=getSelection();s.removeAllRanges();s.addRange(r);cp.textContent=T('Zaznaczono, naciśnij Ctrl+C','Selected, press Ctrl+C','Geselecteerd, druk op Ctrl+C');});}
+});
+function contact(){
+ return phero(6,L('Kontakt','Contact'),L('Poproś o bezpłatną inspekcję','Request a free inspection'),T('Wybierz rodzaj prac, podaj metry i dane. Gotowe zlecenie wyślesz jednym kliknięciem przez WhatsApp.','Choose the type of work, give the size and your details. Send the finished request with one tap on WhatsApp.','Kies het soort werk, geef de oppervlakte en uw gegevens op. De complete aanvraag verstuurt u met één klik via WhatsApp.'),L('Kontakt','Contact'))+
+ `<section><div class="wrap split csplit">
+ ${wizHTML()}
+ <aside class="glass stack caside"><img src="img/logo.png" alt="Premium CoatUp" style="width:180px;height:auto">
+  <a class="btn btn-wa" href="https://wa.me/${WA_NUM}" target="_blank" rel="noopener">${T('Napisz na WhatsApp','Chat on WhatsApp','Chat via WhatsApp')} <span class="ic">${WA_ICON}</span></a>
+  <div class="clist"><div><small>${L('Telefon / WhatsApp','Phone / WhatsApp')}</small><b>${PHONE}</b></div><div><small>E-mail</small><b>${EMAIL}</b></div><div><small>${L('Obszar działania','Service area')}</small><b>${L('Cała Holandia','The whole Netherlands')}</b></div><div><small>${L('Godziny','Hours')}</small><b>${L('pn–pt 7:00–17:00','Mon–Fri 7:00–17:00')}</b></div><div><small>KvK · BTW</small><b class="mono" style="font-size:.9rem">KvK 00000000 · NL000000000B01</b></div></div></aside>
+ </div></section>`;
+}
+
+const ROUTES={home,services,process,projects,standards,about,faq,contact};
+
+/* ---------- chrome ---------- */
+function navHTML(){
+ return `<div class="dd"><button id="dd-btn" aria-expanded="false">${L('Usługi','Services')} <svg width="10" height="10" viewBox="0 0 10 10"><path d="M2 4l3 3 3-3" stroke="currentColor" fill="none" stroke-width="1.4"/></svg></button>
+ <div class="mega" id="dd-menu" hidden><div><h5>${L('Systemy','Systems')}</h5><div class="sysl">${SYS().map(x=>`<a href="#${x.id}"><b>${x.code}</b><span>${x.name}</span></a>`).join('')}</div></div><div class="appl"><h5>${L('Zastosowania','Applications')}</h5>${APPS().map(x=>`<a href="#${x.id}"><img src="${IMG(x.img)}" alt=""><div><b>${x.name}</b><span>${x.tag}</span></div></a>`).join('')}<a class="all" href="#services">${L('Wszystkie usługi','All services')} →</a></div></div></div>
+ <a href="#process">${L('Proces','Process')}</a><a href="#projects">${L('Realizacje','Projects')}</a><a href="#standards">${L('Normy','Standards')}</a><a href="#about">${L('O nas','About')}</a><a href="#faq">FAQ</a><a href="#contact">${L('Kontakt','Contact')}</a>`;
+}
+function mnavHTML(){
+ return `<a href="#home">${L('Start','Home')}</a><a href="#services">${L('Usługi','Services')}</a>${SYS().concat(APPS()).map(x=>`<a class="sub" href="#${x.id}">${x.name}</a>`).join('')}<a href="#process">${L('Proces','Process')}</a><a href="#projects">${L('Realizacje','Projects')}</a><a href="#standards">${L('Normy','Standards')}</a><a href="#about">${L('O nas','About')}</a><a href="#faq">FAQ</a><a href="#contact">${L('Kontakt','Contact')}</a><a class="btn btn-gold" href="#contact">${L('Wycena','Get a quote')} ${ic}</a>`;
+}
+function footerHTML(){
+ return `<div class="wrap"><div class="grid"><div class="stack" style="gap:18px"><a class="logo" href="#home"><img src="img/logo.png" alt="Premium CoatUp" style="height:auto;width:190px"></a><p class="muted" style="font-size:.92rem">${L('Powłoki PMMA, epoksydowe i PU oraz troffelvloer. Ochrona betonu w całej Holandii od 2016 roku.','PMMA, epoxy and PU coatings and troffelvloer. Concrete protection across the Netherlands since 2016.')}</p><div><a class="btn btn-gold sm" href="#contact">${L('Poproś o wycenę','Request a quote')} ${ic}</a></div></div>
+ <div><h6>${L('Systemy','Systems')}</h6>${SYS().map(x=>`<a href="#${x.id}">${x.name}</a>`).join('')}</div>
+ <div><h6>${L('Zastosowania','Applications')}</h6>${APPS().map(x=>`<a href="#${x.id}">${x.name}</a>`).join('')}</div>
+ <div><h6>${L('Firma','Company')}</h6><a href="#process">${L('Proces','Process')}</a><a href="#projects">${L('Realizacje','Projects')}</a><a href="#standards">${L('Normy','Standards')}</a><a href="#about">${L('O nas','About')}</a><a href="#faq">FAQ</a><a href="#contact">${L('Kontakt','Contact')}</a></div></div>
+ <div class="base"><span>© 2026 Premium CoatUp · KvK 00000000</span><span>${EMAIL} · ${PHONE}</span></div></div><div class="giant" aria-hidden="true">COATUP</div>`;
+}
+
+/* ---------- router ---------- */
+const app=document.getElementById('app');
+function current(){const h=(location.hash||'#home').slice(1);return (ROUTES[h]||sysById(h)||appById(h))?h:'home';}
+function render(scroll){
+ document.documentElement.lang=lang;
+ const r=current();
+ app.innerHTML=`<div class="page">${ROUTES[r]?ROUTES[r]():(sysById(r)?systemPage(r):appPage(r))}</div>`;
+ document.getElementById('nav').innerHTML=navHTML();
+ document.getElementById('mnav').innerHTML=mnavHTML();
+ document.getElementById('ftr').innerHTML=footerHTML();
+ document.getElementById('wa-float').hidden=(r==='contact');
+ document.getElementById('wa-float').innerHTML=WA_ICON+'<span>'+T('Napisz na WhatsApp','Chat on WhatsApp','WhatsApp ons')+'</span>';
+ document.getElementById('hdr-cta').innerHTML=L('Wycena','Get a quote')+' '+ic;
+ document.querySelectorAll('.lang button').forEach(b=>b.setAttribute('aria-pressed',b.dataset.lang===lang));
+ document.querySelectorAll('.nav a').forEach(a=>{if(a.getAttribute('href')==='#'+r)a.setAttribute('aria-current','page');});
+ if(scroll)window.scrollTo(0,0);
+ isoInit();
+ if(r==='home')Hero.mount(document.getElementById('hero3d'));else Hero.unmount();
+}
+window.addEventListener('hashchange',()=>{closeMenus();render(true)});
+document.querySelectorAll('.lang button').forEach(b=>b.addEventListener('click',()=>{lang=b.dataset.lang;try{localStorage.setItem('pcu-lang-v2',lang)}catch(e){}render(false)}));
+function closeMenus(){const m=document.getElementById('dd-menu');if(m)m.hidden=true;const d=document.getElementById('dd-btn');if(d)d.setAttribute('aria-expanded','false');document.getElementById('mnav').hidden=true;document.getElementById('burger').setAttribute('aria-expanded','false');}
+document.getElementById('burger').addEventListener('click',()=>{const mn=document.getElementById('mnav');mn.hidden=!mn.hidden;document.getElementById('burger').setAttribute('aria-expanded',String(!mn.hidden));});
+addEventListener('scroll',()=>document.body.classList.toggle('scrolled',scrollY>40),{passive:true});
+document.addEventListener('pointermove',e=>{const c=e.target.closest&&e.target.closest('.spot');if(!c)return;const r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px');});
+document.addEventListener('click',e=>{
+ const dd=e.target.closest('#dd-btn');const menu=document.getElementById('dd-menu');
+ if(dd){menu.hidden=!menu.hidden;dd.setAttribute('aria-expanded',String(!menu.hidden));return;}
+ if(menu&&!e.target.closest('.dd')){menu.hidden=true;const d=document.getElementById('dd-btn');if(d)d.setAttribute('aria-expanded','false');}
+ const tab=e.target.closest('.seg button[data-sys]');
+ if(tab){const s=sysById(tab.dataset.sys);document.querySelectorAll('.seg button[data-sys]').forEach(b=>b.setAttribute('aria-selected',b===tab));const ib=document.getElementById('isobox');ib.innerHTML=isoHTML(s);isoPlay(ib);}
+ const chip=e.target.closest('#chips button');
+ if(chip){galFilter=chip.dataset.f;const y=scrollY;render(false);scrollTo(0,y);}
+ const fig=e.target.closest('.mosaic figure,.mason figure');if(fig)openLB(fig);
+});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeMenus();document.getElementById('lb').hidden=true;}if(e.key==='Enter'&&e.target.matches('figure[data-n]'))openLB(e.target);});
+function openLB(fig){const lb=document.getElementById('lb');document.getElementById('lb-img').src=IMG(+fig.dataset.n);document.getElementById('lb-img').alt=fig.dataset.t;document.getElementById('lb-cap').textContent=fig.dataset.t;lb.hidden=false;}
+document.getElementById('lb').addEventListener('click',e=>{if(e.target.id!=='lb-img')document.getElementById('lb').hidden=true;});
+/* ---------- hero: realistic resin pour (CSS 3D + canvas textures) ---------- */
+const Hero=(function(){
+ let root=null,raf=null,el=null,t0=performance.now(),last=-1,flCycle=-1,mx=0,my=0;
+ const CYCLE=15000;
+ const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
+ const cvs=(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return [c,c.getContext('2d')];};
+ function concTop(){const W=1024,H=680,[c,g]=cvs(W,H),r=rng(4242);
+  g.fillStyle='#7f8386';g.fillRect(0,0,W,H);
+  for(let i=0;i<60;i++){const x=r()*W,y=r()*H,rad=60+r()*200,gr=g.createRadialGradient(x,y,0,x,y,rad);const v=r()>.5?255:0;gr.addColorStop(0,`rgba(${v},${v},${v},.05)`);gr.addColorStop(1,'rgba(0,0,0,0)');g.fillStyle=gr;g.fillRect(0,0,W,H);}
+  speck(g,W,H,r,60000,.32);
+  stones(g,W,H,r,1500,1.2,4.2,['#a9a59c','#918d85','#5d5f60','#bbb5a8','#6e6c68']);
+  for(let i=0;i<260;i++){g.strokeStyle=`rgba(255,255,255,${.025+r()*.05})`;g.lineWidth=.6+r()*1.2;g.beginPath();g.arc(r()*W,r()*H,40+r()*160,r()*6.3,r()*6.3+1.2);g.stroke();}
+  pores(g,W,H,r,420);
+  const vg=g.createRadialGradient(W*.4,H*.4,H*.2,W*.5,H*.5,W*.75);vg.addColorStop(0,'rgba(255,255,255,.06)');vg.addColorStop(1,'rgba(0,0,0,.28)');g.fillStyle=vg;g.fillRect(0,0,W,H);
+  return c.toDataURL('image/jpeg',.86);}
+ function concSide(seed,flip){const W=1024,H=170,[c,g]=cvs(W,H),r=rng(seed);
+  g.fillStyle='#696d70';g.fillRect(0,0,W,H);speck(g,W,H,r,16000,.3);
+  stones(g,W,H,r,110,6,16,['#8e897f','#a39c8f','#5f5b55','#7b766d','#b2ab9d','#4f4c48']);stones(g,W,H,r,420,1.6,5,['#8e897f','#56534e','#9d978b','#b0aa9e']);pores(g,W,H,r,200);
+  const gr=g.createLinearGradient(0,0,0,H);gr.addColorStop(0,'rgba(255,255,255,.14)');gr.addColorStop(.04,'rgba(255,255,255,0)');gr.addColorStop(1,'rgba(0,0,0,.35)');g.fillStyle=gr;g.fillRect(0,0,W,H);
+  if(flip){const [f,fg]=cvs(W,H);fg.translate(0,H);fg.scale(1,-1);fg.drawImage(c,0,0);return f.toDataURL('image/jpeg',.86);}
+  return c.toDataURL('image/jpeg',.86);}
+ function resin(){const W=1024,H=680,[c,g]=cvs(W,H),r=rng(77);
+  const gr=g.createLinearGradient(0,0,W,H);gr.addColorStop(0,'#b4b8ba');gr.addColorStop(1,'#9a9ea1');g.fillStyle=gr;g.fillRect(0,0,W,H);
+  for(let i=0;i<90;i++){const x=r()*W,y=r()*H,rad=40+r()*160,rg=g.createRadialGradient(x,y,0,x,y,rad);const v=r()>.5?255:40;rg.addColorStop(0,`rgba(${v},${v},${v},.045)`);rg.addColorStop(1,'rgba(0,0,0,0)');g.fillStyle=rg;g.fillRect(0,0,W,H);}
+  speck(g,W,H,r,9000,.06);return c.toDataURL('image/jpeg',.88);}
+ function flakes(){const W=1024,H=680,[c,g]=cvs(W,H),r=rng(909);const pal=['#151617','#1e1f21','#f3f2ed','#e6e4dd','#7b7e81','#55585b','#c7c9ca'];
+  for(let i=0;i<5200;i++){const x=r()*W,y=r()*H,s=1.4+r()*4.2,k=3+((r()*4)|0),a0=r()*6.3;g.fillStyle=pal[(r()*pal.length)|0];g.beginPath();for(let j=0;j<k;j++){const a=a0+j/k*6.283,rr=s*(.5+r()*.6);g.lineTo(x+Math.cos(a)*rr,y+Math.sin(a)*rr);}g.closePath();g.fill();}
+  return c.toDataURL('image/png');}
+ function bucket(){/* tilted bucket with brand band, returns {url,w,h,lip:[x,y]} */
+  const W=340,H=340,[c,g]=cvs(W,H),th=-2.05,R1=78,R0=62,BH=150;
+  g.translate(W/2,H/2);g.rotate(th);
+  const body=g.createLinearGradient(-R1,0,R1,0);body.addColorStop(0,'#8d9093');body.addColorStop(.18,'#e9eae8');body.addColorStop(.45,'#ffffff');body.addColorStop(.75,'#cfd1d0');body.addColorStop(1,'#7e8184');
+  g.fillStyle=body;g.beginPath();g.moveTo(-R1,-BH/2);g.lineTo(R1,-BH/2);g.lineTo(R0,BH/2);g.quadraticCurveTo(0,BH/2+16,-R0,BH/2);g.closePath();g.fill();
+  /* ribs */g.strokeStyle='rgba(0,0,0,.12)';g.lineWidth=2;[-.32,-.22].forEach(f=>{g.beginPath();g.ellipse(0,BH*f,R1-4,9,0,0,Math.PI);g.stroke();});
+  /* gold band */const gb=g.createLinearGradient(-R1,0,R1,0);gb.addColorStop(0,'#7a5a2a');gb.addColorStop(.3,'#e8cf98');gb.addColorStop(.55,'#f6e6c0');gb.addColorStop(1,'#8a6730');
+  g.fillStyle=gb;g.beginPath();g.moveTo(-R1+5,-8);g.lineTo(R1-5,-8);g.lineTo(R1-9,34);g.quadraticCurveTo(0,44,-R1+9,34);g.closePath();g.fill();
+  g.fillStyle='#17120a';g.font='800 15px "Unbounded",Arial Black,sans-serif';g.textAlign='center';g.fillText('PREMIUM',0,12);g.font='800 13px "Unbounded",Arial Black,sans-serif';g.fillText('COATUP',0,29);
+  /* rim + resin inside */
+  g.fillStyle='#d9dbda';g.beginPath();g.ellipse(0,-BH/2,R1+4,16,0,0,Math.PI*2);g.fill();
+  const rs=g.createLinearGradient(-R1,0,R1,0);rs.addColorStop(0,'#8f9396');rs.addColorStop(.5,'#c3c7c9');rs.addColorStop(1,'#8a8e91');
+  g.fillStyle=rs;g.beginPath();g.ellipse(0,-BH/2,R1-3,12,0,0,Math.PI*2);g.fill();
+  g.fillStyle='rgba(255,255,255,.55)';g.beginPath();g.ellipse(-20,-BH/2-3,26,3,0,0,Math.PI*2);g.fill();
+  /* handle */g.strokeStyle='#5d6063';g.lineWidth=4;g.beginPath();g.arc(0,-BH/2+8,R1+10,Math.PI*.05,Math.PI*.95);g.stroke();
+  /* lip point */const pts=[[-R1,-BH/2],[R1,-BH/2]].map(([x,y])=>[W/2+x*Math.cos(th)-y*Math.sin(th),H/2+x*Math.sin(th)+y*Math.cos(th)]);
+  const lip=pts[0][1]>pts[1][1]?pts[0]:pts[1];
+  return {url:c.toDataURL('image/png'),w:W,h:H,lip};
+ }
+ function pole(){const [c,g]=cvs(16,512);const gr=g.createLinearGradient(0,0,16,0);gr.addColorStop(0,'#3a3d40');gr.addColorStop(.35,'#d8dadb');gr.addColorStop(.6,'#8b8f92');gr.addColorStop(1,'#2c2e30');g.fillStyle=gr;g.fillRect(0,0,16,512);g.fillStyle='#16181a';g.fillRect(0,0,16,90);return c.toDataURL('image/png');}
+ let B=null;
+ function build(){
+  B=bucket();
+  root=document.createElement('div');root.className='hs';
+  root.innerHTML=`<div class="hs-stage" id="hs-stage">
+   <div class="hs-shadow"></div>
+   <div class="hs-slab">
+    <div class="hs-f hs-top" style="background-image:url(${concTop()})"></div>
+    <div class="hs-f hs-fr" style="background-image:url(${concSide(11)})"><div class="hs-cfr"></div></div>
+    <div class="hs-f hs-lf" style="background-image:url(${concSide(23,true)})"><div class="hs-clf"></div></div>
+    <div class="hs-coatplane">
+     <div class="hs-coat"><div class="hs-fill" style="background-image:url(${resin()})"><div class="hs-flakes" style="background-image:url(${flakes()})"></div><div class="hs-shine"></div></div></div>
+     <div class="hs-wave"></div>
+     <div class="hs-ripple"></div><div class="hs-ripple d2"></div>
+     <div class="hs-mk"></div>
+     <div class="hs-drops"></div>
+     <div class="hs-sq"><div class="sq-f sq-top"></div><div class="sq-f sq-lf"></div><div class="sq-f sq-fr"></div><div class="sq-pole" style="background-image:url(${pole()})"></div></div>
+    </div>
+   </div></div>
+   <img class="hs-bucket" alt="" src="${B.url}" width="${B.w}" height="${B.h}">
+   <div class="hs-stream"><i></i></div>`;
+ }
+ const cl=(x,a,b)=>Math.min(1,Math.max(0,(x-a)/(b-a))), ease=x=>x<.5?2*x*x:1-Math.pow(-2*x+2,2)/2;
+ function frame(now){
+  raf=requestAnimationFrame(frame);
+  const k=window.__heroT!=null?window.__heroT:reduce?.93:((now-t0)%CYCLE)/CYCLE;
+  const cyc=Math.floor((now-t0)/CYCLE);
+  const pour=cl(k,.06,.37),spread=ease(cl(k,.42,.70)),fl=cl(k,.71,.84),gl=cl(k,.84,.97),fade=1-cl(k,.975,1);
+  const st=root.querySelector('#hs-stage');
+  st.style.setProperty('--rx',(my*-6)+'deg');st.style.setProperty('--rz',(mx*10)+'deg');
+  /* puddle: three overlapping lobes for an organic edge */
+  const pr=Math.pow(pour,.65), sx=spread>0?(spread*104-2):-5;
+  const lobe=(cx,cy,rx,ry)=>`radial-gradient(${(rx*pr).toFixed(2)}% ${(ry*pr).toFixed(2)}% at ${cx}% ${cy}%,#000 96%,transparent 100%)`;
+  const m=[lobe(27,47,19,27),lobe(33,40,13,19),lobe(21,55,12,17),lobe(30,56,10,14),`linear-gradient(90deg,#000 ${sx.toFixed(2)}%,transparent ${(sx+.4).toFixed(2)}%)`].join(',');
+  const fill=root.querySelector('.hs-fill');fill.style.webkitMaskImage=fill.style.maskImage=pr>0||sx>0?m:'linear-gradient(transparent,transparent)';
+  root.querySelector('.hs-coat').style.opacity=fade;
+  root.querySelector('.hs-flakes').style.opacity=(fl*fade).toFixed(3);
+  root.querySelector('.hs-shine').style.setProperty('--gp',(130-gl*260)+'%');
+  root.querySelector('.hs-shine').style.opacity=(gl>0&&gl<1?1:0);
+  fill.style.setProperty('--wet',(1-cl(k,.70,.9)).toFixed(3));
+  /* coat edges on slab faces */
+  root.querySelector('.hs-cfr').style.clipPath=`inset(0 ${Math.max(0,100-sx).toFixed(2)}% 0 0)`;root.querySelector('.hs-cfr').style.opacity=fade;
+  root.querySelector('.hs-clf').style.opacity=(sx>0?1:0)*fade;
+  /* bow wave in front of the squeegee */
+  const wv=root.querySelector('.hs-wave');wv.style.left=sx+'%';wv.style.opacity=(spread>0&&spread<1)?1:0;
+  /* squeegee */
+  const sqIn=cl(k,.37,.42),sqOut=cl(k,.70,.75),sq=root.querySelector('.hs-sq');
+  sq.style.opacity=k>.36&&k<.76?1:0;
+  sq.style.left=Math.max(-2,sx)+'%';sq.style.transform=`translateZ(${((1-ease(sqIn))*160+ease(sqOut)*200).toFixed(1)}px)`;
+  /* ripples while pouring */
+  root.querySelectorAll('.hs-ripple').forEach(r=>r.style.visibility=pour>0&&pour<1?'visible':'hidden');
+  /* flakes rain once per cycle */
+  if(fl>0&&fl<1&&flCycle!==cyc&&window.__heroT==null){flCycle=cyc;const d=root.querySelector('.hs-drops');d.innerHTML='';for(let i=0;i<110;i++){const s=document.createElement('span');s.style.cssText=`left:${3+Math.random()*94}%;top:${3+Math.random()*94}%;animation-delay:${Math.random()*1400}ms`;d.appendChild(s);}}
+  if(k<.7)root.querySelector('.hs-drops').innerHTML='';
+  /* bucket + stream (2D, aligned to the projected pour point) */
+  const bk=root.querySelector('.hs-bucket'),sm=root.querySelector('.hs-stream'),mk=root.querySelector('.hs-mk');
+  const host=el.getBoundingClientRect(),p=mk.getBoundingClientRect();const px=p.left-host.left,py=p.top-host.top;
+  const bin=cl(k,0,.06),bout=cl(k,.37,.43),sH=host.width<700?105:Math.min(200,Math.max(110,host.height*.22));
+  const lx=px,ly=py-sH-(1-ease(bin))*120-ease(bout)*180;
+  const bs=host.width<700?.55:host.width<1100?.75:1;bk.style.transform=`translate(${(lx-B.lip[0]+(1-ease(bin))*80+ease(bout)*60).toFixed(1)}px,${(ly-B.lip[1]).toFixed(1)}px) rotate(${(-(1-ease(bin))*18+ease(bout)*20).toFixed(1)}deg) scale(${bs})`;
+  bk.style.transformOrigin=`${B.lip[0]}px ${B.lip[1]}px`;
+  bk.style.opacity=k<.44?Math.min(1,bin*3)*(1-bout):0;
+  const sOn=k>.06&&k<.37;const thin=1-cl(k,.31,.37);
+  sm.style.opacity=sOn?1:0;sm.style.left=px+'px';sm.style.top=(py-sH)+'px';sm.style.height=sH+'px';sm.style.setProperty('--sw',(4+thin*7).toFixed(1)+'px');
+  /* phase labels */
+  const pb=document.getElementById('phase-bar');if(pb)pb.style.width=(k*100).toFixed(1)+'%';
+  const ph=k<.38?0:k<.70?1:k<.84?2:3;
+  if(ph!==last){last=ph;document.querySelectorAll('#phase li').forEach(s=>{s.classList.toggle('on',+s.dataset.p===ph);s.classList.toggle('done',+s.dataset.p<ph);});}
+ }
+ addEventListener('pointermove',e=>{mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;});
+ return{
+  mount(container){if(!container)return;try{if(!root)build();}catch(e){return;}
+   el=container;el.appendChild(root);const fb=el.parentNode.querySelector('.hero-fallback');if(fb)fb.style.display='none';last=-1;
+   if(!raf)raf=requestAnimationFrame(frame);},
+  unmount(){if(raf)cancelAnimationFrame(raf);raf=null;el=null;}
+ };
+})();
+
+document.addEventListener('visibilitychange',()=>{if(document.hidden)Hero.unmount();else if(current()==='home')Hero.mount(document.getElementById('hero3d'));});
+render(false);
+})();
+</script>
+
+</body>
+</html>
