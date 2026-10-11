@@ -547,7 +547,10 @@ a:hover>.btop .arrow,a:hover .arrow{background:var(--gold);color:var(--gold-ink)
 .btrack img.bl-sika{height:clamp(44px,4.6vw,58px);opacity:.75}
 .plate img.pl-sika{max-height:88%}
 .plate img.pl-arturo,.plate img.pl-mapei{max-width:92%;max-height:86%}
-.brands{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.brands{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.brand.feat{grid-column:span 2;border-color:rgba(228,199,146,.35);background:radial-gradient(120% 120% at 100% 0%,rgba(214,171,106,.12),transparent 55%),var(--glass)}
+.brand.feat .plate{aspect-ratio:3.4/1}
+.brand.feat h3{font-size:1.45rem}
 .brand{display:flex;flex-direction:column;gap:14px;padding:16px 16px 24px;border-radius:var(--r);background:var(--glass);border:1px solid var(--line);transition:border-color .35s,transform .35s}
 .brand:hover{border-color:rgba(228,199,146,.4);transform:translateY(-3px)}
 .plate{aspect-ratio:2.6/1;max-width:100%;border-radius:18px;overflow:hidden;display:grid;place-items:center;position:relative;box-shadow:inset 0 0 0 1px rgba(255,255,255,.08)}
@@ -559,8 +562,8 @@ a:hover>.btop .arrow,a:hover .arrow{background:var(--gold);color:var(--gold-ink)
 .brand .btop{padding-inline:8px;align-items:center}
 .brand p{padding-inline:8px;color:var(--muted);font-size:.94rem}
 .brand .chips{padding-inline:8px}
-@media (max-width:980px){.brands{grid-template-columns:1fr 1fr}}
-@media (max-width:600px){.brands{grid-template-columns:1fr}}
+@media (max-width:1100px){.brands{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:600px){.brands{grid-template-columns:1fr}.brand.feat{grid-column:auto}}
 /* before / after */
 .ba{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(30px,5vw,80px);align-items:center}
 @media (max-width:900px){.ba{grid-template-columns:1fr}}
@@ -911,6 +914,8 @@ const MQ=()=>['PMMA','Epoxy','Polyurethaan','Troffelvloer',T('Galerie','Gallerie
 
 
 const BRANDS=()=>[
+ {id:'quartzline',name:'Quartzline',bg:'#ffffff',feat:1,origin:T('Holandia · 50 lat','Netherlands · 50 years','Nederland · 50 jaar'),chips:['EP','PU',T('Piasek kwarcowy','Quartz sand','Kwartszand'),T('Ściany i posadzki','Walls & floors','Wand & vloer')],
+  d:T('Holenderski producent systemów ściennych i posadzkowych z 50-letnim doświadczeniem. Z Quartzline bierzemy żywice oraz (kolorowy) piasek kwarcowy do bezspoinowych posadzek, warstw z posypką i troffelvloer. Materiały, które profesjonalni wykonawcy w Holandii wybierają ze względu na stałą jakość.','Dutch manufacturer of wall and floor systems with 50 years of experience. From Quartzline we source resins and (coloured) quartz sand for seamless floors, broadcast layers and troffelvloer. Materials professional applicators in the Netherlands choose for their consistent quality.','Nederlandse producent van wand- en vloersystemen met 50 jaar ervaring. Bij Quartzline halen we harsen en (gekleurd) kwartszand voor naadloze vloeren, instrooilagen en troffelvloeren. Materialen die professionele verwerkers in Nederland kiezen om hun constante kwaliteit.')},
  {id:'arturo',name:'Arturo',bg:'linear-gradient(90deg,#14843d,#3f9a3d)',origin:T('Holandia','Netherlands','Nederland'),chips:['EP','PU'],
   d:T('Holenderski specjalista od bezspoinowych posadzek żywicznych. Systemy PU i epoksydowe Arturo stosujemy w halach, obiektach użyteczności publicznej i tam, gdzie liczy się higiena i komfort.','Dutch specialist in seamless resin floors. We use Arturo PU and epoxy systems in industrial halls, public buildings and spaces where hygiene and comfort matter.','Nederlandse specialist in naadloze kunstharsvloeren. Arturo PU- en epoxysystemen passen we toe in bedrijfshallen, utiliteitsbouw en ruimtes waar hygiëne en comfort tellen.')},
  {id:'remmers',name:'Remmers',bg:'#ffffff',origin:T('Niemcy','Germany','Duitsland'),chips:['EP','PU',T('Ochrona betonu','Concrete protection','Betonbescherming')],
@@ -929,7 +934,7 @@ function brandsSection(){
  return `<section style="padding-top:0"><div class="wrap">
  <div class="shead rv"><div class="stack">${kick(T('Marki i materiały','Brands & materials','Merken & materialen'))}<h2>${T('Najlepsze materiały od <span class="gt">czołowych producentów.</span>','Top materials from <span class="gt">leading manufacturers.</span>','Topmaterialen van <span class="gt">toonaangevende fabrikanten.</span>')}</h2></div><p class="lead">${T('Powłoka jest tak dobra jak żywica, z której powstała. Dlatego pracujemy na sprawdzonych systemach europejskich producentów, z pełną dokumentacją techniczną każdego produktu.','A coating is only as good as the resin it is made from. That is why we work with proven systems from European manufacturers, with full technical documentation for every product.','Een coating is zo goed als de hars waarmee hij gemaakt is. Daarom werken we met bewezen systemen van Europese fabrikanten, met volledige technische documentatie per product.')}</p></div>
  <div class="rv">${brandStrip()}</div>
- <div class="brands">${BRANDS().map(b=>`<article class="brand spot rv"><div class="plate${b.cover?' cover':''}" style="background:${b.bg}"><img class="pl-${b.id}" src="img/brands/${b.id}-c.jpg" alt="${b.name}" loading="lazy"></div><div class="btop"><h3>${b.name}</h3><span class="chip">${b.origin}</span></div><p>${b.d}</p><div class="chips">${b.chips.map(c=>`<span class="chip">${c}</span>`).join('')}</div></article>`).join('')}</div>
+ <div class="brands">${BRANDS().map(b=>`<article class="brand spot rv${b.feat?' feat':''}"><div class="plate${b.cover?' cover':''}" style="background:${b.bg}"><img class="pl-${b.id}" src="img/brands/${b.id}-c.jpg" alt="${b.name}" loading="lazy"></div><div class="btop"><h3>${b.name}</h3><span class="chip">${b.origin}</span></div><p>${b.d}</p><div class="chips">${b.chips.map(c=>`<span class="chip">${c}</span>`).join('')}</div></article>`).join('')}</div>
  <p class="isonote" style="margin-top:22px">${T('Nazwy marek i logo należą do ich producentów i służą wyłącznie wskazaniu, z jakich produktów korzystamy.','Brand names and logos are the property of their manufacturers and are used only to show which products we work with.','Merknamen en logo’s zijn eigendom van de betreffende fabrikanten en worden alleen gebruikt om aan te geven met welke producten wij werken.')}</p>
  </div></section>`;
 }
